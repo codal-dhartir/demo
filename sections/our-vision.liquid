@@ -1,0 +1,62 @@
+ <div class="our_vision">
+	<div class="container">
+		<div class="row">
+			<div class="vision_content">
+              	{% if section.settings.our_vision_heading != "" %}
+              		<h1>{{section.settings.our_vision_heading}}</h1>
+              	{% endif %}	
+                     <img src="{{ section.settings.brand_img | img_url: '60x'}}" alt="" />
+<!-- 				<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/paly.png?371057619847193444"> -->
+				{% if section.settings.complete_description != "" %}	
+              		<p>{{ section.settings.our_vision_description }}</p>
+				{% endif %}	
+                {% if section.settings.button_link != "" %}	
+              		<a href="{{ section.settings.button_link }}">{{section.settings.our_vision_link_heading}}</a>
+				{% endif %}	
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Our Vision",
+    "settings": [
+      {
+        "id": "our_vision_heading",
+        "type": "text",
+        "label": "Our Vision Heading",
+        "default": "Our Vision"
+      },
+       {
+       "type": "image_picker",
+       "id": "brand_img",
+       "label": "Vision Image"
+       },
+   	    {
+              "type": "url",
+              "id": "button_link",
+              "label": "link"
+	   },
+       {
+              "type": "text",
+              "id": "our_vision_link_heading",
+              "label": "Link Label",
+   			  "default": "More Click Here"
+	   },
+	  {
+        "id": "our_vision_description",
+        "type": "textarea",
+        "label": "Our Vision description",
+        "default": "“Do something big: that is the motto driving everything Floracracy does. And there’s nothing bigger for us than helping people get the flowers that are right for their big moments. After all, flowers are given at the biggest moments: weddings, funerals, “thank-yous”, “I’m-sorrys”, “I-love-yous.” Floracracy believes that the flowers we give should be big too.”"
+      }
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

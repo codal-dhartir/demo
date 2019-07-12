@@ -1,0 +1,272 @@
+
+{% assign featuredBlogs = 'film-tv,art,news' | split:',' %}
+{% assign blog_all = false %}
+{% assign top_stories = 1 %}
+{% assign top_stories_count = 1 %}
+{% assign top_stories_count_date = 1 %}
+{% assign all_stories = 1 %}
+{% assign all_stories_count = 1 %}
+
+{% for featuredBlog in featuredBlogs %}
+{% if blogs[featuredBlog].articles %}
+
+{% assign test_val = blogs[featuredBlog].title %}
+
+{% if blog_all %}
+{% assign blog_all = blog_all | concat:blogs[featuredBlog].articles %}
+
+{% else %}
+{% assign blog_all = blogs[featuredBlog].articles %}
+
+{% endif %}
+{% endif %}
+{% endfor %}
+
+
+{% if blog_all %}
+{% assign blog = blog_all | sort:"published_at" | reverse %}
+
+<div class="{% if section.settings.layout == 'list' %}blog--list-view{% endif %}">
+  <div class="col-xs-12 no-padding">
+    <div class="blog-main-heading col-xs-12 no-padding">
+      <h1>TOP STORIES</h1>
+    </div>
+  </div>
+
+  {% if section.settings.layout == 'grid' %}
+  <div class="stories top_stories-collection-wr grid-list-block" style="width: 100%;float: left;">
+    <div class="page-width container">
+
+      <div class="blog-display-element-wrap" id="itemContainer">  
+        
+        {% for article in blog %}
+
+
+        {% for tag in article.tags %}
+        {% if tag == 'Top Stories' %}
+
+        <div class="grid__item medium-up--one-third col-xs-12 no-padding blog-main-content-al">
+          <div class="blog-main-div col-xs-12 no-padding">           
+            <div class="article__grid-meta{% if article.image %} article__grid-meta--has-image{% endif %} blog-main-content">
+
+              <h3 class="article__title h3 top_stories_article">
+                <a href="{{ article.url }}">{{ article.title | strip_html | truncate: 10 }}</a>
+                <p class="top_stories_article_custom_time {{top_stories_count_date}}">{{ article.published_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+
+                <span class="top_stories_article_blog-time-stamp {{top_stories_count_date}}">9 hours ago</span>
+
+                <script type="text/javascript">
+                  document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+                </script>
+                <script> 
+                  $(document).ready(function() {
+                    var date1, date2; 
+                    var count= {{top_stories_count_date}}
+                        var custom_class =$('.top_stories_article_blog-time-stamp.'+count); 
+                    var custom_get_value = $('.top_stories_article_custom_time.'+count+' time')
+                    var publish_unprocessed = custom_get_value.html();
+
+                    publish = new Date(publish_unprocessed );
+                    current_full = new Date();
+                    $.format = DateFormat.format;
+                    var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+                    current = new Date(current_unprocessed);
+
+                    var res = Math.abs(current - publish) / 1000;
+                    var days = Math.floor(res / 86400);                         
+                    var hours = Math.floor(res / 3600) % 24;                  
+
+                    if(days > 1){
+                      custom_class.html(days+' days ago.');
+                    } else {
+                      custom_class.html(hours+' hours ago.');
+                    }                   
+                  });
+                </script>
+               
+              </h3>
+               <h2><a href="{{ article.url }}">{{ article.title | strip_html }}</a></h2>
+
+              {% if section.settings.blog_show_author %}
+              <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+              {% endif %}
+
+              {% if section.settings.blog_show_date %}
+              <span class="article__date">
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              </span>
+              {% endif %}
+
+              <div class="rte article__grid-excerpt">
+                {% if article.excerpt.size > 0 %}
+                <p> <a href="{{ article.url }}">{{ article.excerpt | strip_html }} </a></p>
+                {% else %}
+                <p> <a href="{{ article.url }}">{{ article.content | strip_html  }}</a> </p>
+                {% endif %}
+              </div>
+			
+              {% if section.settings.tag_enable %}
+                {% if article.tags.size > 0 %}
+                <div class="article__tags rte">
+                  {% for tag in article.tags %}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article__grid-tag">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              {% endif %}
+	
+              {% if section.settings.read_more_enable %}
+              <ul class="list--inline">
+                <li>
+                  <a href="{{ article.url }}" class="btn btn--secondary btn--small">
+                    {{ 'blogs.article.read_more' | t }}
+                  </a>
+                </li>
+
+                {% if blog.comments_enabled? and article.comments_count > 0 %}
+                <li>
+                  <a href="{{ article.url }}#comments" class="btn btn--small btn--link">
+                    {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+              {% endif %}
+              {% assign top_stories_count_date = top_stories_count_date | plus: 1 %}
+            </div>
+            {% if article.image %}
+            <div class="blog-main-img">
+              {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+              {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+              {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+              <div class="blog-element-img" id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+                <a href="{{ article.url }}" {% comment %}style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" {% endcomment %} class="article__grid-image-container">
+                  <img id="{{ img_id }}"
+                       class="article__grid-image lazyload"
+                       src="{{ article.image | img_url: '300x300' }}"
+                       data-src="{{ img_url }}"
+                       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                       data-aspectratio="{{ article.image.aspect_ratio }}"
+                       data-sizes="auto"
+                       alt="{{ article.image.alt | escape }}">
+                </a>
+              </div>
+
+              <noscript>
+                <a href="{{ article.url }}" class="article__grid-image-wrapper">
+                  {{ article | img_url: '345x', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                </a>
+              </noscript>
+            </div>
+            {% else %}
+            <div class="blog-main-img">
+              <div class="article__grid-image-wrapper js blog-element-img collection-grid-item__overlay" style=" background-size: contain;background-image: url('//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x1024.gif')">
+                <a href="{{ article.url }}" class="article__grid-image-container">
+
+                </a>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+        {% assign top_stories_count = top_stories_count | plus: 1 %} 
+        {% endif %}
+        {% endfor %}
+
+        {% endfor %}
+      </div>
+      <div class="pagination-control">
+		<p id="page_count_label">
+        </p>
+		<div class="holder">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% schema %}
+{
+"name": "Blog pages",
+"settings": [
+{
+"type": "select",
+"id": "layout",
+"label": "Layout",
+"default": "grid",
+"options": [
+{
+"value": "grid",
+"label": "Grid"
+}
+
+]
+},
+{
+"type": "checkbox",
+"id": "blog_show_author",
+"label": "Show author",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "tag_enable",
+"label": "Show Tags",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "read_more_enable",
+"label": "Show Read More",
+"default": true
+},
+{
+"id": "page_count",
+"type": "text",
+"label": "Page Count",
+"default": "1"
+}
+
+
+]
+}
+{% endschema %}
+
+<script type="text/javascript">
+  document.write(unescape("%3Cscript src='{{'jPages.min.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script>
+   $(document).ready(function () {
+     var count = {{section.settings.page_count}}
+            $("div.holder").jPages({
+                containerID: "itemContainer",
+              perPage: count,
+                keyBrowse: false,
+                scrollBrowse: false,
+                animation: "fadeInUpBig",
+              	first       : false,
+                previous    : false,
+                next        : false,
+                last        : false,
+                midRange    : 5,
+                callback: function (pages,items) {
+                    $("#page_count_label").html("Page " + pages.current + " of " + pages.count);
+                }
+       
+            });
+            $("button").click(function () {
+                /* get given page */
+                var page = parseInt($("input").val());
+                /* jump to that page */
+                $("div.holder").jPages(page);
+            });
+     
+ });
+</script>

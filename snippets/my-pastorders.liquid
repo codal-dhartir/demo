@@ -1,0 +1,72 @@
+	<div class="my-pastorder-wr">
+	  <div class="saved-past-order-cont-wrap">
+		<ul class="active-order-cont">
+ 		 
+		  {% for order in past_order.orders %}
+	
+		    <li>
+		      <div class="col-md-10 col-sm-10 col-xs-10 pull-right">
+		        <div class="col-md-9 col-sm-9 col-xs-12 no-padding-left order-list-img">
+		          <div class="col-md-2 col-sm-3 col-xs-2 no-padding">
+		            <a href="https://floracracy.myshopify.com/account/orders/d66f802828666d8877f4725ce8118fb3">
+		             {% for line_item in order.line_items %}
+		              <img src="{{ line_item.product | img_url }}">
+		             {% endfor %}
+		            </a>
+		          </div>
+		          <div class="col-md-8 col-sm-7 col-xs-10 no-padding-right ">
+		            <label class="order-list-heading">ARRANGEMENT NAME {{order.name}}</label>
+		            {% comment %}<div class="order-list-data"></div>{% endcomment %}
+		            <div class="deli-status"><span>Delivered</span>TODAY</div>
+			            <select class="flora-form-control order-list-data-select select-fixed-width">
+			                <option>Select</option>
+			                <option>Loved it</option>
+		              	</select>
+			            <div class="order-list-data with-select bold-text" style="margin-top:10px;"><div>Notes</div> 
+			              <textarea class="flora-form-control" rows="2">Add note</textarea>
+			            </div>
+		          </div>
+		        </div>
+		        <div class="col-md-2 col-sm-2 col-xs-12 no-padding m-t-10-m">
+		          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+		            <button class="order-list-btn">BUY AGAIN</button>
+		          </div>
+		        </div>
+		      </div>
+		    </li>
+		    
+		    {% endfor %}
+		     
+		  </ul>
+		</div>
+	</div>
+
+<style type="text/css">
+	.my-pastorder-wr .flora-form-control{
+		margin:5px 0 0 0;
+	}
+	.my-pastorder-wr .saved-past-order-cont-wrap ul{
+		background: #fcfcfa;
+	}
+</style>
+<script type="text/javascript">
+	var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/admin/orders.json?status=closed",
+        "method": "GET",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+          "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+        past_order = response;
+        	$.each( past_order.orders, function( key, values ) { //First each loop
+             	 console.log(values);
+        	});
+       }); 
+</script>

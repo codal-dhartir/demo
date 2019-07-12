@@ -1,0 +1,333 @@
+<div class="my-orders-list">
+  
+<!-- Active Oders -->   
+<div class="active-order-cont-wrap">
+  <h2 class="text-left flora-page-title">Active Orders</h2>
+  {% if  customer.orders.size > 0 %}  
+  <ul class="active-order-cont">
+   {% paginate customer.orders by 5 %}
+    {% for order in customer.orders %}
+      {% if order.fulfillment_status_label != 'Fulfilled' %}
+
+    <li>
+      <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left order-list-img">
+          <div class="col-md-4 col-sm-5 col-xs-2 no-padding">
+            <a href="javascript:void(0);">
+            {% for line_item in order.line_items %}
+              <img src="{{ line_item.product | img_url }}">
+            {% endfor %}
+            </a>
+          </div>
+          <div class="col-md-8 col-sm-7 col-xs-10 no-padding-right ">
+            <label class="order-list-heading">ARRANGEMENT NAME</label>
+            <div class="order-list-data">{{order.name}}</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 no-padding-left m-t-10-m">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+            <label class="order-list-heading">Recipient</label>
+              <div class="order-list-data">{{order.customer.name }}</div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left m-t-10-m">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding delivery-list">
+            <label class="order-list-heading"><span><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/deli-truck.png?12859046429262963476"></span>{{order.fulfillment_status_label}}</label>
+            {% if order.fulfillment_status_label != 'Fulfilled' %}
+              <div class="order-list-data">
+                <div class="delivery-sch-text">Delivery scheduled for </div>
+                <div class="delivery-sch-time">April 15, 2018 at 11:00 AM</div>
+
+              </div>
+            {% else %}
+              <div class="order-list-data">
+                <div class="delivery-sch-text">Delivered</div>
+                {% for line_item in order.line_items %}
+                    {% if line_item.fulfillment %}
+                        {%- assign created_at = line_item.fulfillment.created_at | time_tag: '%B %d, %Y at %I:%M %p' -%}
+                        <div class="delivery-sch-time">{{ created_at }} </div>
+                    {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-12 no-padding m-t-10-m">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+            <button class="order-list-btn view_order_btn" data-order-id="order_{{order.id}}">VIEW ORDER</button>
+            <button class="order-list-btn" onclick="location.href='{{order.order_status_url}}';">TRACK ORDER</button>
+          	<button class="cancel-order-list">CANCEL ORDER</button>
+          </div>
+        </div>
+      </div>
+    </li>
+    {% endif %}
+  {% endfor %}
+ {% if paginate.pages > 1 %}
+      {% include 'pagination' %}
+    {% endif %}
+  {% endpaginate %}
+  </ul>
+
+  <div class="order-list-add col-md-12 col-sm-12 col-xs-12 no-padding">
+    <span class="load_more_order">+2 more</span>
+  </div>
+  {% else %}
+   <ul class="active-order-cont">
+      <li class="not_fount_data">No Order Found</li>
+   </ul>
+  {% endif %}
+</div>
+<!-- Active Oders end -->   
+
+<!-- Past Oders -->   
+<div class="past-order-cont-wrap">
+
+  <div class="col-md-12 col-sm-12 col-xs-12 no-padding past_orders_title">
+    <h2 class="text-left flora-page-title" style="margin-bottom: 0px !important;">Past Orders</h2>
+    
+    <select class="flora-form-control order-list-data-select select-fixed-width pull-right">
+      <option>Filter by Receipient</option>
+    </select>
+    
+  </div>
+  
+   {% if customer.orders.size > 0 %}
+  
+  <ul class="active-order-cont">
+ {% paginate customer.orders by 5 %}
+  {% for order in customer.orders %}
+  {% if order.fulfillment_status_label == 'Fulfilled' %}
+    <li>
+      <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left order-list-img">
+          <div class="col-md-4 col-sm-5 col-xs-2 no-padding">
+            <a href="javascript:void(0);">
+             {% for line_item in order.line_items %}
+              <img src="{{ line_item.product | img_url }}">
+             {% endfor %}
+            </a>
+          </div>
+          <div class="col-md-8 col-sm-7 col-xs-10 no-padding-right ">
+            <label class="order-list-heading">ARRANGEMENT NAME</label>
+            <div class="order-list-data">{{order.name}}</div>
+            <div class="deli-status"><span>Delivered</span>TODAY</div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left m-t-10-m">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+            <label class="order-list-heading">Recipient <span >Tell us what Raven thinks about the flowers you sent!</span></label>
+            <div class="order-list-data with-select bold-text"><span>{{order.customer.name }}</span> 
+              <select class="flora-form-control order-list-data-select select-fixed-width">
+                <option>Select</option>
+                <option>Loved it</option>
+              </select>
+            </div>
+            <div class="order-list-data with-select bold-text" style="margin-top:10px;"><div>Notes</div> 
+              <textarea class="flora-form-control" rows="2">Add note</textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-2 col-sm-2 col-xs-12 no-padding m-t-10-m">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+            <button class="order-list-btn">BUY AGAIN</button>
+            <button class="order-list-btn view_order_btn" data-order-id="order_{{order.id}}">VIEW ORDER</button>
+          </div>
+        </div>
+      </div>
+    </li>
+
+  {% endif %}
+
+    {% endfor %}
+     {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      {% endpaginate %}
+  </ul>
+
+{% else %}
+    <ul class="active-order-cont">
+      <li class="not_fount_data">No Order Found</li>
+   </ul>
+{% endif %}
+</div>
+<!-- Past Oders End -->   
+
+{% comment %}
+<h2>{{ 'customer.orders.title' | t }}</h2>
+
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th> Arrangement name <!-- {{ 'customer.orders.order_number' | t }} --></th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                
+                <tr>
+                  <td>
+                    {% for line_item in order.line_items %}
+                    <a href="{{ order.customer_url }}"><img src="{{ line_item.product | img_url }}"></a>
+                    {% endfor %}
+                  </td>
+                  
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">                    
+                    <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small">{{ order.name }}</a>
+                    <img src="{{ order.product.title }}"> {{ order.product.title }}
+                  </td>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }} <br>
+                    <a href="{{ order.customer_url}}" target="_blank">View Order</a> <br>
+                    <a href="{{ order.order_status_url}}" target="_blank">Track Order</a></td>
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+
+          <p>{{ 'customer.orders.none' | t }}</p>
+
+        {% endif %}
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      {% endpaginate %}
+{% endcomment %}
+  
+</div>  
+
+<!-- Single order details -->
+ {% for order in customer.orders %}
+<div class="single_order_details" id="ViewOrder_order_{{order.id}}" style="display: none;">
+  <div class="active-order-cont-wrap active-order-cont">
+    <a href="/account#Myorders" id="back_to_all_orders" class="back_to_all_orders back-link">‹ Back to All Orders</a>
+
+    <h2 class="text-left flora-page-title">Active Orders</h2>
+    <div class="order-detail-content col-md-12 col-sm-12 col-xs-12 no-padding">
+      <div class="col-md-4 col-sm-12 col-xs-12 no-padding-left">
+        <div class="img-cont-bg">
+        {% for line_item in order.line_items %}
+          <img class="orderdet-main-img" src="{{ line_item.product | img_url }}">
+          <img class="orderdet-thumb-img" src="{{ line_item.product | img_url }}">
+        {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12 col-xs-12 no-padding m-t-20-m">
+        <div class="col-md-12 col-sm-12 col-xs-12 no-padding order-detail-content-details">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding order-list-img">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding-left ">
+                    <label class="order-list-heading">ARRANGEMENT NAME</label>
+                    <div class="order-list-data">{{order.name}}</div>
+                    {% for line_item in order.line_items %}
+                      <div class="order-list-data">Quantity: {{line_item.quantity}}</div>
+                      <div class="order-list-data">{{order.subtotal_price | money}}</div>               
+                    {% endfor%}
+                  </div>
+                </div>
+                <div class="col-md4 col-sm-4 col-xs-12 no-padding-left m-t-10-m">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+                    <label class="order-list-heading">Recipient</label>
+                    <div class="order-list-data">{{order.customer.name }}</div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left m-t-10-m no-padding">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding delivery-list">
+                    <label class="order-list-heading"><span><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/deli-truck.png?11096566138413628308"></span>{{order.fulfillment_status_label}}</label>
+                     {% if order.fulfillment_status_label != 'Fulfilled' %}
+                        <div class="order-list-data">
+                          <div class="delivery-sch-text">Delivery scheduled for </div>
+                          <div class="delivery-sch-time">April 15, 2018 at 11:00 AM</div>
+                        </div>
+                      {% else %}
+                        <div class="order-list-data">
+                          <div class="delivery-sch-text">Delivered</div>
+                          {% for line_item in order.line_items %}
+                              {% if line_item.fulfillment %}
+                                  {%- assign created_at = line_item.fulfillment.created_at | time_tag: '%B %d, %Y at %I:%M %p' -%}
+                                  <div class="delivery-sch-time">{{ created_at }} </div>
+                              {% endif %}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                  </div>
+                </div>
+               
+              </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding ">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding-left ">
+                    <label class="order-list-heading">SHIPPING ADDRESS</label>
+                    {% if  order.shipping_address %}  
+
+                      <div class="order-list-data bold-text">{{order.shipping_address.name }}</div> 
+                      <div class="order-list-data">{{order.shipping_address.company }}</div> 
+                      <div class="order-list-data">{{order.shipping_address.address1 }} {{order.shipping_address.address2 }}</div>
+                      <div class="order-list-data"> {{order.shipping_address.zip }} {{order.shipping_address.city }} {{order.shipping_address.province_code }}</div>
+                      <div class="order-list-data">{{order.shipping_address.country }}</div>
+                    {% else %}
+
+                      <div class="order-list-data bold-text">{{order.customer.default_address.name }}</div>
+                      <div class="order-list-data">{{order.customer.default_address.company }}</div> 
+                      <div class="order-list-data">{{order.customer.default_address.address1 }} {{order.customer.default_address.address2 }}</div>
+                      <div class="order-list-data">{{order.customer.default_address.zip }} {{order.customer.default_address.city }} {{order.customer.default_address.province_code }}</div>
+                      <div class="order-list-data">{{order.customer.default_address.country }}</div>
+                    {% endif %}                  
+                   
+                  </div>
+                </div>
+                <div class="col-md4 col-sm-4 col-xs-12 no-padding-left m-t-10-m">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+                    <label class="order-list-heading">PAYMENT METHOD</label>
+                    <div class="order-list-data">Mastercard ****2435</div>
+
+
+
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 no-padding-left m-t-10-m no-padding">
+                  <div class="order-summary-det col-md-12 col-sm-12 col-xs-12 no-padding ">
+                    <label class="order-list-heading">ORDER SUMMARY</label>
+                    <div class="order-list-data">Subtotal<span>{{order.subtotal_price | money}}</span> </div>
+                        {% assign total_rate = 0 %} 
+                        {% assign total_tax_price = 0 %} 
+
+                    {% for tax_line in order.tax_lines %}
+                      {% assign total_rate = total_rate | plus: tax_line.rate %}  
+                      {% assign total_tax_price = total_tax_price | plus: tax_line.price %}   
+                    {% endfor %}                    
+                    <div class="order-list-data">Tax ({{ total_rate | times: 100 }}%)<span>{{total_tax_price | money }}</span></div>
+                    <div class="order-list-data bold-text">Total<span>{{order.total_price | money}} </span> </div>
+                  </div>
+                 </div>
+                </div>
+               
+              </div>
+        </div>
+
+       
+      </div>
+    </div>
+
+  </div>
+   {% endfor %}
+
+<!-- Single order details -->

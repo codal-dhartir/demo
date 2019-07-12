@@ -1,0 +1,1174 @@
+{
+  "current": {
+    "color_text": "#3d4246",
+    "color_body_text": "#788188",
+    "color_sale_text": "#7796a8",
+    "color_borders": "#e8e9eb",
+    "color_button": "#7796a8",
+    "color_button_text": "#fff",
+    "color_small_button": "#fff",
+    "color_small_button_text": "#3d4246",
+    "color_text_field": "#fff",
+    "color_text_field_text": "#000",
+    "color_image_overlay_text": "#fff",
+    "color_image_overlay": "#3d4246",
+    "image_overlay_opacity": 25,
+    "color_body_bg": "#fff",
+    "type_header_family": "Google_Work+Sans_600_sans",
+    "type_header_base_size": "26px",
+    "type_base_family": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+    "type_base_size": "16px",
+    "type_bold_product_titles": false,
+    "share_image": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "https:\/\/twitter.com\/floracracy",
+    "social_facebook_link": "https:\/\/www.facebook.com\/Floracracy\/",
+    "social_pinterest_link": "https:\/\/www.pinterest.com\/floracracy\/",
+    "social_instagram_link": "https:\/\/www.instagram.com\/floracracy\/",
+    "social_tumblr_link": "",
+    "social_snapchat_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "favicon": "shopify:\/\/shop_images\/favicon-32x32.png",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#9c7b49",
+    "checkout_error_color": "#e32c2b",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "align_logo": "left",
+          "logo": "shopify:\/\/shop_images\/flora_logo.png",
+          "logo_max_width": "180",
+          "main_linklist": "main-menu",
+          "message": false,
+          "home_page_only": true,
+          "message_text": "Announce something here",
+          "message_link": "",
+          "color_bg": "#7796a8",
+          "color_text": "#fff"
+        }
+      },
+      "hero": {
+        "type": "hero",
+        "disabled": true,
+        "settings": {
+          "image": "",
+          "alignment": "center",
+          "title": "Our Vision",
+          "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.<\/p>",
+          "hero_size": "medium",
+          "text_size": "large",
+          "button_label": "",
+          "button_link": ""
+        }
+      },
+      "slideshow": {
+        "type": "slideshow",
+        "blocks": {
+          "1553577108008": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Floracracy_Website_Photo_Hero_mirror.jpg",
+              "alignment": "top",
+              "title": "You're not <br> sending flowers. <br> You're sending <br>a personal story.",
+              "subheading": "",
+              "btn_title": "send a story",
+              "btn_link": "shopify:\/\/collections",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1553577108008"
+        ],
+        "settings": {
+          "autoplay": false,
+          "autoplay_speed": "7000",
+          "slideshow_height": "large",
+          "text_size": "medium"
+        }
+      },
+      "featured-collections": {
+        "type": "collection",
+        "disabled": true,
+        "settings": {
+          "title": "Featured collection",
+          "collection": "",
+          "grid": 3,
+          "rows": 2,
+          "show_vendor": false,
+          "show_view_all": false
+        }
+      },
+      "feature-row": {
+        "type": "feature-row",
+        "disabled": true,
+        "settings": {
+          "image": "",
+          "layout": "left",
+          "title": "Image with text",
+          "text": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+          "button_label": "",
+          "button_link": ""
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "title": "Your Flowers. Your Story.",
+          "text": "<p>This motto powers everything we do at Floracracy and embodies our goal of restoring the ritual of flower giving as a means to communicate and to connect. Once upon a time people used flowers to say what words could not. As modern life diminished human connectivity, flower arrangements were reduced to an impersonal commodity. So we created Floracracy to empower anyone to customize an arrangement that feels personal, memorable, and meaningful because it actually is.<\/p>",
+          "footer_linklist": "footer",
+          "footer_linklist_two": "",
+          "footer_newsletter_enable": true,
+          "show_payment_icons": true
+        }
+      },
+      "1527160389465": {
+        "type": "collection-list",
+        "disabled": true,
+        "blocks": {
+          "1527160389465-0": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": "old-world"
+            }
+          },
+          "1527160389465-1": {
+            "type": "featured_collection",
+            "settings": {
+              "collection": "rustic"
+            }
+          }
+        },
+        "block_order": [
+          "1527160389465-0",
+          "1527160389465-1"
+        ],
+        "settings": {
+          "title": "Collection list",
+          "grid": 2
+        }
+      },
+      "compass_oldworld_svg": {
+        "type": "compass_oldworld_svg",
+        "settings": {}
+      },
+      "compass_fixed_svg": {
+        "type": "compass_fixed_svg",
+        "settings": {}
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "image_size": "medium",
+          "show_quantity_selector": true,
+          "show_variant_labels": true,
+          "show_vendor": false,
+          "enable_zoom": true,
+          "enable_payment_button": false,
+          "show_share_buttons": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "layout": "grid",
+          "grid": "2",
+          "rows": "6",
+          "show_collection_image": true,
+          "show_vendor": false,
+          "sort_enable": true,
+          "tags_enable": true
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "cart_notes_enable": true
+        }
+      },
+      "home-style-content": {
+        "type": "home-style-content",
+        "settings": {
+          "oldworld_short_des": "<p>The Old World design look is traditionally beautiful. &nbsp;It draws on style inspirations from cultures through history, which were popular in pre-1900s Victorian Europe. &nbsp;It was a time when flowers were incredibly grand, but there also was a sense that you shouldn&rsquo;t mix many different types of flowers together. &nbsp;The result is a style very much still alive today.<\/p>"
+        }
+      },
+      "old-world-featured-content": {
+        "type": "old-world-featured-content",
+        "settings": {
+          "oldworld_desc": "<p>Old World arrangements blend the romance and elegance of the garden look with the greenery and naturalness of the rustic.  It’s the least modern in terms of style, though very much on trend with all its greenery.<\/p>\n<ul>\n\t<li>Usually only 1 to 3 types of flowers<\/li>\n\t<li>Flowers are arranged in clumps<\/li>\n\t<li>There is lots of leafy foliage<\/li>\n<\/ul>"
+        }
+      },
+      "rustic-style-content": {
+        "type": "rustic-style-content",
+        "settings": {
+          "rustic_short_des": "<p>The Rustic is the most natural design look.&nbsp; Rustic arrangements should look freshly plucked from a natural field, whether from a field near you or a more exotic locale.&nbsp; The key is, the plants used grow naturally together.<\/p>"
+        }
+      },
+      "rustic-featured-content": {
+        "type": "rustic-featured-content",
+        "settings": {
+          "rustic_featured_desc": "<p>Rustic arrangements are wild and natural, with the least structured design.  Nestled between whimsical and old world, they balances playful elements and tradition.<\/p>\n<ul>\n<li>Naturally pulled together<\/li>\n<li>The flowers are all from the same region of the world and season<\/li>\n<li>Uses lots of small flowers<\/li>\n<\/ul>"
+        }
+      },
+      "whimsical-style-content": {
+        "type": "whimsical-style-content",
+        "settings": {
+          "whimsical_short_des": "<p>The whimsical design look is the playful look. &nbsp;It leverages the shapes of the flowers, kinds of flowers, and colors to create looks that make people feel warmth, joy, and just the right most of mischievousness.<\/p>"
+        }
+      },
+      "whimsical-featured-section": {
+        "type": "whimsical-featured-section",
+        "settings": {
+          "whimsical_desc": "<p>Nestled between rustic and bohemian on the design look wheel, it has elements of the rustic but also some of the edginess and modernness of the bohemian look.  It’s playfulness contrasts the romantic nature of garden arrangements, across the compass.<\/p>\n<ul>\n<li>Flowers that have a wild “out of place” feeling<\/li>\n<li>Lots of tall, stalky flowers <\/li>\n<li>Yellow-based color schemes<\/li>\n<\/ul>"
+        }
+      },
+      "bohemian-style-content": {
+        "type": "bohemian-style-content",
+        "settings": {
+          "bohemian_short_des": "<p>The bohemian design look is the most modern look. &nbsp;It boldly pulls together lots of different kinds of flowers and foliages, leverages strong color schemes, and incorporates a cosmopolitan vibe based on some specific ways you&rsquo;ll pick your flowers.<\/p>"
+        }
+      },
+      "bohemian-featured-content": {
+        "type": "bohemian-featured-content",
+        "settings": {
+          "bohemian_desc": "<p>The bohemian design look pulls elements of the wild playful whimsical and the structure of the exotic arrangement style.  Its modern vibes violate most of the concepts seen defining the traditional Old World style.<\/p>\n<ul>\n<li>Mixes or clumps diverse flowers <\/li>\n<li>Uses at least one flower from distant origins <\/li>\n<li>Uses lots of different flowers<\/li>\n<\/ul>"
+        }
+      },
+      "exotic-style-content": {
+        "type": "exotic-style-content",
+        "settings": {
+          "exotic_short_des": "<p>The exotic design look is by far the most structured. &nbsp;The flowers are simple, often only one or two types, either all exotic ones or exotic with classic garden influences like roses or hydrangeas. &nbsp;Then, they use the actual arrangement shape to create a luxurious feel.<\/p>"
+        }
+      },
+      "exotic-featured-content": {
+        "type": "exotic-featured-content",
+        "settings": {
+          "exotic_desc": "<p>The Exotic Design Look pulls in elements that make it modern but also romantic.  In floral combinations and structure, its dramatic shapes, lines and features contrast with the natural rustic look across the compass.<\/p>\n<ul>\n<li>Arrangements create patterns or unique shapes<\/li>\n<li>Uses only one to three flower types <\/li>\n<li>Uses only exotic flowers or standard garden ones<\/li>\n<\/ul>"
+        }
+      },
+      "garden-style-content": {
+        "type": "garden-style-content",
+        "settings": {
+          "garden_short_des": "<p>The garden design look is the most romantic. &nbsp;It pulls from warm reds and pinks, classic garden flowers that evoke memories and associations, and keeps it simple and focused to produce floral arrangements that move and inspire without being fussy.<\/p>"
+        }
+      },
+      "garden-featured-content": {
+        "type": "garden-featured-content",
+        "settings": {
+          "garden_desc": "<p>Garden arrangements have more structured elements, but they also are rich in romantic elements.  Its soft, romantic arrangements contrast with the playful whimsical look. <\/p>\n<ul>\n<li>Uses limited number of classic garden flowers <\/li>\n<li>Lots of big, mass-like flowers <\/li>\n<li>Uses lots of warm reds and pinks<\/li>\n<\/ul>"
+        }
+      },
+      "custom-blog-template": {
+        "type": "custom-blog-template",
+        "settings": {
+          "footer_linklist": "custom-menu"
+        }
+      },
+      "blog_slideshow": {
+        "type": "blog_slideshow",
+        "blocks": {
+          "1533637367923": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/slide-1.png",
+              "alignment": "top",
+              "title": "Image slide",
+              "subheading": "Tell your brand's story through video and images",
+              "link": ""
+            }
+          },
+          "1533637377600": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/slide-2.png",
+              "alignment": "top",
+              "title": "Image slide",
+              "subheading": "Tell your brand's story through video and images",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1533637367923",
+          "1533637377600"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "7000",
+          "slideshow_height": "small",
+          "text_size": "medium",
+          "latest_feature_article": true
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "layout": "grid",
+          "blog_show_author": true,
+          "blog_show_date": true
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {
+          "blog_show_author": true,
+          "blog_show_date": true,
+          "show_share_buttons": true
+        }
+      },
+      "blog-list": {
+        "type": "blog-list",
+        "settings": {
+          "layout": "grid",
+          "blog_show_author": false,
+          "blog_show_date": false,
+          "tag_enable": false,
+          "read_more_enable": false,
+          "blog_count": "3"
+        }
+      },
+      "blog-list_top": {
+        "type": "blog-list_top",
+        "settings": {
+          "layout": "grid",
+          "blog_show_author": false,
+          "tag_enable": false,
+          "read_more_enable": false,
+          "page_count": "2"
+        }
+      },
+      "complete_personal-heading": {
+        "type": "complete_personal-heading",
+        "settings": {
+          "complete_heading": "Personal Flowers Connect More",
+          "complete_description": "In as little as 5 minutes, you can create one of the most powerful ways to connect with yourself and others. You’re in charge, with Floracracy Studio guiding you in creating exactly what you want: a gift that reflects the style and bigness of your life. This gift will do more for yourself and others than almost anything else you can buy. How do we know? We're nerds about the research behind flowers."
+        }
+      },
+      "complete_personal-panel-step1": {
+        "type": "complete_personal-panel-step1",
+        "settings": {
+          "complete_panel-step1-heading": "Connection With Friends and Coworkers",
+          "complete_panel-step1-description": "Friends are more likely to remember flowers days after receiving them. A personal, gorgeous arrangement simply is one of the most memorable ways to connect with people."
+        }
+      },
+      "complete_personal-panel-step2": {
+        "type": "complete_personal-panel-step2",
+        "settings": {
+          "complete_panel-step2-heading": "Connection with Family",
+          "complete_panel-step2-description": "Flowers help others heal, lift depression, and build connection. Personal flowers are a profound way to share story and life with those you love."
+        }
+      },
+      "complete_personal-panel-step3": {
+        "type": "complete_personal-panel-step3",
+        "settings": {
+          "complete_panel-step3-heading": "Connection with Yourself",
+          "complete_panel-step3-description": "Flowers are a magnificent way to self pamper. Time spent in nature is wonderful for the mind and body, and no other platform is designed to mimic an experience in nature."
+        }
+      },
+      "get_start-section": {
+        "type": "get_start-section",
+        "settings": {
+          "get_start-heading": "<h2>\n<span>Get started and<\/span> choose a design style<\/h2>",
+          "get_start-description": "<p>To get started, just tell us the style you have in mind.  Are you feeling terribly classic? Want lots of color?  Going for a luxurious vibe?  Obsessed with a bohemian edge?  What we care about here is getting to know the look and feel you have in mind.<\/p>\n  <p>Looking for your style?  Let our design compass guide you.  It’s backed by piles of research and patent-pending innovations.  We’re nerdy enough to actually have mapped out how to design in each floral style.  Using the compass, figure out where you fall in the style spectrum. <\/p>\n  <p>From there, Floracracy Studio will show you the best options to get your look.  (Wanting more of a head start?  You also can head to the marketplace to see that others have designed and customize from there.)<\/p>\n  <p><b>Don’t know where to start?<\/b><\/p>\n  <p>Take our quiz to get arrangement suggestions.<\/p>"
+        }
+      },
+      "our-vision": {
+        "type": "our-vision",
+        "settings": {
+          "our_vision_heading": "Our Vision",
+          "brand_img": "shopify:\/\/shop_images\/paly.png",
+          "button_link": "shopify:\/\/collections",
+          "our_vision_link_heading": "LEARN HOW YOU CAN HELP",
+          "our_vision_description": "“Do something big: that is the motto driving everything Floracracy does. And there’s nothing bigger for us than helping people get the flowers that are right for their big moments. After all, flowers are given at the biggest moments: weddings, funerals, “thank-yous”, “I’m-sorrys”, “I-love-yous.” Floracracy believes that the flowers we give should be big too.”"
+        }
+      },
+      "complete_personal-image": {
+        "type": "complete_personal-image",
+        "settings": {
+          "brand_img": "shopify:\/\/shop_images\/friend.jpg"
+        }
+      },
+      "list-collections-template": {
+        "type": "list-collections-template",
+        "settings": {
+          "display_type": "all",
+          "sort": "alphabetical",
+          "grid": "3"
+        }
+      },
+      "1553581506826": {
+        "type": "logo-bar",
+        "blocks": {
+          "1553581506826-0": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Macy_s_2x_d3bd011a-9213-49f5-8f32-c8de339e2798.png",
+              "link": ""
+            }
+          },
+          "1553581506826-1": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/chicago-inno-logo_2x_ab3d4448-4634-4a94-82c5-e23efb5c876c.png",
+              "link": ""
+            }
+          },
+          "1553581506826-2": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/1000px-The_Guardian_2018.svg_fabfe7e0-cfeb-47f4-9472-5f297c45f7cb.png",
+              "link": ""
+            }
+          },
+          "1553581506826-3": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Crains-Chicago.png",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1553581506826-0",
+          "1553581506826-1",
+          "1553581506826-2",
+          "1553581506826-3"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1553583504862": {
+        "type": "power-by-style",
+        "settings": {
+          "title": "POWERED BY YOU",
+          "subtitle": "<p>Floracracy is the first online floral design company that lets&nbsp;you design&nbsp;your own flower arrangement. But you're not on your own: use our patent-pending software that is so smart we guarantee what you create will look amazing.<\/p>",
+          "btn_title": "Create Your Design",
+          "btn_url": "shopify:\/\/collections",
+          "image": "shopify:\/\/shop_images\/02-POWERED_BY_YOU.png"
+        }
+      },
+      "1553586524242": {
+        "type": "power-by-community",
+        "blocks": {
+          "1553586561770": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          },
+          "1553586598065": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          },
+          "1553586608050": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          },
+          "1553586617082": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          },
+          "1553586624394": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          },
+          "1553586637002": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-20_at_10.16.20_AM_Copy.png",
+              "small_image": "shopify:\/\/shop_images\/Screen_Shot_2018-04-12_at_4.11.45_PM.png"
+            }
+          }
+        },
+        "block_order": [
+          "1553586561770",
+          "1553586598065",
+          "1553586608050",
+          "1553586617082",
+          "1553586624394",
+          "1553586637002"
+        ],
+        "settings": {
+          "title": "POWERED BY COMMUNITY",
+          "subtitle1": "You can also start by choosing an existing arrangement created by our community of customers and then you can customize it to your heart’s content.",
+          "subtitle2": "",
+          "btn_title": "Explore Existing Designs",
+          "btn_url": "shopify:\/\/collections"
+        }
+      },
+      "1553591053433": {
+        "type": "power-by-ease",
+        "blocks": {
+          "1553591064599": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Group_29_medium_1.png",
+              "subtitle": "Any arrangement can be <strong> designed in 10 minutes <\/strong>"
+            }
+          },
+          "1553591089856": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Group_30_medium_2.png",
+              "subtitle": "All orders include <strong> flexible delivery <\/strong>"
+            }
+          },
+          "1553591128359": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Price_Tag_medium_2.png",
+              "subtitle": "<strong>Pricing is all inclusive<\/strong>; we do not upsell"
+            }
+          },
+          "1553591358447": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Group_23_medium_1.png",
+              "subtitle": "We offer a <strong> 100% money back happiness guarantee<\/strong>"
+            }
+          }
+        },
+        "block_order": [
+          "1553591064599",
+          "1553591089856",
+          "1553591128359",
+          "1553591358447"
+        ],
+        "settings": {
+          "title": "POWERED BY EASE"
+        }
+      },
+      "1553599940643": {
+        "type": "power-by-stories",
+        "settings": {
+          "title": "POWERED BY STORIES",
+          "subtitle1": "For centuries, people have used flowers to convey what their words cannot. On our journey, we gather the powerful tales people are writing with their flowers.",
+          "subtitle2": "",
+          "subtitle3": "",
+          "btn_title": "Enjoy Our Stories",
+          "btn_url": "shopify:\/\/collections",
+          "image": "shopify:\/\/shop_images\/Image_3.png"
+        }
+      },
+      "1553662199984": {
+        "type": "video-with-image",
+        "disabled": true,
+        "settings": {
+          "img": "",
+          "video": "https:\/\/cdn.shopify.com\/s\/files\/1\/0011\/5104\/1588\/files\/last.mp4?3013"
+        }
+      },
+      "custom-logo": {
+        "type": "custom-logo",
+        "blocks": {
+          "1554982567441": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Business-Ledger-logo.png",
+              "link": "https:\/\/www.dhbusinessledger.com\/article\/20151208\/business\/151208959\/"
+            }
+          },
+          "1554982622513": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Crains-Chicago.png",
+              "link": "https:\/\/www.chicagobusiness.com\/woman\/photos-crains-celebrates-chicagos-most-powerful-women"
+            }
+          },
+          "1554982759071": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/ChiInno_Logo_f757d533-3c1f-47b3-8154-f94923580a59.png",
+              "link": "https:\/\/www.americaninno.com\/chicago\/inno-news-chicago\/here-are-the-10-women-founded-startups-in-wistems-latest-cohort\/"
+            }
+          },
+          "1554982799429": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/1000px-The_Guardian_2018.svg_fabfe7e0-cfeb-47f4-9472-5f297c45f7cb.png",
+              "link": "https:\/\/www.theguardian.com\/global-development\/2018\/sep\/03\/poignant-words-of-murdered-mogadishu-florist-mohamed-mahamoud-sheik"
+            }
+          },
+          "1554982833326": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-logo-1.png",
+              "link": "https:\/\/creativewomens.co\/episode-18-entrepreneurship-is-combining-all-of-your-life-experiences-with-sarah-eva-marchese\/"
+            }
+          },
+          "1554982863725": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/WiSTEM-1.png",
+              "link": "https:\/\/blog.1871.com\/1871-announces-10-companies-joining-fall-wistem-cohort"
+            }
+          },
+          "1554982895439": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/CHICAGO_WOMAN.png",
+              "link": "https:\/\/issuu.com\/chicago-woman\/docs\/chicago_woman_september_october_dig"
+            }
+          },
+          "1554982947260": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/EvolveHer-2.png",
+              "link": "https:\/\/www.evolveher.community\/fr\/blog\/read\/674590917\/special-guest-ladyboss-of-the-week-saraheva-marchese"
+            }
+          }
+        },
+        "block_order": [
+          "1554982567441",
+          "1554982622513",
+          "1554982759071",
+          "1554982799429",
+          "1554982833326",
+          "1554982863725",
+          "1554982895439",
+          "1554982947260"
+        ],
+        "settings": {
+          "title": "Press",
+          "subtitle": "See what people are saying about us"
+        }
+      },
+      "press-data": {
+        "type": "press-data",
+        "blocks": {
+          "1554987179629": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/sarah-eva.jpg",
+              "title": "First-Ever Concierge Flower Company is Redefining the Floral Industry",
+              "date": "09\/18\/2018",
+              "subtitle": "Floracracy is among the ten women-founded startups in WiSTEM's latest cohort.",
+              "link": "https:\/\/www.americaninno.com\/chicago\/inno-news-chicago\/here-are-the-10-women-founded-startups-in-wistems-latest-cohort\/"
+            }
+          },
+          "1554987486994": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Sarah-Eva-150x150.jpg",
+              "title": "Entrepreneurship is Combining All of Your Life Experiences",
+              "date": "09\/03\/2018",
+              "subtitle": "Floracracy CEO, Sarah-Eva Marchese, answers questions about applying one's life experiences to become a successful entrepreneur .",
+              "link": "https:\/\/creativewomens.co\/episode-18-entrepreneurship-is-combining-all-of-your-life-experiences-with-sarah-eva-marchese\/"
+            }
+          },
+          "1554987977112": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Mohamed-150x150.jpg",
+              "title": "‘I get scared, but I’m staying’: poignant words of murdered Mogadishu florist",
+              "date": "09\/03\/2018",
+              "subtitle": "Mohamed Mahamoud Sheik, who opened Somalia’s first flower shop, was killed on 2 August. In this previously unpublished interview, he talks about life in war-torn Mogadishu.",
+              "link": "https:\/\/www.theguardian.com\/global-development\/2018\/sep\/03\/poignant-words-of-murdered-mogadishu-florist-mohamed-mahamoud-sheik"
+            }
+          },
+          "1554988157113": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Sarah-Eva-150x150.png",
+              "title": "Floracracy CEO, Sarah-Eva Marchese, featured as EvolveHer #LadyBoss of the Week",
+              "date": "08\/06\/2018",
+              "subtitle": "Floracracy CEO, Sarah-Eva Marchese, featured as EvolveHer #LadyBoss of the Week. In this interview, Sarah-Eva shares entrepreneurial insights and lessons from her experience.",
+              "link": "https:\/\/www.evolveher.community\/en\/blog\/read\/674590917\/special-guest-ladyboss-of-the-week-saraheva-marchese"
+            }
+          },
+          "1554988246249": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/received_2353403321553756-150x150.jpeg",
+              "title": "https:\/\/lionessmagazine.com\/he-dismissed-her-mommy-business-floracracy-but-now-its-making-history-in-the-male-dominated-floral-industry\/",
+              "date": "07\/19\/2018",
+              "subtitle": "In 2014, Sarah-Eva Marchese had a vision for a whole new kind of floral company. But to attract the capital investment she needed, she sought the advice of a tech guru. Female entrepreneurs face an uphill road getting investment. In 2017 only about 2 percent of venture capital had gone to female founders",
+              "link": "https:\/\/lionessmagazine.com\/he-dismissed-her-mommy-business-floracracy-but-now-its-making-history-in-the-male-dominated-floral-industry\/"
+            }
+          },
+          "1554988433055": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Sarah-Eva-150x150_1.jpg",
+              "title": "First-Ever Concierge Flower Company is Redefining the Floral Industry",
+              "date": "05\/14\/2018",
+              "subtitle": "Floracracy empowers consumers to custom design top quality arrangements in their style with innovative technology, engaging tools, and inspiration.",
+              "link": "https:\/\/floracracy.com\/wp-content\/uploads\/2018\/05\/Floracracy-Press-Release-v7.pdf"
+            }
+          },
+          "1554988635789": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/ar-150x150.jpg",
+              "title": "St. Charles resident’s startup ready to blossom",
+              "date": "12\/08\/2015",
+              "subtitle": "Sarah-Eva Marchese is bringing flower power to the digital world. As a bride a few years ago, Marchese was focused on integrating floriography -- the art of communicating through the use or arrangement of flowers, also called \"the language of flowers\" -- into her wedding, but was frustrated by the lack of information among florists and online to meet her needs.",
+              "link": "https:\/\/www.dhbusinessledger.com\/article\/20151208\/business\/151208959\/"
+            }
+          },
+          "1554988681851": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Sarah-Eva-on-the-chair-150x150.jpg",
+              "title": "Flowers Lost on Millennials",
+              "date": "11\/16\/2015",
+              "subtitle": "A new way to bring flowers to Millennials? Fifty people needed for a closed beta test of the Cascade Bouquet Design Toolkit by startup Mott & Spry.",
+              "link": "https:\/\/lionessmagazine.com\/flowers-lost-on-millennials\/"
+            }
+          },
+          "1554988736400": {
+            "type": "logo_image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/j302unxbu9p0jvo2zcdae0725e5higy-150x150.jpeg",
+              "title": "St. Charles company seeks brides-to-be, newlyweds to test product",
+              "date": "11\/16\/2015",
+              "subtitle": "s a bride-to-be, Sarah-Eva Marchese struggled to articulate to her florist the floral style she envisioned.",
+              "link": "http:\/\/www.kcchronicle.com\/2015\/11\/14\/st-charles-company-seeks-brides-to-be-newlyweds-to-test-product\/agjpgt8\/"
+            }
+          }
+        },
+        "block_order": [
+          "1554987179629",
+          "1554987486994",
+          "1554987977112",
+          "1554988157113",
+          "1554988246249",
+          "1554988433055",
+          "1554988635789",
+          "1554988681851",
+          "1554988736400"
+        ],
+        "settings": {}
+      },
+      "static-pro-data": {
+        "type": "static-pro-data",
+        "blocks": {
+          "1559294266662": {
+            "type": "section1",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/03-Your_Creativity_Enhanced_By_Our_Technology.png",
+              "title": "Your Creativity Enhanced By Our Technology",
+              "quote": "<p>Our patent-pending technology is an invisible hand helping you select the best flowers and details to craft your custom arrangement. Anyone from novice to expert can create a flawless design.<\/p>",
+              "title1": "You can also start by selecting a design from a member of our community and personalizing it as much or as little as you desire."
+            }
+          },
+          "1559294288265": {
+            "type": "section1",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/04-Personalize_Your_Flowers_And_Messaging-old_color.png",
+              "title": "More than flowers, Send An Experience",
+              "quote": "<p>With Floracracy you are sending a layered experience that brings the fragrances and the feelings of the great gardens of the world to your loved one&rsquo;s door.<\/p>",
+              "title1": ""
+            }
+          },
+          "1559294562649": {
+            "type": "section1",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/05-Send_A_Full_Floral_Experience_Satisfaction_Guaranteed-old_ver.png",
+              "title": "Personalize Your Flowers And Messaging",
+              "quote": "<p>Along with your arrangement, we work with you to customize a handwritten letter for your loved one. You can even share the specific meanings of each flower within the arrangement.<\/p>",
+              "title1": ""
+            }
+          },
+          "1559295846132": {
+            "type": "section2",
+            "settings": {
+              "image2": "shopify:\/\/shop_images\/06-Our_Gated_Box.png",
+              "title2": "Our Gated Box",
+              "quote2": "<p>Designed to surprise as each compartment is unlocked. Send a box to discover what&rsquo;s inside!<\/p>"
+            }
+          },
+          "1559295882109": {
+            "type": "section2",
+            "settings": {
+              "image2": "shopify:\/\/shop_images\/07-Vases_By_Style.png",
+              "title2": "Vases By Style",
+              "quote2": "<p>Exquisite vases uniquely selected to coordinate with your arrangement style.<\/p>"
+            }
+          },
+          "1559295922724": {
+            "type": "section2",
+            "settings": {
+              "image2": "shopify:\/\/shop_images\/brigitte-tohm-210081-unsplash.png",
+              "title2": "Seamless And Satisfied",
+              "quote2": "<p>All arrangements are crafted in our Midwest-based warehouse and sent via a flexible delivery schedule. If you are not 100% satisfied, get your money back.<\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "1559294266662",
+          "1559294288265",
+          "1559294562649",
+          "1559295846132",
+          "1559295882109",
+          "1559295922724"
+        ],
+        "settings": {
+          "title": "The Anatomy of Personalization"
+        }
+      },
+      "flower-with-patelles": {
+        "type": "flower-with-patelles",
+        "settings": {
+          "image": "",
+          "title": ""
+        }
+      },
+      "meaningful-arrangements-wizard": {
+        "type": "meaningful-arrangements-wizard",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "slideshow",
+      "1553583504862",
+      "1553586524242",
+      "1553599940643",
+      "1553591053433",
+      "1553662199984",
+      "1553581506826",
+      "featured-collections",
+      "feature-row",
+      "1527160389465",
+      "hero"
+    ]
+  },
+  "presets": {
+    "Default": {
+      "color_text": "#3d4246",
+      "color_body_text": "#788188",
+      "color_sale_text": "#7796A8",
+      "color_borders": "#e8e9eb",
+      "color_button": "#7796A8",
+      "color_button_text": "#fff",
+      "color_small_button": "#fff",
+      "color_small_button_text": "#3d4246",
+      "color_text_field": "#fff",
+      "color_text_field_text": "#000",
+      "color_image_overlay_text": "#fff",
+      "color_image_overlay": "#3d4246",
+      "image_overlay_opacity": 25,
+      "color_body_bg": "#fff",
+      "type_header_family": "Google_Work+Sans_600_sans",
+      "type_header_base_size": "26px",
+      "type_base_family": "Google_Work+Sans_400_sans",
+      "type_base_size": "16px",
+      "type_bold_product_titles": false,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {}
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {}
+            },
+            "slideshow-1": {
+              "type": "image",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "slideshow-1"
+          ],
+          "settings": {}
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "feature-row": {
+          "type": "feature-row",
+          "settings": {}
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "footer_linklist_two": ""
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "feature-row",
+        "slideshow"
+      ]
+    },
+    "Light": {
+      "color_text": "#162950",
+      "color_body_text": "#757575",
+      "color_sale_text": "#ff574f",
+      "color_borders": "#e4e4e4",
+      "color_button": "#ff574f",
+      "color_button_text": "#ffffff",
+      "color_small_button": "#eaeaea",
+      "color_small_button_text": "#162950",
+      "color_text_field": "#ffffff",
+      "color_text_field_text": "#162950",
+      "color_image_overlay_text": "#ffffff",
+      "color_image_overlay": "#3d3d3d",
+      "image_overlay_opacity": 30,
+      "color_body_bg": "#f8f8f8",
+      "type_header_family": "Google_Muli_600_sans",
+      "type_header_base_size": "26px",
+      "type_base_family": "Google_Muli_600_sans",
+      "type_base_size": "18px",
+      "type_bold_product_titles": true,
+      "share_facebook": true,
+      "share_twitter": true,
+      "share_pinterest": true,
+      "social_twitter_link": "",
+      "social_facebook_link": "",
+      "social_pinterest_link": "",
+      "social_instagram_link": "",
+      "social_tumblr_link": "",
+      "social_snapchat_link": "",
+      "social_youtube_link": "",
+      "social_vimeo_link": "",
+      "favicon": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "small",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#ffffff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#e8f3f6",
+      "checkout_heading_font": "Roboto",
+      "checkout_body_font": "Source Sans Pro",
+      "checkout_accent_color": "#1990c6",
+      "checkout_button_color": "#23314e",
+      "checkout_error_color": "#ff6d6d",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "align_logo": "left",
+            "logo": "",
+            "logo_max_width": "135",
+            "main_linklist": "main-menu",
+            "message": true,
+            "color_bg": "#162950",
+            "color_text": "#ffffff"
+          }
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "alignment": "center",
+            "hero_size": "x-large",
+            "text_size": "large"
+          }
+        },
+        "slideshow": {
+          "type": "slideshow",
+          "blocks": {
+            "slideshow-0": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            },
+            "1492095993817": {
+              "type": "image",
+              "settings": {
+                "image": "",
+                "alignment": "center"
+              }
+            }
+          },
+          "block_order": [
+            "slideshow-0",
+            "1492095993817"
+          ],
+          "settings": {
+            "autoplay": true,
+            "autoplay_speed": "6000",
+            "slideshow_height": "medium",
+            "text_size": "medium"
+          }
+        },
+        "featured-collections": {
+          "type": "collection",
+          "settings": {
+            "grid": 3,
+            "rows": 1,
+            "show_vendor": true,
+            "show_view_all": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "footer_linklist": "main-menu",
+            "footer_linklist_two": "footer",
+            "footer_newsletter_enable": true,
+            "show_payment_icons": true
+          }
+        },
+        "product-template": {
+          "type": "product-template",
+          "settings": {
+            "image_size": "medium",
+            "show_quantity_selector": false,
+            "show_variant_labels": true,
+            "show_vendor": false,
+            "enable_zoom": true,
+            "show_share_buttons": true
+          }
+        },
+        "collection-template": {
+          "type": "collection-template",
+          "settings": {
+            "layout": "grid",
+            "grid": "2",
+            "rows": "2",
+            "show_collection_image": true,
+            "show_vendor": false,
+            "sort_enable": true,
+            "tags_enable": true
+          }
+        },
+        "1492033809691": {
+          "type": "map",
+          "settings": {}
+        },
+        "1492033877875": {
+          "type": "quotes",
+          "blocks": {
+            "1492033877875-0": {
+              "type": "quote",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492033877875-0"
+          ],
+          "settings": {}
+        },
+        "1492033924902": {
+          "type": "custom-content",
+          "blocks": {
+            "1492033924902-0": {
+              "type": "text",
+              "settings": {
+                "width": "100%",
+                "alignment": "center",
+                "align_text": "center"
+              }
+            }
+          },
+          "block_order": [
+            "1492033924902-0"
+          ],
+          "settings": {
+            "title": ""
+          }
+        },
+        "1492096252560": {
+          "type": "collection-list",
+          "blocks": {
+            "1492096252560-0": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-1": {
+              "type": "featured_collection",
+              "settings": {}
+            },
+            "1492096252560-2": {
+              "type": "featured_collection",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "1492096252560-0",
+            "1492096252560-1",
+            "1492096252560-2"
+          ],
+          "settings": {
+            "grid": 3
+          }
+        },
+        "blog-template": {
+          "type": "blog-template",
+          "settings": {
+            "layout": "grid",
+            "blog_show_author": true,
+            "blog_show_date": false
+          }
+        },
+        "article-template": {
+          "type": "article-template",
+          "settings": {
+            "blog_show_author": true,
+            "blog_show_date": true,
+            "show_share_buttons": true
+          }
+        },
+        "cart-template": {
+          "type": "cart-template",
+          "settings": {
+            "cart_notes_enable": false
+          }
+        }
+      },
+      "content_for_index": [
+        "hero",
+        "featured-collections",
+        "slideshow",
+        "1492033924902",
+        "1492096252560",
+        "1492033877875",
+        "1492033809691"
+      ]
+    }
+  }
+}

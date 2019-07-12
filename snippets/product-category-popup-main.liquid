@@ -1,0 +1,204 @@
+<!-- Modal -->
+<div class="background-overlay-popup popup-all" id="myModalProductCat"  role="dialog">
+  <div class="modal-popup-custom flora-pages">    
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <!--           <button type="button" class="close" data-dismiss="modal">×</button> -->
+          <h4 class="modal-title">FIND ARRANGEMENTS THAT ARE AVAILABLE WHEN YOU NEED THEM</h4>
+          <p class="label-sub-text">(We will only show you flowers we can deliver. Set your delivery date here to personalize your options)</p>
+        </div>
+        <div class="modal-body product-popin-login">
+
+          <form id="PopupForm" autocomplete="off">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+              <div class="date-picker-inform">
+                <label class="flora-label" for="available_date">When do you need it?
+                </label>
+
+                <div id="datepicker-reminder" class="input-group date flora-date-picker" data-provide="datepicker" data-date-format="mm-dd-yyyy" style="width:100%;">
+                  <input type="text" class="form-control" name="available_date" id="available_date" placeholder="Select Date">
+                  <span class="input-group-addon">
+                    <a href="#" class="table-in-icon">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/calendar-icon.png?10759087893396004911">
+                    </a>
+                  </span>
+                </div>
+
+                <div class="form_error_message" id="avail_date_error_message" style="display:none;">Please select date </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+              <label class="flora-label" for="delivering_to">Select an occasion? </label>
+              <select class="form-control flora-form-control select-normal-ctrl">
+                <option value="">Select</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Birthday">Birthday </option>
+                <option value="Corporate">Corporate </option>
+                <option value="Congratulations">Congratulations </option>
+                <option value="Get well">Get well </option>
+                <option value="Housewarming"> Housewarming</option>
+                <option value="I'm sorry">I'm sorry </option>
+                <option value="Just because">Just because </option>
+                <option value="Sympathy">Sympathy </option>
+              </select>
+
+              <div class="col-md-1">
+                <!--                 <div class="or-div">or</div> -->
+              </div>
+
+            </div>           
+
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+
+              {% assign style_code = 'null' %}
+              {% if collection.handle == 'rustic' %}
+              {% assign style_code = 'RS' %}
+              {% elsif collection.handle == 'whimsical' %}
+              {% assign style_code = 'WH' %}
+              {% elsif collection.handle == 'garden' %}
+              {% assign style_code = 'GD' %}
+              {% elsif collection.handle == 'bohemian' %}
+              {% assign style_code = 'BH' %}
+              {% elsif collection.handle == 'old-world' %}
+              {% assign style_code = 'OW' %}
+              {% elsif collection.handle == 'exotic' %}
+              {% assign style_code = 'EX' %}
+              {% endif %}
+              {% assign delivery_date = 'null' %}
+
+              <p>
+                <button id="see_results" class="btn flora-primary-btn see-result-btn">SEE RESULTS</button>
+              </p>
+              <div class="alert alert-danger" id="flora_product_search_results_failure" style="display:none;"></div>
+              <p>
+                <a href="#" id="closeModal" data-dismiss="modal" class="link-bottom-signmeup">I’ll just browse</a>
+              </p>
+            </div>
+
+          </form>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>    
+</div>
+
+
+<script>
+  //   var ProductsSearchResultsArr = [];
+  //   var AppProductsArr = {};
+  //   var collection_title = '{{ collection.title | downcase}}';
+  //   collection_title = collection_title.split(' ').join('-');
+  //   $.getJSON('/collections/'+collection_title+'/products.json', function(response) {    	
+  //     AppProductsArr = response.products;
+  //     //       console.log(response.products);
+  //     //that.products = response;
+  //   });   
+
+  $('#closeModal').on('click', function () {
+    $('#myModalProductCat').hide();
+    $('body').removeClass('noscroll');
+  });
+
+  $(document).ready(function() {
+    var localdeliveryDate = localStorage.getItem('DeliveryDate');
+    console.log('local',localdeliveryDate);
+    //       var deliveryDate = document.getElementById("available_date").value;
+
+    //       if(localdeliveryDate != null){
+    //           $('#deliver_on_info').html(localdeliveryDate);
+    //       }
+    //       else{
+    //       	 localStorage.setItem('DeliveryDate', deliveryDate);
+    //         $('#deliver_on_info').html(deliveryDate);
+    //       }
+
+    var date = new Date();
+    var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var defineDay = weekday[date.getDay()];
+    var today;
+
+    if(defineDay == 'Saturday')
+    { 
+      if(localdeliveryDate != null){
+        today = localdeliveryDate;
+        $('#deliver_on_info').html(today);
+      }else{
+        today = new Date(date.getFullYear(), date.getMonth(), date.getDate()+4);
+        $('#deliver_on_info').html(today);
+      }
+    }
+    else
+    {  
+      if(localdeliveryDate != null){
+        var todayLocal = localdeliveryDate;
+        today = new Date(date.getFullYear(), date.getMonth(), date.getDate()+3);
+        $('#deliver_on_info').html(todayLocal);
+        
+        $('#datepicker-reminder').datepicker({
+          format: 'yyyy-mm-dd',
+          startDate: today,
+          minDate:todayLocal,
+          todayHighlight: true,
+          autoclose: true
+        });
+        $( '#datepicker-reminder' ).datepicker( 'setDate', todayLocal );
+
+      }else{
+        today = new Date(date.getFullYear(), date.getMonth(), date.getDate()+3);
+        var deliveryDate = document.getElementById("available_date").value;
+        $('#deliver_on_info').html(deliveryDate);
+        
+        $('#datepicker-reminder').datepicker({
+          format: 'yyyy-mm-dd',
+          startDate: today,
+          minDate:today,
+          todayHighlight: true,
+          autoclose: true
+        });
+        $( '#datepicker-reminder' ).datepicker( 'setDate', today );
+      }
+
+      //       var today = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 3);
+    }
+
+
+
+
+
+    $("#datepicker-reminder").datepicker().on("changeDate", function(e) {
+      //       var localdeliveryDate = localStorage.getItem('DeliveryDate');
+      //       console.log('local',localdeliveryDate);
+      //       var deliveryDate = document.getElementById("available_date").value;
+
+      //       if(localdeliveryDate != null){
+      //           $('#deliver_on_info').html(localdeliveryDate);
+      //       }
+      //       else{
+      //       	 localStorage.setItem('DeliveryDate', deliveryDate);
+      //         $('#deliver_on_info').html(deliveryDate);
+      //       }
+
+
+
+    });
+  });
+
+
+</script>
+
+
+<style>
+  .modal {
+    background-color: #ffffff80;
+  }
+</style>

@@ -1,0 +1,40 @@
+.meaningful-arrangements-wizard {
+	display: flex;
+  	flex-direction: column;
+	align-items: center;
+  	margin: 2.5rem 0 2.5rem 0;
+  	width: 50%;
+    margin: auto;
+}
+
+.meaningful-arrangements-wizard .tab-content div h2 { 
+	text-align: center;
+}
+
+.meaningful-arrangements-wizard .tab-content div textarea { 
+	width: 100%;
+}
+
+.meaningful-arrangements-wizard .tab-content div .pull-right { 
+	display: flex;
+  	justify-content: space-between;
+  	align-items: center;
+  	margin-top: 1.5rem;
+  	width: 100%;
+}
+
+.meaningful-arrangements-wizard .tab-content div .pull-right .next-step { 
+	align-self: flex-end;
+}
+
+.meaningful-arrangements-wizard .tab-content .question {
+	text-transform: none !important;
+	margin-bottom: 2.5rem;
+}
+
+
+#shopify-section-meaningful-arrangements-wizard{ 
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}

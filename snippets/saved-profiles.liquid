@@ -1,0 +1,1748 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+<div class="loader_overlay">
+  <div class="customloader"></div>
+</div>
+<div class="saved-profile-cont col-md-12 col-sm-12 col-xs-12 no-padding ">
+	 <div class="saved-profile-listcal-cont col-md-12 col-sm-12 col-xs-12 no-padding ">
+		<div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+		    <div class="sync-switch col-md-4 col-sm-4 col-xs-6 no-padding">
+		      	<button type="button" class="btn address-new-toggle flora-primary-btn pull-left" id="AddNewAddressModal-btn"> Add new address</button>
+		    </div>
+	  	</div>
+	 </div>
+	 <div class="saved-profile-listcal-cont col-md-12 col-sm-12 col-xs-12 no-padding  add_recipient_list">
+
+	 </div>
+
+	<!-- Add new profile Popup 1-->
+	  <div class="background-overlay-popup popup-all" id="AddNewProfile-step1"  role="dialog">
+	  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+	    <div class="modal-dialog ">
+
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close close_all_mymodal">×</button>
+	          <h4 class="modal-title">ADD NEW PROFILE <em class="step-label">STEP 1/3</em></h4>
+	        </div>
+	        <div class="modal-body product-popin-login">
+	          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+	          <form action="javascript:void(0);" id="profile-details_form">
+	            	<label for="cus-fname" class="step1-label">FIRST NAME</label>
+                  	<input type="text" name="cus-fname" id="cus-fname" class="cus-fname" placeholder="First Name">
+                  	<span class="error cus-fname"></span>
+
+                  	<label for="cus-lname" class="step1-label">LAST NAME</label>
+                  	<input type="text" name="cus-lname" id="cus-lname" class="cus-lname" placeholder="Last Name">
+                  	<span class="error cus-lname"></span>
+
+                  	<div class="col-xs-12 no-padding relationship-wr">
+                  	{% assign relationlist = "select relationship,significant other,mother,father,sister,brother,family friend,friend,coworker,other" | split: ',' %}
+                  	<span class="cus-relation-label step1-label">RELATIONSHIP</span>
+                  	<span class="cus-relation-value" data_val="select relationship">Select Relationship<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851"></span>
+                  		<ul class="relationship-drop">
+	                  		{% for relation in relationlist %}
+	                  			{% if relation != 'other' %}
+	                  				<li class="cus-relation" data_val="{{ relation }}">{{ relation }}</li>
+	                  			{% else %}
+	                  				<li class="cus-relation" data_val="{{ relation }}" style="background-color: #f8f7f2;">{{ relation }}
+	                  					<input type="text" name="other-relation" id="other-relation" class="other-relation">
+	                  				</li>
+	                  			{% endif %}
+							{% endfor %}
+                  		</ul>
+                  	</div>
+	                <span class="error cus-relation_ship"></span>
+
+	                <h4 class="modal-title">ADD ADDRESS</h4>
+	                <span class="address-optional">OPTIONAL</span>
+
+	                <div class="col-xs-12 no-padding addresstype-wr">
+                  	{% assign addresslist = "home,office,other" | split: ',' %}
+                  	<span class="cus-address-type-label step1-label">ADDRESS TYPE</span>
+                  	<span class="cus-address-type-value" data_val="home">Home<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851"></span>
+                  		<ul class="address-type-drop">
+	                  		{% for type in addresslist %}
+	                  			{% if type != 'other' %}
+	                  				<li class="cus-address-type" data_val="{{ type }}">{{ type }}</li>
+	                  			{% else %}
+	                  				<li class="cus-address-type" data_val="{{ type }}" style="background-color: #f8f7f2;">{{ type }}
+	                  					<input type="text" name="other-address" id="other-address" class="other-address">
+	                  				</li>
+	                  			{% endif %}
+							{% endfor %}
+                  		</ul>
+                  	</div>
+	                <span class="error cus-address_type"></span>
+
+	                <div class="clear-fix"></div>
+                  	<label for="cus-address1" class="step1-label">ADDRESS</label>
+                  	<input type="text" name="cus-address1" id="cus-address1" class="cus-address1" placeholder="1260 N Dearborn">
+                  	<input type="text" name="cus-address2" id="cus-address2" class="cus-address2" placeholder="Apt 306">
+                  	<span class="error cus-address1"></span>
+
+                  	<label for="cus-city" class="step1-label">CITY</label>
+                  	<input type="text" name="cus-city" id="cus-city" class="cus-city" placeholder="Chicago">
+                  	<span class="error cus-city"></span>
+
+                  	<label for="cus-state" class="step1-label">STATE</label>
+                  	<input type="text" name="cus-state" id="cus-state" class="cus-state" placeholder="Illinois">
+                  	<span class="error cus-state"></span>
+
+                  	<label for="cus-zipcode" class="step1-label">ZIPCODE</label>
+                  	<input type="text" name="cus-zipcode" id="cus-zipcode" class="cus-zipcode" placeholder="60657">
+                  	<span class="error cus-zipcode"></span>
+                 </form>
+	          </div>
+	          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+	            <p>
+	            	<button type="button" class="btn address-new-toggle flora-primary-btn pull-right" id="AddNewProfile-step1-btn"> SAVE & Next</button>	             
+	            </p>
+	          </div>
+	        </div>
+
+	        <div class="modal-footer product-popin-login">
+	        </div>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+  <!-- Add new profile Popup 1 end -->
+
+  <!-- Add new profile Popup 2-->
+	  <div class="background-overlay-popup popup-all" id="AddNewProfile-step2"  role="dialog">
+	  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+	    <div class="modal-dialog ">
+
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">ADD NEW PROFILE <em class="step-label">STEP 2/3</em></h4>
+	          <span class="option-text">OPTIONAL</span>
+	          <button type="button" class="close close_all_mymodal">×</button>
+	        </div>
+	        <div class="modal-body product-popin-login">
+	          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+	          		<div class="addprofile-account_tab_section">
+						<ul class="nav nav-pills profilenew-tab">
+						    <li class="active"><a data-toggle="pill" href="#StyleInfo">Styles</a></li>
+						    <li><a data-toggle="pill" href="#ColorInfo">Colors</a></li>
+						    <li><a data-toggle="pill" href="#FlowerInfo">Flowers</a></li>
+						</ul>
+					</div>
+
+
+					<div class="tab-content">
+					<form action="javascript:void(0);" id="profile-step2_form">
+					    <div id="StyleInfo" class="tab-pane fade active in">
+					    	<div class="col-md-12 col-sm-12 col-xs-12 no-padding favorite-wr">
+								<div class="col-md-8 col-sm-8 col-xs-8 no-padding">
+								  <h4 class="flower-style-favorite-label">FAVORITED STYLES (<span class="favorite-count">0</span>)
+								  <span class="clear-favorite">CLEAR ALL</span></h4>
+								</div>
+							</div>
+							<div class="col-md-12 col-sm-12 col-xs-12 no-padding favorite-selected-wr">
+							</div>
+					         <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 no-padding" >
+					         
+				         		<div class="col-md-5 col-sm-5 col-xs-5 flower-style" data_val="1">
+			         				<div class="col-md-2 col-sm-4  no-padding">
+			         					<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-icon.png?17821304498296771916">
+			         				</div>
+			         				<div class="col-md-10 col-sm-10  no-padding">
+			         					<h4 class="flower-style-type" data_val="1">OLD WORLD</h4>
+			         					<span class="flower-style-hint">Traditional style</span>
+			         				</div>
+				         		</div>
+
+				         		<div class="col-md-5 col-sm-5 col-xs-5 flower-style" data_val="2">
+			         				<div class="col-md-2 col-sm-4  no-padding">
+			         					<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-icon.png?17821304498296771916">
+			         				</div>
+			         				<div class="col-md-10 col-sm-10  no-padding">
+			         					<h4 class="flower-style-type" data_val="2">RUSTIC</h4>
+			         					<span class="flower-style-hint">Natural style</span>
+			         				</div>
+				         		</div>
+
+					         </div>
+					    </div> 
+					    <!-- Flower Style end -->
+
+					    <div id="ColorInfo" class="tab-pane fade">
+					    	<div class="col-md-12 col-sm-12 col-xs-12 no-padding color-wr">
+								<div class="col-md-8 col-sm-8 col-xs-8 no-padding">
+								  <h4 class="flower-style-color-label">FAVORITED STYLES (<span class="color-count">0</span>)
+								  <span class="clear-color">CLEAR ALL</span></h4>
+								</div>
+							</div>
+							<div class="col-md-12 col-sm-12 col-xs-12 no-padding color-selected-wr">
+							</div>
+					         <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+					         
+					         		<div class="col-md-4 col-sm-4 col-xs-4 no-padding flower-color" data_val="1">
+				         				<div class="col-md-8 col-sm-8  no-padding">
+				         					<ul>
+				         						<li><span class="color-box blue1" data_val="#62a1ec"></span></li>
+				         						<li><span class="color-box blue2" data_val="#89b9f1"></span></li>
+				         						<li><span class="color-box blue3" data_val="#b1d0f6"></span></li>
+				         					</ul>
+				         				</div>
+				         				<div class="col-md-4 col-sm-4  no-padding">
+				         					<span class="flower-color-title" data_val="1">BLUES</span>
+				         				</div>
+					         		</div>
+					         		<div class="col-md-4 col-sm-4 col-xs-4 no-padding flower-color" data_val="2">
+				         				<div class="col-md-8 col-sm-8  no-padding">
+				         					<ul>
+				         						<li><span class="color-box purple1" data_val="#7462ec"></span></li>
+				         						<li><span class="color-box purple2" data_val="#9789f1"></span></li>
+				         						<li><span class="color-box purple3" data_val="#bab1f6"></span></li>
+				         					</ul>
+				         				</div>
+				         				<div class="col-md-4 col-sm-4  no-padding">
+				         					<span class="flower-color-title" data_val="2">PURPLES</span>
+				         				</div>
+					         		</div>
+					         		<div class="col-md-4 col-sm-4 col-xs-4 no-padding flower-color" data_val="3">
+				         				<div class="col-md-8 col-sm-8  no-padding">
+				         					<ul>
+				         						<li><span class="color-box pink1" data_val="#be62ec"></span></li>
+				         						<li><span class="color-box pink2" data_val="#ce89f1"></span></li>
+				         						<li><span class="color-box pink3" data_val="#dfb1f6"></span></li>
+				         					</ul>
+				         				</div>
+				         				<div class="col-md-4 col-sm-4  no-padding">
+				         					<span class="flower-color-title" data_val="3">PINKS</span>
+				         				</div>
+					         		</div>
+					         	
+					         </div>
+					    </div>
+					    <!-- Flower color End -->
+					    </form>
+				    </div>
+
+	          </div>
+	          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  step2-btn-wr">
+	          	<p class="skip-step2-text">Don’t want to do this now?<a href="javascript:void(0);" class="skip-step2">Skip this step</a></p>
+	            <p>
+	            	<button type="button" class="btn address-new-toggle flora-primary-btn pull-right" id="AddNewProfile-step2-btn"> SAVE & Next</button>	             
+	            </p>
+	          </div>
+	        </div>
+
+	        <div class="modal-footer product-popin-login">
+	        </div>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+  <!-- Add new profile Popup 2 end -->
+
+    <!-- Add new profile Popup 3-->
+	  <!-- Add Reminder Popup -->
+<div class="background-overlay-popup popup-all" id="AddNewProfile-step3"  role="dialog">
+  <div class="modal-popup-custom flora-pages">
+    <div class="modal-dialog">
+    <input type="hidden" name="profile_id" class="profile_id" value='0'>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">&times;</button>
+          <h4 class="modal-title">ADD NEW PROFILE <em class="step-label">STEP 3/3</em></h4>
+<!--           <h4 class="modal-title">ADD NEW REMINDER</h4> -->
+        </div>
+        <div class="modal-body">
+        <div class="list-tab">
+            <div class="list-table-cont col-md-12 col-sm-12 col-xs-12 no-padding">
+              <table class="table table-striped list-table table-resp">
+                <thead>
+                  <tr>
+                    <th scope="col">REMINDER NAME</th>
+                    <th scope="col">RECIPIENT</th>
+                    <th scope="col">EVENT</th>
+                    <th scope="col">EVENT DATE</th>
+                    <th scope="col">REMINDER</th>
+                    <th scope="col"></th>
+
+                  </tr>
+                </thead>
+                <tbody class="profile-first_list">
+
+                </tbody>
+              </table>
+
+            </div>
+
+
+          </div>
+          <form action="javascript:void(0);" id="profile-reminder_form">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+              <div class="col-md-6 col-sm-6 col-xs-12 no-padding reminder-content-left">
+                <div class="flora-onoborading-container login-lft-side">
+                  {% comment %}<form action="javascript:CustomerProfileUpdate();">{% endcomment %}
+
+                  <label for="profile-event_type">EVENT TYPE</label>
+                  <select name="event_type" id="profile-event_type" class="flora-form-control select-normal profile-event_type" >
+                    <option value="">Select the holiday or occassion</option>
+                    <option value="holiday">Holiday</option>
+                    <option value="occassion">Occassion</option>
+                  </select>
+                  <span class="error profile-event_type"></span>
+
+                  <label for="recipient">RECIPIENT NAME</label>
+                  <input type="text" name="recipient" class="profile-recipient" placeholder="Enter name of recipient">
+                  <span class="error recipient"></span>
+                  <label for="LastName">REMINDER NAME
+                    <span class="optional_tag">Optional</span>
+                  </label>
+                  <input type="text" name="reminder_name" class="profile-reminder_name" placeholder="Name the event (e.g. Nana's Birthday)">
+                  <span class="error profile-reminder_name"></span>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left m-t-20">
+                      <div class="rem_me checkbox-with-text">
+                        <label class="flora-remeber-label">
+                          <input type="checkbox" class="profile-time_interval" name="profile-time_interval" value="Recurring event">
+                          <span class="checkmark small-check"></span>
+                          <span class="rem_txt label-text ">Recurring Event</span>
+                          <span class="checkbox-sub-text">e.g. Birthday or Anniversary</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left m-t-20">
+                      <div class="rem_me checkbox-with-text">
+                        <label class="flora-remeber-label">
+                          <input type="checkbox" class="profile-time_interval" name="profile-time_interval" value="One time event">
+                          <span class="checkmark small-check"></span>
+                          <span class="rem_txt label-text ">One-Time Event</span>
+                          <span class="checkbox-sub-text">e.g. Babyshower or Graduation</span>
+                        </label>
+                      </div>
+                    </div>
+                    <span class="error profile-time_interval"></span>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side date-picker-inform">
+                    <label for="LastName">EVENT DATE</label>
+                    <div id="profile-datepicker-reminder" class="input-group date flora-date-picker" data-date-format="yyyy-mm-dd">
+                      <input class="form-control" name="event_date" id="profile-event_date" class="profile-event_date" type="text" readonly />
+                      <span class="input-group-addon">
+                        <a href="#" class="table-in-icon">
+                          <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/calendar-icon.png?10759087893396004911">
+                        </a>
+                      </span>
+                    </div>              
+                    <span class="error profile-event_date"></span>
+
+                    <button class="add_new profile-add-newremaider">+ ANOTHER EVENT</button>
+                  </div>
+
+                </div>
+
+                <!-- Reminder Timing -->
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padding reminder-content-right">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side reminder-timing-block ">
+                    <label for="">REMINDER TIMING</label>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side ">
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="1 Day">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">Day of event</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="1 week">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">1 week before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="2 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">2 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="3 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">3 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="4 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">4 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="profile-reminder_time" name="profile-reminder_time" value="2 months">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">2 months before</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="error profile-reminder_time"></span>
+                  </div>
+
+
+
+                  <!-- Reminder Type -->
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding reminder-content-right">
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side reminder-timing-block ">
+                      <label for="">REMINDER TYPE</label>
+                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side ">
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                          <div class="rem_me checkbox-with-text">
+                            <label class="flora-remeber-label">
+                              <input type="checkbox" class="profile-reminder_type" name="profile-reminder_type" value="text">
+                              <span class="checkmark small-check"></span>
+                              <span class="rem_txt label-text ">
+                                <a href="#" class="table-in-icon">
+                                  <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?7701866573972020811">
+                                </a>Text</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                          <div class="rem_me checkbox-with-text">
+                            <label class="flora-remeber-label">
+                              <input type="checkbox" class="profile-reminder_type" name="profile-reminder_type" value="email">
+                              <span class="checkmark small-check"></span>
+                              <span class="rem_txt label-text ">
+                                <a href="#" class="table-in-icon">
+                                  <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/message-icon-table.png?7701866573972020811">
+                                </a>Email</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="phone_numer-wr"> 
+                     <label class="flora-label" for="">YOU NEED TO ADD YOUR MOBILE NUMBER TO TURN ON TEXT REMINDERS
+                      <input type="text" name="profile-contact_number" class="profile-contact_number" placeholder="Add phone number">
+                      <span class="error profile-contact_number"></span>
+                    </div>
+                    <span class="error profile-reminder_type"></span>
+                  </div>
+
+                  <!-- Send reminders to -->
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding reminder-content-right">
+                    <div class="col-md-10 col-sm-12 col-xs-12 no-padding  reminder-timing-block ">
+                      <label class="flora-label" for="">ALSO SEND REMINDERS TO
+                        <span class="optional_tag">Optional</span>
+                      </label>
+                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding  reminder-emailto-block">
+                        <ul class="emailto-list profile-email-added">
+                        </ul>  
+                        <ul class="emailto-list new-email_id">
+                          <li class="new_email">
+                            <input type="text" name="profile-email-ids" class="profile-email-ids" placeholder="Add Email address">
+                            <button class="profile-remove_email">
+                              <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811">
+                            </button>
+                          </li>
+                          <span class="error profile-email-ids"></span>
+                        </ul>
+                        <button class="add_new profile-add-newemail">+ ADD ANOTHER</button>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+              <div class="modal-footer ">
+                <input type="hidden" name="customer_id" class="customer_id" value="{{customer.id}}">
+                <input type="hidden" name="parent_id" class="parent_id" value="">
+                
+                <input type="hidden" name="profile-record_id" class="profile-record_id" value="0">
+                <p class="skip-step3-text">Don’t want to do this now?<a href="javascript:void(0);" class="skip-step3">Skip this step</a></p>
+	            <p>
+                <p>
+                  <button type="button" class="btn address-new-toggle flora-primary-btn profile-reminder-save-btn">FINISH PROFILE SETUP</button>
+                </p>
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+              </form>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Reminder Popup -->
+  <!-- Add new profile Popup 3 end -->
+<!-- Success Popup -->
+  <div class="background-overlay-popup popup-all" id="profile-success_popup"  role="dialog">
+  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">×</button>
+          <h4 class="modal-title">REMINDER ADDED</h4>
+        </div>
+        <div class="modal-body product-popin-login">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <p class="popup-content-p">Your reminder have been added.</p>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+            <p>
+              <button type="button" id="close close_all_mymodal" class="btn flora-primary-btn submit-btn close_all_mymodal">OKAY</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-footer product-popin-login">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <!-- Success Popup end -->
+<!-- Conformation Project -->
+  <div class="background-overlay-popup popup-all" id="profile-conformation_popup"  role="dialog">
+  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">×</button>
+          <h4 class="modal-title">REMOVE EVENT & REMINDER</h4>
+        </div>
+        <div class="modal-body product-popin-login">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <p class="popup-content-p">Your event will be removed from your calendar and you will no longer get any reminders</p>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+            <div class="col-md-6 col-sm-6 col-xs-6 ">
+              <button type="button" class="btn flora-primary-btn submit-btn close_all_mymodal custom_background">NO, KEEP EVENT</button>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 ">
+              <button type="button" class="btn flora-primary-btn submit-btn profile-remove_conformation" data_id="">YES, REMOVE EVENT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer product-popin-login">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+<script>
+	$('#profile-datepicker-reminder').datepicker({
+	      format: 'yyyy-mm-dd',      
+	      autoclose: true, 
+	      todayHighlight: true
+	    });
+</script>
+<script type="text/javascript">
+ $(document).ready(function() {
+ 	var drop_down_icon = '<img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851">';
+ 	var elements_step1 = [];
+ 	var elements_step2 = [];
+ 	var tempremainder = [];
+
+
+ 	$.ajax({
+       "async": true,
+       "crossDomain": true,        
+       "url":"https://app.floracracy.com/index.php/webservice/api/mobile/profilerecipientlist.json" ,
+       "method": "POST",
+       "dataType": "json",
+       "data": { "customer_id": {{customer.id}} },
+       beforeSend:function() {
+		$('.loader_overlay').css('display','block');
+		},
+       success: function(data){
+       		$('.loader_overlay').css('display','none');
+       		$('.add_recipient_list').append(data);
+       }
+    });
+
+ 	$(document).on('click','.recipient-tab li',function(e){
+ 		e.preventDefault();
+    	var data_id  = $(this).attr('data_id');
+    	var href = $(this).attr('href');
+    	var data_tab = $(this).attr('data_tab');
+    	$.ajax({
+	       "async": true,
+	       "crossDomain": true,        
+	       "url":"https://app.floracracy.com/index.php/webservice/api/mobile/profile"+data_tab+"list.json" ,
+	       "method": "POST",
+	       "dataType": "json",
+	       "data":  { "customer_id": {{customer.id}}, 'recipient_id': data_id},
+	       beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+			},
+	       success: function(data){
+	       	$('.loader_overlay').css('display','none');
+	       		var cus_class = '#profile-'+data_tab+'-tab_'+data_id;
+	       		$(cus_class).html('');
+	       		$(cus_class).append(data);
+	       }
+	   });
+    });
+
+
+     $('#AddNewAddressModal-btn').click(function(){
+     	$(".popup-all").fadeOut();
+       	$("#AddNewProfile-step1").fadeIn(100);
+     });
+
+     $('#AddNewProfile-step2-btn, .skip-step2').click(function(){
+     	$(".popup-all").fadeOut();
+       	$("#AddNewProfile-step3").fadeIn(100);
+     });
+
+     $(document).on('click','#AddNewProfile-remainder',function(){
+     	$(".popup-all").fadeOut();
+       	$("#AddNewProfile-step3").fadeIn(100);
+       	$('.profile_id').val($(this).attr('data_id'));
+       	$("#AddNewProfile-step3 .modal-title").html('ADD NEW REMINDER');
+       	$("#AddNewProfile-step3 .step-label").css('display','none');
+       	$('.profile-reminder-save-btn').html('ADD NEW REMINDER');
+     });
+
+     	$('.cus-fname, .cus-lname, .cus-address1, .cus-city, .cus-state, .cus-zipcode').focus(function(){
+          var class_name = '.error.'+$(this).attr('id');
+          $(class_name).css('display','none');
+        });
+  
+   	$('.cus-address-type-value').click(function(e){
+      	e.stopPropagation();
+      	$( ".address-type-drop" ).stop().slideToggle( "slow" );
+      	
+      	 $('.cus-address_type').css('display','none');
+  	});	
+
+  	$('.cus-relation-value').click(function(e){
+      	e.stopPropagation();
+      	 $('.cus-relation_ship').css('display','none');
+      	$( ".relationship-drop" ).stop().slideToggle( "slow" );
+  	});
+
+  	$('.cus-relation').click(function(){
+  		$('.cus-relation').removeClass('active')
+  		$(this).addClass('active');
+  		value = $(this).attr('data_val');
+  		$('.cus-relation-value').attr('data_val',value);
+  		$('.cus-relation-value').html(value + drop_down_icon);
+  		$( ".relationship-drop" ).stop().slideToggle( "slow" );
+  	});
+  	$('.cus-address-type').click(function(){
+  		$('.cus-address-type').removeClass('active')
+  		$(this).addClass('active');
+  		value = $(this).attr('data_val');
+  		$('.cus-address-type-value').attr('data_val',value);
+  		$('.cus-address-type-value').html(value + drop_down_icon);
+  		$( ".address-type-drop" ).stop().slideToggle( "slow" );
+  	});
+
+  /*STEP 2 POPUP */
+  	$('.flower-style').click(function(){
+  		if($(this).hasClass('active')){
+  			var style_type_val = $(this).attr('data_val');
+  			$(".clear-selected-favorite").each(function(){
+	            if($(this).attr('data_val') == style_type_val)
+	              $(this).closest('div').remove();
+	          });
+  			$(this).removeClass('active');
+  			var count = $('.favorite-count').html();
+  			count = parseInt(count)-1;
+  			 $('.favorite-count').html(count);
+  		} else{
+	  		$(this).addClass('active');
+	  		var style_type = $(this).find( ".flower-style-type" ).html();
+	  		var style_type_val = $(this).find( ".flower-style-type" ).attr('data_val');
+	  		$('.favorite-selected-wr').append('<div class="selected-favorite"><span class="selected-favorite-label">'+style_type+'</span><span class="clear-selected-favorite" data_val="'+style_type_val+'">X</span></div>');
+	  		var count = $('.favorite-count').html();
+	  		count = parseInt(count)+1;
+  			$('.favorite-count').html(count);
+  		}
+  	});
+
+  	$('.flower-color').click(function(){
+  		if($(this).hasClass('active')){
+  			var style_type_val = $(this).attr('data_val');
+  			$(".clear-selected-color").each(function(){
+	            if($(this).attr('data_val') == style_type_val)
+	              $(this).closest('div').remove();
+	          });
+  			$(this).removeClass('active');
+  			var count = $('.color-count').html();
+  			count = parseInt(count)-1;
+  			$('.color-count').html(count);
+  		} else{
+	  		$(this).addClass('active');
+	  		var color_type = $(this).find( ".flower-color-title" ).html();
+	  		var color_type_val = $(this).find( ".flower-color-title" ).attr('data_val');
+	  		$('.color-selected-wr').append('<div class="selected-color"><span class="selected-color-label">'+color_type+'</span><span class="clear-selected-color" data_val="'+color_type_val+'">X</span></div>');
+	  		var count = $('.color-count').html();
+	  		count = parseInt(count)+1;
+	  		$('.color-count').html(count)
+  		}
+  	});
+
+  	$(document).on('click','.clear-selected-favorite',function(){
+  		var remove_style_type_val = $(this).attr('data_val');
+  		$(".flower-style").each(function(){
+            if($(this).attr('data_val') == remove_style_type_val)
+              $(this).removeClass('active');
+          });
+  		$(this).closest('div').remove();
+  		var count = $('.favorite-count').html();
+  		count = parseInt(count)-1;
+  		$('.favorite-count').html(count);
+
+  	});
+
+  	$(document).on('click','.clear-selected-color',function(){
+  		var remove_style_type_val = $(this).attr('data_val');
+  		$(".flower-color").each(function(){
+            if($(this).attr('data_val') == remove_style_type_val)
+              $(this).removeClass('active');
+          });
+  		$(this).closest('div').remove();
+  		var count = $('.color-count').html();
+  		count = parseInt(count)-1;
+  		$('.color-count').html(count);
+
+  	});
+
+  	$(document).on('click','.clear-favorite',function(){
+  		$(".flower-style").removeClass('active');
+  		$('.favorite-count').html('0');
+  		$('.selected-favorite').remove();
+  		
+  	});
+
+  	$(document).on('click','.clear-color',function(){
+  		$(".flower-color").removeClass('active');
+  		$('.color-count').html('0');
+  		$('.selected-color').remove();
+  		
+  	});
+
+  	/*remainder */
+
+  	 $('.close_all_mymodal, .skip-step3').on('click', function () {
+	    $('#profile-reminder_form')[0].reset();
+	    $('.error').html('');
+	    $('.profile-email-added li').remove();
+	    $('.error').css('display','none');
+	    $('#profile-step2_form')[0].reset();
+	    $('#profile-details_form')[0].reset();
+	    $(".flower-style").removeClass('active');
+		$('.favorite-count').html('0');
+		$('.selected-favorite').remove();
+		$(".flower-color").removeClass('active');
+		$('.color-count').html('0');
+	  	$('.selected-color').remove();
+	    $(".popup-all").fadeOut();
+    });
+    
+    $(".profile-add-newemail").click(function(){
+          $('.new-email_id').append('<li><input type="text" name="profile-email-ids" class="profile-email-ids" placeholder="Add Email address"><button class="profile-remove_email"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></li>');
+      });
+
+    $(document).on('click','.profile-remove_email',function(){
+      $(this).closest('li').remove();
+  	});
+
+  	$(document).on('blur','.profile-email-ids',function(){
+        var entered_email_val = $(this).val();
+        if(entered_email_val != ''){
+          var pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+          email_validation = $.trim(entered_email_val).match(pattern) ? true : false;
+          if(email_validation){
+            $(this).closest('li').remove();
+            $('.profile-email-added').append('<li data_val="'+entered_email_val+'"><div class="emailto-added"><span class="emailto-entry">'+entered_email_val+'</span><span class="list-tools pull-right"><button class="profile-entered_mail-edit"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?7701866573972020811"></button><button class="profile-entered_mail-delete"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></span></div></li>');
+          } else{
+              $('.error.profile-email-ids').html('Enter the valid email format');
+              $('.error.profile-email-ids').css('display','block');
+          }
+        }
+      });
+
+      $(document).on('blur','.profile-contact_number',function(){
+        var entered_mobile_val = $(this).val();
+        var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(entered_mobile_val != ''){
+          mobile_validation = $.trim(entered_mobile_val).match(filter) ? true : false;
+          if(!mobile_validation){
+            if(entered_mobile_val.length !=10){
+              $('.error.profile-contact_number').html('Enter the valid mobile number');
+              $('.error.profile-contact_numbers').css('display','block');
+            }
+          }
+        }
+        
+      });
+       $(document).on('keypress','.profile-contact_number',function(e){
+          $('.error.contact_number').html('');
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+              $('.error.profile-contact_number').html('Number only');
+              $('.error.profile-contact_numbers').css('display','block');
+                   return false;
+          }
+       });
+
+      $(document).on('click','.profile-entered_mail-edit',function(){
+        var mail_to_edit = $(this).closest('li').attr('data_val');
+        $(this).closest('li').remove();
+        $('.new-email_id').prepend('<li><input type="text" name="profile-email-ids" class="profile-email-ids" value="'+mail_to_edit+'"><button class="profile-remove_email"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></li>');
+      });
+
+      $(document).on('click','.profile-entered_mail-delete',function(){
+          $(this).closest('li').remove();
+      });
+
+      $(document).on('change','.profile-reminder_type',function(){
+           if($(this).is(":checked")){
+              remainder_mob = $(this).val();
+              if(remainder_mob == 'text'){
+                $('.phone_numer-wr').css('display','block');
+              } 
+           } else{
+           		remainder_mob = $(this).val();
+	              if(remainder_mob == 'text'){
+	                $('.phone_numer-wr').css('display','none');
+	              } 
+           }
+      });
+
+       $('.profile-event_type, .profile-recipient, .profile-reminder_name, .profile-event_date,.profile-time_interval, .profile-reminder_time, .profile-reminder_type, .profile-email-ids, .profile-contact_number').focus(function(){
+          var class_name = '.error.'+$(this).attr('class');
+          $(class_name).css('display','none');
+        });
+        $('#profile-event_date').focus(function(){
+          var class_name = '.error.'+$(this).attr('id');
+          $(class_name).css('display','none');
+        });
+
+
+
+       /*get collection and save*/
+       $('#AddNewProfile-step1-btn').click(function(){
+	     	var fname = $('.cus-fname').val();
+	     	var lname = $('.cus-lname').val();
+	     	var address1 = $('.cus-address1').val();
+	     	var address2 = $('.cus-address2').val();
+	     	var city = $('.cus-city').val();
+	     	var state = $('.cus-state').val();
+	     	var zipcode = $('.cus-zipcode').val();
+	     	var relation_ship = $('.cus-relation-value').attr('data_val');
+	     	var address_type = $('.cus-address-type-value').attr('data_val');
+
+	     	if(relation_ship == 'select relationship'){
+	     		$('.error.cus-relation_ship').css('display','block');
+	            $('.error.cus-relation_ship').html('Please select the valid relation');
+	     		return false;
+	     	}
+
+	     	   elements_step1.push({
+	            fname: fname, 
+	            lname:  lname,
+	            address1: address1, 
+	            address2:  address2,
+	            city : city,
+	            state: state, 
+	            zipcode:  zipcode,
+	            relation_ship:  relation_ship,
+	            address_type:  address_type,
+	            customer_id: {{customer.id}}
+	          });
+
+	        /*validation */
+	          var status = true;
+	          $.each( elements_step1, function( key, values ) {
+	            $.each( values, function( key, value ) {
+	              if(value == ''){
+	                if(key == 'address2'){
+	                  // var class_name ='.error.profile-email-ids'
+	                } else{
+	                  var class_name = '.error.cus-'+key;
+	                  status = false;
+	                }
+	                $(class_name).css('display','block');
+	                $(class_name).html('Field is empty');
+	              }
+	            });
+	          });
+
+	         if(status) {
+		     	$(".popup-all").fadeOut();
+		       	$("#AddNewProfile-step2").fadeIn(100);
+		     }
+	     });
+
+       	$('#AddNewProfile-step2-btn').click(function(){
+       		var color ='';
+       		var flower_style =''; 
+       		$(".flower-style.active").each(function(){
+       			active_val = $(this).attr('data_val');
+       			
+	            if(active_val) {
+	              if(flower_style == ''){
+	                flower_style = active_val+'|';
+	              } else{
+	                flower_style = flower_style + active_val+'|';
+	              }
+	            }
+          	});
+          	$(".flower-color.active").each(function(){
+       			active_val = $(this).attr('data_val');
+       			
+	            if(active_val) {
+	              if(color == ''){
+	                color = active_val+'|';
+	              } else{
+	                color = color + active_val+'|';
+	              }
+	            }
+          	});
+          // 	$(".flower-type.active").each(function(){
+       			// active_val = $(this).attr('data_val');
+       			// var flower =''; 
+	         //    if(active_val) {
+	         //      if(flower == ''){
+	         //        flower = $(this).val()+'|';
+	         //      } else{
+	         //        flower = flower + $(this).val()+'|';
+	         //      }
+	         //    }
+          // 	});
+
+           	elements_step2.push({
+	            flower_style: flower_style, 
+	            color:  color,
+	            // flower:  flower
+	        });
+
+       	});
+       	$('.profile-add-newremaider').click(function(){
+       		var elements = [];
+       	  var event_type     = $('#profile-event_type').val();
+          var recipient      = $('.profile-recipient').val();
+          var reminder_name  = $('.profile-reminder_name').val();
+          var event_date     = $('#profile-event_date').val();
+          var id             = $('.profile-record_id').val();
+          var time_interval  = '';
+          var contact_number = '0';
+          $("input:checkbox[name=profile-time_interval]").each(function(){
+            if($(this).is(":checked"))
+              if(time_interval == ''){
+                time_interval = $(this).val()+'|';
+              } else{
+                time_interval = time_interval + $(this).val()+'|';
+              }
+          });
+          var reminder_time = '';
+          $("input:checkbox[name=profile-reminder_time]").each(function(){
+            if($(this).is(":checked"))
+              if(reminder_time == ''){
+                reminder_time = $(this).val()+'|';
+              } else{
+                reminder_time = reminder_time + $(this).val()+'|';
+              }
+          });
+          var reminder_type = '';
+          $("input:checkbox[name=profile-reminder_type]").each(function(){
+            if($(this).is(":checked")){
+              remainder_mob = $(this).val();
+              if(remainder_mob == 'text'){
+                contact_number = $('.profile-contact_number').val();
+              }
+              if(reminder_type == ''){
+                reminder_type = $(this).val()+'|';
+              } else{
+                reminder_type = reminder_type + $(this).val()+'|';
+              }
+            }
+          });
+          var added_emails = '';
+          $(".profile-email-added li").each(function(){
+            if($(this).attr('data_val') != '')
+              if(added_emails == ''){
+                added_emails = $(this).attr('data_val')+'|';
+              } else{
+                added_emails = added_emails + $(this).attr('data_val')+'|';
+              }
+          });
+          
+          elements.push({
+            event_type: event_type, 
+            recipient:  recipient,
+            reminder_name: reminder_name, 
+            time_interval:  time_interval,
+            event_date : event_date,
+            reminder_time: reminder_time, 
+            reminder_type:  reminder_type,
+            contact_number: contact_number,
+            added_emails:  added_emails,
+            customer_id: {{customer.id}}
+          });
+          /*validation */
+          var status = true;
+          $.each( elements, function( key, values ) {
+            $.each( values, function( key, value ) {
+              if(value == ''){
+                if(key == 'added_emails'){
+                  var class_name ='.error.profile-email-ids'
+                } else{
+                  var class_name = '.error.profile-'+key;
+                	status = false;
+                }
+                $(class_name).css('display','block');
+                $(class_name).html('Field is empty');
+              }
+            });
+          });
+
+       		if(status){
+       			tempremainder = tempremainder.concat(elements);
+       			// var tempremainder = $.merge([], oldArray);
+       			$.ajax({
+	               "async": true,
+	               "crossDomain": true,        
+	               "url":"https://app.floracracy.com/index.php/webservice/api/mobile/profiletempremainderadd.json" ,
+	               "method": "POST",
+	               "dataType": "json",
+	               "data": { "remainder_elements": tempremainder},
+	               beforeSend:function() {
+						$('.loader_overlay').css('display','block');
+					},
+	               success: function(data){
+	               	$('.loader_overlay').css('display','none');
+	               		$('#profile-reminder_form')[0].reset();
+					    $('.error').html('');
+					    $('.profile-email-added li').remove();
+					    $('.error').css('display','none');
+	               		$('.profile-first_list').html('');
+	               		$('.profile-first_list').append(data);
+	               }
+	           });
+       		}
+
+       	});
+
+       	$(document).on('click','.profile-list_row_delete',function(){
+	      var id = $(this).attr('data_id');
+	        $('#profile-conformation_popup').css('display','block'); 
+	        $('.profile-remove_conformation').attr('data_id',id); 
+	     });
+
+	     $(document).on('click','.profile-remove_conformation',function(){
+	         var id = $(this).attr('data_id');
+	         $('#profile-conformation_popup').css('display','none'); 
+	          $.ajax({
+	         "async": true,
+	         "crossDomain": true,        
+	         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/profiletempremainderremove.json",
+	         "method": "POST",
+	         "data": { "id": id, 'remainder_elements':tempremainder},
+	         beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+			},
+	         success: function(response){
+	         	$('.loader_overlay').css('display','none');
+	            // $('.list_'+id).remove();
+	            $('.profile-first_list').html('');
+	            $('.profile-first_list').append(response);
+	            message  =  'Your event and reminder have been removed.';
+	            title = 'EVENT REMOVED';
+	            // $('#profile-success_popup .modal-title').html(title);
+	            // $('#profile-success_popup .popup-content-p').html(message);
+	            // $('#profile-success_popup').css('display','block');
+	         }
+	        });
+	     });
+
+	     $(document).on('click','.profile-reminder-list_row_edit',function(){
+	      	var id = $(this).attr('data_id');
+	      	var parent_id= $(this).closest('tbody').attr('id');
+	      	$('.parent_id').val(parent_id);
+	      	$('.profile_id').val($(this).attr('data_par'));
+	        $.ajax({
+	         "async": true,
+	         "crossDomain": true,        
+	         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderedit.json",
+	         "method": "POST",
+	         "data": { "id": id},
+	         beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+			},
+	         success: function(response){
+	         	$('.loader_overlay').css('display','none');
+	          $(".popup-all").fadeOut();
+	          $("#AddNewProfile-step3 .modal-title").html('UPDATE REMINDER');
+              $("#AddNewProfile-step3 .step-label").css('display','none');
+              $('#AddNewProfile-step3 .profile-reminder-save-btn').html('UPDATE REMINDER');
+	          $("#AddNewProfile-step3").fadeIn(100);
+	          $.each( response, function( key, values ) { //First each loop
+	            $.each( values, function( key, value ) { //Second each loop
+
+	              /*Restoring Values to the popup*/
+	               $('#customer_id').val(values['customer_id']);
+	               $('.profile-record_id').val(values['id']);
+
+	              if( key == 'recipient' || key == 'reminder_name'){
+	                var id = '.profile-'+key;
+	                $(id).val(value);
+	              } else if (key == 'event_date'){
+	            	var id = '#profile-'+key;
+	                $(id).val(value);
+	              } else if(key == 'event_type'){
+	                $("#profile-event_type > [value=" + value + "]").attr("selected", "true");
+	              } else if(key == 'time_interval'){
+	                var back_end_val = value.split("|");
+	                $.each( back_end_val, function( key, bc_val ) {
+	                  $("input:checkbox[name=profile-time_interval]").each(function(){
+	                    front_end_val = $(this).val();
+	                      if(front_end_val == bc_val){
+	                       $(this).prop('checked', true);
+	                      }
+	                  });
+	                });
+	              } else if(key == 'reminder_time'){
+	                var back_end_val = value.split("|");
+	                $.each( back_end_val, function( key, bc_val ) {
+	                  $("input:checkbox[name=profile-reminder_time]").each(function(){
+	                    front_end_val = $(this).val();
+	                      if(front_end_val == bc_val){
+	                       $(this).prop('checked', true);
+	                      }
+	                  });
+	                });
+	              } 
+	              else if(key == 'reminder_type'){
+	                var back_end_val = value.split("|");
+	                $.each( back_end_val, function( key, bc_val ) {
+	                  $("input:checkbox[name=profile-reminder_type]").each(function(){
+	                      front_end_val = $(this).val();
+	                      if(front_end_val == bc_val){
+	                        $(this).prop('checked', true);
+	                        if(front_end_val == 'text'){
+	                          $('.phone_numer-wr').css('display','block');
+	                          $('.profile-contact_number').val(values['contact_number']);
+	                        }
+	                      }
+	                  });
+	                });
+	              } else if(key == 'added_emails'){
+	                 var back_end_val = value.split("|");
+	                $.each( back_end_val, function( key, bc_val ) {
+	                    if(bc_val != '')
+	                      $('.profile-email-added').append('<li data_val="'+bc_val+'"><div class="emailto-added"><span class="emailto-entry">'+bc_val+'</span><span class="list-tools pull-right"><button class="profile-entered_mail-edit"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?7701866573972020811"></button><button class="profile-entered_mail-delete"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></span></div></li>');
+	                });
+	              }
+	              
+	            });  // Second each loop End
+	          }); // First each loop End
+	         } // Ajax Success end
+	        }); // Ajax end
+
+     	});
+
+	     
+	     $(document).on('click','.delete_profile',function(){
+	      var id = $(this).attr('data_id');
+           $('#profile-conformation_popup .modal-title').html('REMOVE PROFILE')
+	      	$('#profile-conformation_popup .popup-content-p').html('Your profile will be removed. you will no longer get this profile')
+	        $('#profile-conformation_popup').css('display','block'); 
+	        $('.profile-remove_conformation').attr('data_id',id); 
+	     });
+
+	     $(document).on('click','.profile-remove_conformation',function(){
+	         var id = $(this).attr('data_id');
+	         $('#profile-conformation_popup').css('display','none'); 
+	          $.ajax({
+	         "async": true,
+	         "crossDomain": true,        
+	         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/profileremove.json",
+	         "method": "POST",
+	         "data": { "id": id},
+	         beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+			},
+	         success: function(response){
+	         	$('.loader_overlay').css('display','none');
+	          	$('.profile-list_'+id).remove();
+	            message  =  'Your profile and reminder have been removed.';
+	            title = 'PROFILE REMOVED';
+	            $('#success_popup .modal-title').html(title);
+	            $('#success_popup .popup-content-p').html(message);
+	            $('#success_popup').css('display','block');
+	         }
+	        });
+	     });
+
+
+	     $(document).on('click','.profile-reminder-list_row_delete',function(){
+	      var id = $(this).attr('data_id');
+	        $('#profile-conformation_popup').css('display','block'); 
+	        $('.profile-remove_conformation').attr('data_id',id); 
+	     });
+
+	     $(document).on('click','.profile-remove_conformation',function(){
+	         var id = $(this).attr('data_id');
+	         $('#profile-conformation_popup').css('display','none'); 
+	          $.ajax({
+	         "async": true,
+	         "crossDomain": true,        
+	         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderremove.json",
+	         "method": "POST",
+	         "data": { "id": id},
+	         beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+			},
+	         success: function(response){
+	         	$('.loader_overlay').css('display','none');
+	          	$('.list_'+id).remove();
+	            message  =  'Your event and reminder have been removed.';
+	            title = 'EVENT REMOVED';
+	            $('#success_popup .modal-title').html(title);
+	            $('#success_popup .popup-content-p').html(message);
+	            $('#success_popup').css('display','block');
+	         }
+	        });
+	     });
+
+	    $('.profile-reminder-save-btn').click(function(){
+          var elements = [];
+       	  var event_type     = $('#profile-event_type').val();
+          var recipient      = $('.profile-recipient').val();
+          var reminder_name  = $('.profile-reminder_name').val();
+          var event_date     = $('#profile-event_date').val();
+          var id             = $('.profile-record_id').val();
+          var profile_id     = $('.profile_id').val();
+          var time_interval  = '';
+          var contact_number = '0';
+          $("input:checkbox[name=profile-time_interval]").each(function(){
+            if($(this).is(":checked"))
+              if(time_interval == ''){
+                time_interval = $(this).val()+'|';
+              } else{
+                time_interval = time_interval + $(this).val()+'|';
+              }
+          });
+          var reminder_time = '';
+          $("input:checkbox[name=profile-reminder_time]").each(function(){
+            if($(this).is(":checked"))
+              if(reminder_time == ''){
+                reminder_time = $(this).val()+'|';
+              } else{
+                reminder_time = reminder_time + $(this).val()+'|';
+              }
+          });
+          var reminder_type = '';
+          $("input:checkbox[name=profile-reminder_type]").each(function(){
+            if($(this).is(":checked")){
+              remainder_mob = $(this).val();
+              if(remainder_mob == 'text'){
+                contact_number = $('.profile-contact_number').val();
+              }
+              if(reminder_type == ''){
+                reminder_type = $(this).val()+'|';
+              } else{
+                reminder_type = reminder_type + $(this).val()+'|';
+              }
+            }
+          });
+          var added_emails = '';
+          $(".profile-email-added li").each(function(){
+            if($(this).attr('data_val') != '')
+              if(added_emails == ''){
+                added_emails = $(this).attr('data_val')+'|';
+              } else{
+                added_emails = added_emails + $(this).attr('data_val')+'|';
+              }
+          });
+          
+          elements.push({
+            event_type: event_type, 
+            recipient:  recipient,
+            reminder_name: reminder_name, 
+            time_interval:  time_interval,
+            event_date : event_date,
+            reminder_time: reminder_time, 
+            reminder_type:  reminder_type,
+            contact_number: contact_number,
+            added_emails:  added_emails,
+            customer_id: {{customer.id}}
+          });
+
+          /*validation */
+          var status = true;
+          $.each( elements, function( key, values ) {
+            $.each( values, function( key, value ) {
+              if(value == ''){
+                if(key == 'added_emails'){
+                  var class_name ='.error.profile-email-ids'
+                } else{
+                  var class_name = '.error.profile-'+key;
+                	status = false;
+                }
+                $(class_name).css('display','block');
+                $(class_name).html('Field is empty');
+              }
+            });
+          });
+
+
+
+          if(status) {
+          	if((id > 0) || (profile_id > 0)){
+
+          		$.ajax({
+               "async": true,
+               "crossDomain": true,        
+               "url":"https://app.floracracy.com/index.php/webservice/api/mobile/remainderupdate.json" ,
+               "method": "POST",
+               "dataType": "json",
+               "data": { "elements": elements,"id":id,'profile_id':profile_id },
+               beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+				},
+               success: function(data){
+               		$('.loader_overlay').css('display','none');
+                if(data == 1){
+                	/*Reset all the form to add profile*/
+                $('#profile-reminder_form')[0].reset();
+			    $('.error').html('');
+			    $('.profile-email-added li').remove();
+			    $('.error').css('display','none');
+
+				title = ((profile_id > 0)?'REMINDER ADDED' :'REMINDER UPDATED');
+                success_message  = ((profile_id > 0)?'Your reminder have been added.':'Your reminder have been updated.');
+                  $('#profile-success_popup .modal-title').html(title);
+                  $('#profile-success_popup .popup-content-p').html(success_message);
+                  $('#profile-success_popup').css('display','block');
+                  var parent_class =  (($('.parent_id').val() != '')? '#'+$('.parent_id').val(): "#profile-"+profile_id);
+
+                  	$.ajax({
+                     "async": true,
+                     "crossDomain": true,        
+                     "url": "https://app.floracracy.com/index.php/webservice/api/mobile/profilereminderlist.json",
+                     "method": "POST",
+                     "data": { "recipient_id": profile_id},
+                     beforeSend:function() {
+            		  $('.loader_overlay').css('display','block');
+        			 },
+                     success: function(response){
+                     	$('.loader_overlay').css('display','none');
+                     	// var class_name="#profile-"+profile_id
+                     	 $(document).find(parent_class).html('');
+                     	$(document).find(parent_class).append(response);
+                     }
+                   	}); 
+
+                }
+               }
+             });
+          } else{
+          	tempremainder = tempremainder.concat(elements);
+          	// elements = ((tempremainder.length > 0)? tempremainder:elements); 
+           	var customer_elements = $.extend( true,elements_step1, elements_step2 );
+           	$.ajax({
+               "async": true,
+               "crossDomain": true,        
+               "url":"https://app.floracracy.com/index.php/webservice/api/mobile/profilenew.json" ,
+               "method": "POST",
+               "dataType": "json",
+               "data": { "remainder_elements": tempremainder,"customer_elements":customer_elements},
+               beforeSend:function() {
+				$('.loader_overlay').css('display','block');
+				},
+               success: function(data){
+               		$('.loader_overlay').css('display','none');
+                if(data == 1){
+                	/*Reset all the form to add profile*/
+                $('#profile-reminder_form')[0].reset();
+			    $('.error').html('');
+			    $('.profile-email-added li').remove();
+			    $('.error').css('display','none');
+			    $('#profile-step2_form')[0].reset();
+			    $('#profile-details_form')[0].reset();
+			    $(".flower-style").removeClass('active');
+				$('.favorite-count').html('0');
+				$('.selected-favorite').remove();
+				$(".flower-color").removeClass('active');
+				$('.color-count').html('0');
+			  	$('.selected-color').remove();
+
+					title =  'REMINDER ADDED';
+                    success_message  = 'Your reminder have been added.';
+                  $('#profile-success_popup .modal-title').html(title);
+                  $('#profile-success_popup .popup-content-p').html(success_message);
+                  $('#profile-success_popup').css('display','block');
+                }
+               }
+             });
+           }
+          } // IF CLOSE
+
+      });
+
+	
+
+
+});
+
+</script>
+
+<style type="text/css">
+
+.loader_overlay{
+  display: none;
+  position: fixed;
+  background: rgba(0,0,0, 0.3);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
+.customloader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #9c7b49;
+  width: 40px;
+  height: 40px;
+  z-index: 9999;
+  -webkit-animation: spin 2s linear infinite;  Safari 
+  animation: spin 2s linear infinite;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.saved-profile-cont button#AddNewAddressModal-btn {
+    background: #9c7b49;
+    text-align: center;
+}
+.saved-profile-cont .step1-label{
+	color: #3d3d3d;
+    font-family: "Montserrat-SemiBold";
+    font-size: 9px;
+    font-weight: 600;
+    margin:0;
+    text-transform: uppercase;
+    display: block;
+}
+.clear-fix {
+    clear: both;
+}
+.saved-profile-cont .profile_text {
+	z-index: 99;
+}
+.saved-profile-cont .wel_txt_tlt {
+    background: #f8f7f2;
+    height: 115px;
+    margin-top: 0px;
+    padding-top: 50px;
+}
+.saved-profile-cont .saved-profile-listcal-cont {
+    margin-top: 20px;
+}
+.saved-profile-cont .profile_text {
+    margin-left: 30px;
+    margin-right: 25px;
+}
+.saved-profile-cont .recipient-tab{
+	width: 515px;
+    margin: 15px auto;
+    display: table;
+}
+span.cus-relation-value,span.cus-address-type-value {
+    width: 90%;
+    display: block;
+    height: 32px;
+    background: #fff;
+    padding: 5px 0 0 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    border: 1px solid #f2f2f2;
+    color: #3d3d3d;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 20px;
+    font-family: 'Montserrat-Light';
+    position: relative;
+}
+input#other-relation, input#other-relation {
+    display: block;
+}
+span.cus-relation-value img,span.cus-address-type-value img{
+	float: right;
+    margin: 10px 10px 0 0;
+}
+.relationship-wr ul, .addresstype-wr ul{
+	width: 90%;
+    line-height: 8px;
+    background: #fff;
+    color: #3d3d3d;
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 20px;
+    font-family: 'Montserrat-Light';
+    display: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    border: 1px solid #f2f2f2;
+        position: absolute;
+    z-index: 99;
+}
+ul.relationship-drop li, ul.address-type-drop li{
+    border-bottom: 1px solid #f2f2f2;
+    margin: 0;
+    text-transform: capitalize;
+    padding: 5px 0px 0 10px;
+}
+.saved-profile-cont .modal-title{
+	width: 50%;
+    float: left;
+    margin: 10px 0;
+}
+.saved-profile-cont span.address-optional {
+    width: 50%;
+    float: right;
+    display: block;
+    padding: 10px 50px 10px 0px;
+    text-align: right;
+}
+.selected-favorite, .selected-color{
+    width: 108px;
+    height: 26px;
+    border-radius: 13px;
+    background-color: #f3efe9;
+    color: #9c7b49;
+    font-family: "Montserrat-SemiBold";
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 30px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+span.clear-selected-favorite, span.clear-selected-color {
+    float: right;
+    margin: -2px 12px 0 0;
+    cursor: pointer;
+}
+span.selected-favorite-label, span.selected-color-label {
+    float: left;
+    margin-left: 15px;
+}
+/*.flower-style-favorite-label span {
+    color: #9c7b49;
+    font-size: 9px;
+}*/
+.flower-style-favorite-label .clear-favorite, .flower-style-color-label .clear-color {
+    color: #9c7b49;
+    font-size: 9px;
+}
+h4.flower-style-type {
+    color: #9c7b49;
+    font-family: "Montserrat-SemiBold";
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+span.flower-color-title {
+   color: #3d3d3d;
+	font-family: "Montserrat-SemiBold";
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+span.flower-style-hint {
+    opacity: 0.8;
+    color: #3d3d3d;
+    font-family: "Montserrat-Light";
+    font-size: 11px;
+    font-weight: 300;
+}
+.flower-style{
+	border-radius: 1px;
+    border: 1px solid #f3efe9;
+    background-color: #ffffff;
+    margin: 0 5px;
+}
+.flower-color{
+	border-radius: 1px;
+	border: 1px solid #f3efe9;
+	background-color: #ffffff;
+	 /*margin: 0 5px;*/
+}
+.flower-color div{
+	 margin-top: 5px;
+}
+.flower-style.active{
+ box-shadow: 0 5px 10px rgba(156, 123, 73, 0.1);
+ border: 1px solid #9c7b49;
+}
+.flower-color.active{
+ box-shadow: 0 5px 10px rgba(156, 123, 73, 0.1);
+ border: 1px solid #9c7b49;
+}
+h4.flower-style-favorite-label, h4.flower-style-color-label {
+    color: #3d3d3d;
+    font-family: "Montserrat-SemiBold";
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 20px;
+    text-transform: uppercase;
+        width: 70%;
+}
+.favorite-selected-wr , .color-selected-wr{
+    margin-bottom: 25px;
+}
+.saved-profile-cont .profilenew-tab {
+    margin: 15px auto;
+    display: table;
+}
+.step2-btn-wr {
+    margin-top: 50px;
+}
+.flower-color ul li {
+    margin: 0 !important;
+    display: inline-block;
+}
+span.color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 1px;
+    display: inline-block;
+}
+.blue1{background-color: #62a1ec;}.blue2{background-color: #89b9f1;}.blue3{background-color: #b1d0f6;}
+.purple1{background-color: #7462ec;}.purple2{background-color: #9789f1;}.purple3{background-color: #bab1f6;}
+.pink1{background-color: #be62ec;}.pink2{background-color: #ce89f1;}.pink3{background-color: #dfb1f6;}
+.flower-color ul li {
+    margin: 0 !important;
+    float: left;
+}
+.addresstype-wr {
+    margin-bottom: 10px;
+}
+.add_new {
+	float: left;
+    color: #9c7b49;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-family: 'Montserrat-SemiBold';
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.profile-list-wr {
+    float: left;
+    width: 100%;
+    margin: 10px 0;
+}
+.add_recipient_list .header-relationship{
+	background: #fff;
+    color: #cebb85;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 4px 2px 5px;
+    margin: 0 7px 0px 7px;
+    text-transform: uppercase;
+    position: relative;
+    top: -4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+.add_recipient_list .delete_profile {
+    color: #cebb85;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    float: right;
+    margin: 10px 20px 0 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+.fade-hide{
+	display: none;
+}
+.fade-hide.active{
+	display: block;
+}
+/*.profile-inner-tab-content .tab-pane {
+    padding-left: 205px;
+}*/
+.profile-address-inner-details ul li {
+    margin: 0;
+}
+span.profile-address-details-heading {
+    text-transform: uppercase;
+    color: #9c7b49;
+    font-family: "Montserrat-SemiBold";
+    font-size: 9px;
+    font-weight: 600;
+}
+span.profile-address-details-recipient {
+    color: #3d3d3d;
+    font-size: 11px;
+    line-height: 16px;
+    font-family: "Montserrat-Regular";
+    font-weight: 400;
+}
+span.profile-address-details {
+    color: #737373;
+    font-family: "Montserrat-Light";
+    font-weight: 300;
+    font-size: 10px;
+}
+a.profile-address-list_row_edit, a.profile-address-list_row_delete {
+    color: #9c7b49 !important;
+    font-family: "Montserrat-SemiBold" !important;
+    font-size: 9px !important;
+    font-weight: 600 !important;
+    line-height: 7px;
+    text-transform: uppercase
+}
+ /* .add_recipient_list .wel_txt_tlt > h3{
+		padding-top: 20px
+}	*/
+</style>

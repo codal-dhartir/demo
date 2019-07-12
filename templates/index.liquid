@@ -1,0 +1,942 @@
+
+{{ content_for_index }}
+
+<!--
+<div class="flower_section">
+	<ul>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-1.png?7222069051617350807"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-2.png?7222069051617350807"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-3.png?7222069051617350807"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-4.png?7222069051617350807"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-1.png?7222069051617350807"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-2.png?7222069051617350807"></a></li>
+	</ul>
+</div>
+-->
+
+{% comment %}
+<style>
+
+	/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}	
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Fixed header and footer.
+	* --------------------------------------- */
+	#header{
+		position:fixed;
+		height: 80px;
+		display:block;
+		width: 100%;		
+		z-index:9;
+		text-align:center;				
+	}
+
+	#header{
+		top:0px;
+	}
+  #fullpage{
+  	margin-top: 77px;
+  }
+  
+  .banner_content p {
+    color: #fff;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+  .sub_gallery_img h1 {
+    font-size: 73px;
+    text-transform: uppercase;
+    margin-top: 15px;	
+}
+.sub_gallery_img h4 {
+    color: #fff;
+    font-size: 24px;
+    padding-bottom: 20px;    
+    width: 100%;
+    float: none;
+    display: inline-block;
+}
+.collection_style_line{
+  	padding-top: 20px;
+}
+.old_world{width:100%; float:left;text-align:center; position:relative;}
+.sub_gallery_img {
+    padding: 5% 0px 0% 0px;
+    color: #fff;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+.traditional_style{
+    max-width: 454px;
+    display: inline-block;
+    float: none;
+}
+.gallery_sub_content {
+    color: #4a4a4a;
+    max-width: 570px;
+    display: inline-block;
+    float: none;
+    background: #fff;
+    padding: 40px;
+    opacity: 0.7;
+	margin-bottom:5%;
+}
+  
+.gallery_image_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bloom-blossom-banner.png?3280802394708994326) no-repeat;width:100%;background-size:cover;}
+.Whimsical_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Whimsical_banner.png?10409602261729633214) no-repeat;width:100%;background-size:cover;}
+.rustic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/rustic.png?10265087302121557893) no-repeat;width:100%;background-size:cover;}
+.Bohemian_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bohemian_BG.jpg?2903199273541728910) no-repeat;width:100%;background-size:cover;}
+.exotic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_BG.jpg?1196191872253849755) no-repeat;width:100%;background-size:cover;}
+.garden_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Garden_BG.jpg?1119999389374086260) no-repeat;width:100%;background-size:cover;}
+  
+  {% comment %}
+  .gallery_image_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/oldworld-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+.Whimsical_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/whimsical-01-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+.rustic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/rustic-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+.Bohemian_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bohemian-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+.exotic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/exotic-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+.garden_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/garden-01.jpg?7019922982573834535) no-repeat;width:100%;background-size:contain;}
+ {% endcomment %}
+  
+.side_cnt h1 {
+    /* -webkit-transform: rotate(-90deg);	 */
+	/* -moz-transform: rotate(-90deg); */
+	/* -ms-transform: rotate(-90deg); */
+	/* -o-transform: rotate(-90deg); */
+	/* filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); */
+	/* font-size:73px; */
+	/* white-space: nowrap; */
+	/* Style for "OLD WORLD" */
+
+
+transform: rotate(-90deg);
+color: #000000;
+font-size: 73px;
+font-weight: 700;
+text-transform: uppercase;
+/* Text style for "OLD WORLD" */
+letter-spacing: 0.56px;
+ white-space: nowrap; 
+}
+.img_position{position:relative;}
+.beta_content a {
+    max-width: 433px;
+    height: 43px;
+    background-color: #000000;
+    color: #fff;
+    float: none;
+    line-height: 43px;
+    width: 100%;
+    display: inline-block;
+    margin:40px 0px !important;
+}
+.link_top_scroll p{
+color: #ffffff;
+font-family: Helvetica;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 0.14px;
+}
+.link_top_scroll {
+    padding-bottom: 10%;
+}
+.side_cnt {
+    width: 100%;
+    float: left;
+}
+.old_world > img {
+    position: absolute;
+    left: 0px;
+    bottom: 20px;
+    z-index: 999999;
+}
+.link_made a{width: 216px;
+height: 16px;
+color: #4a4a4a;
+font-family: Helvetica;
+font-size: 14px;
+font-weight: 300;
+text-decoration: underline;
+/* Text style for "shop alrea" */
+letter-spacing: 0.11px
+  
+}
+  
+  
+  #section4 .link_made {
+    position: relative;
+    top: -20px;
+}
+  
+.gallery_sub_content p{margin:0px; text-align: left;}
+.gallery_image_section img{display:inline-block;float:none;}
+
+  .world_arrange {
+    width: 100%;
+    float: left;
+    text-align: left;
+    padding: 15% 20px 0% 0px;
+    margin-right: 20px;
+}
+  .popular_flowers h4 {
+    text-align: left;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+  .popular_flowers ul li {
+    float: left;
+    padding-right: 20px;
+    max-width: 143px;
+}
+.visualizer_sec {    
+    float: left;
+    width: 85%;
+    padding: 0px;
+}  
+  
+  .no-padding {
+    padding: 0px;
+}
+  .visualizer_sec img {
+    position: relative;
+    top: 20px;
+    width:100%;
+}
+  .small_image {
+    z-index: 9999999999;
+    position: relative;
+	left: 17px;
+    top: -10px;
+    width: auto;
+    float: left;
+    clear:both;
+}
+  .Color_palettes {
+    width: 100%;
+    float: left;
+}
+  .Color_palettes > ul > li > ul > li {
+    float: left;
+    margin-right: 10px;
+	margin-top: 10px;
+	width:25px;
+}
+.Color_palettes ul{width:100%; float:left;max-width: 355px;}
+.Color_palettes > ul > li > ul > li .white-clr{
+background-image: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%); width: 26px;
+height: 25px;
+border-radius: 13px;
+ border: 1px solid #979797;
+ float:left;
+}
+  
+.Color_palettes .circleClr{ 
+  width: 26px;
+  height: 25px;
+  border-radius: 13px;
+  border: none;
+  float:left;
+}
+  
+.Color_palettes > ul > li > ul > li .drk_pink-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f4b0db 0%, #e578b5 100%);
+ float:left;
+}
+.Color_palettes > ul > li > ul > li .red-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f77e53 0%, #ec4829 100%);
+ float:left;
+}
+.Color_palettes > ul > li > ul > li .drak-red-clr{
+
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #d83e3e 0%, #af1d1d 100%);
+ float:left;
+}
+.Color_palettes > ul > li{
+width:100%;
+float:left;
+border-bottom: 1px solid #979797;
+padding-bottom:10px;
+}
+.Color_palettes > ul > li > ul > li .green-clr{
+float:left;
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #53b619 0%, #297f0b 100%);
+
+}
+.Color_palettes > ul > li > ul > li .yellow-clr{
+float:left;
+
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #a5bee5 0%, #6c8ac7 100%);
+}
+.Color_palettes > ul > li > ul > li .lit_blue{
+float:left;
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f6df36 0%, #eabc19 100%);
+}
+.Color_palettes > ul > li > ul > li .drak-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #8a2d35 0%, #521418 100%);
+float:left;
+}
+
+.Color_palettes > ul > li > ul > li .pink-clr{
+float:left;	
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #efd5e2 0%, #dbabc1 100%);
+}
+.Color_palettes > ul > li > ul > li .brown-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #d59b94 0%, #ab625b 100%);
+float:left;
+}
+  .Color_palettes > ul > li > ul > li:last-child {
+    border: 0px;
+    width: auto;
+}
+.Color_palettes h6 {
+    text-align: left;
+    font-size: 16px;
+}  
+  .side_cnt img {
+/*     width: 56px; */
+    max-width: 65%;
+    float: right;
+    margin-top: 45%;
+}
+  .link_made a {
+     width: 216px;
+    height: 16px;
+    color: #3d3d3d;
+    font-family: Montserrat-Light;
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: underline;
+    letter-spacing: 0.11px;
+}
+  .beta_btns {
+    width: 100%;
+    float: left;
+}
+  .old_world_intro{
+  	background: url();
+  }
+  .site-header__icons-wrapper svg path{ fill: #3d3d3d !important; }
+  .bottom_logo_banner img {
+    margin-bottom: 40px;
+    max-width: 272px;
+}
+ .bottom_logo_banner {
+    position: static;
+    margin-left: 4.4%;
+    text-align: left;
+    left: 0px;
+    bottom: 10px;
+    margin-top: 0;
+    z-index: 999;
+}
+  /*
+  .bottom_logo_banner img {    
+    position: absolute;
+    top: 7.5%;
+    left: 4.4%;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+  */
+  .numberlistBg_section{position: relative;}
+ .browse_sec::before {    
+    position: absolute;
+    left: -36px;
+    width: 206px;
+    height: 159px;
+    opacity: 0.05;
+    color: #3d3d3d;
+    font-family: "Playfair Display";
+    font-size: 165px;
+    font-weight: 700;
+    top: -38%;
+}
+  .brosecsec_one::before{
+  content: "1";
+  }
+  .browesec_two::before{
+  content: "2";
+  }
+  .browsesec_three::before{
+  content: "3";
+  }
+  .sec2_bottom_logo_banner {
+    position: absolute;
+    bottom: 70px;
+    left: 4%;
+    z-index: 9999;
+}
+  .container-fluid.browse_section {
+    position: relative;
+}
+  .brosecsec_one p, .browesec_two p, .browsesec_three p{
+  	font-size: 14px !important;
+  }
+  .Color_palettes > ul > li > ul > li{text-align:left;}
+ 
+  .fixed_title_section{
+    position: fixed;
+    bottom: 325px;
+    left: 4.5%;
+    width: 6%;
+  }
+  .fixed_title_section img{ 
+    max-width: 65%;
+  }
+  .side_cnt img{
+    display: none;
+  }
+  #section0 {
+    height: auto !important;
+    padding-bottom: 0 !important;
+  }
+  #section0 .fp-tableCell, #section0 .fp-tableCell .fp-scrollable{height:auto !important; }
+</style>
+
+<div id="fullpage-demo">
+	<div class="section " id="section0" style="background: url({{ 'home_flora_banner.jpg' | file_url }}) no-repeat;background-size: cover;position:static;">
+		<div class="banner_content" style=" margin-top: 0px; position:relative; top:6%;">                              
+          <center> 
+             {% section 'slideshow' %}
+<!--             <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/t/1/assets/banner_logo.png?10605016222167826355"> 
+            <p style="margin-bottom:0px;">because you deserve to get what you want</p>
+            <p><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/volume-mute.png?14065206946355360310"></p> -->
+          </center>
+		</div> 
+      <div class="bottom_logo_banner">
+<!-- 		<img id="base_image_static" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-270-plain_5bc0ecc5-48e5-4ce2-beb7-57f9986e0d4c.png?4236402106574276914" usemap="#MapPlain" border="0"/> -->
+        {% comment %}
+        {% section 'compass-plain' %}
+        {% endcomment %}
+        {% section 'compass_oldworld_svg' %}  
+		</div>
+      
+	</div>
+	<div class="section completely" id="section2" >
+	    <div class="slide" id="slide1" style="position: relative;">
+			<div class="container-fluid">
+              <div class="row section2_info">
+                <div class="col-md-6 pull-left col-md-offset-1">
+                  {% section 'complete_personal-heading' %}
+                  {% section 'complete_personal-panel-step1' %}                                    
+                </div>
+                 {% section 'complete_personal-image' %}
+                
+              </div>
+			</div>
+          
+          <div class="container-fluid browse_section">
+             <div class="sec2_bottom_logo_banner">
+              <!--
+              <img id="base_image_static_b" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-270-plain_5bc0ecc5-48e5-4ce2-beb7-57f9986e0d4c.png?4236402106574276914" usemap="#MapPlain" border="0"/>
+
+              <img style="display: none" id="base_image_b" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-270-plain_5bc0ecc5-48e5-4ce2-beb7-57f9986e0d4c.png?4236402106574276914" usemap="#MapPlain" border="0">
+              <img style="display: none" id="arrow_image_b" src="small3.svg">
+              <canvas id="compass_b" width="272" height="272" style="cursor: pointer;display: none; "></canvas>
+               -->  
+				{% section 'compass_oldworld_svg' %}                         
+			 </div>
+            
+           	 {% section 'complete_personal-panel-step2' %}
+          	 {% section 'complete_personal-panel-step3' %}
+          
+          </div>
+         
+          {% comment %} 
+          
+          <script>
+            //Compass 2nd section start
+    $('#base_image_static_b').hover(function(){
+        $('#base_image_static_b').hide();
+        $('#compass_b').show();
+    });
+    $("#compass_b").mouseleave(function(){
+        $('#base_image_static_b').show();
+        $('#compass_b').hide();
+    });
+
+    var CANVAS_WIDTH_B = 272;     // Canvas width
+    var CANVAS_HEIGHT_B = 272;    // Canvas height
+    var FPS_B = 30;               // Frames per second
+    // Canvas center points.
+    var canvasCenterX_B = CANVAS_WIDTH_B / 2;
+    var canvasCenterY_B = CANVAS_HEIGHT_B / 2;
+    // Object to hold mouse information.
+    var mouse = 
+    {
+        x:0,
+        y:0
+    };
+    // State for playing or not playing the animations.
+    var isPlaying = true;
+    // Create html syntax for canvas element.
+    var canvasElement_B = document.getElementById('compass_b');
+    var imgElement_B = document.getElementById("base_image_b");
+    var arrowImgElement_B = document.getElementById("arrow_image_b");
+    
+    // Reference to the canvas 2d context.
+    var canvas_b = canvasElement_B.getContext("2d");
+    // Dynamically append a canvas element to the body tag.
+
+    // canvasElement.appendTo('body'); 
+
+    // Add the mousemove event listener to the canvas element.
+    canvasElement_B.addEventListener("mousemove", mouseMove_B, false);
+    canvasElement_B.addEventListener('click', function(e) {
+        if (e) {
+          //             console.log(e);
+          //             console.log('Client x: '+e.clientX);
+          //             console.log('Client Y: '+e.clientY);
+          //             console.log('Page x: '+e.pageX);
+          //             console.log('Page Y: '+e.pageY);
+			console.log('offsetX : '+e.offsetX);
+            console.log('offsetY: '+e.offsetY);
+          
+            var clientX = e.clientX;
+            var clientY = e.clientY;
+            var pageX = e.pageX;
+            var pageY = e.pageY;
+          	var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+          
+            /*
+            if( (pageX >= 100 && pageX <= 196 && pageY >=29 && pageY <=75) ){
+                alert('Old world');
+            }
+
+            if( (pageX >= 214 && pageX <= 280 && pageY >=59 && pageY <=133) ){
+                alert('Rustic');
+            }
+
+            if( (pageX >= 214 && pageX <= 280 && pageY >=59 && pageY <=133) ){
+                alert('Whimsieal');
+            }
+            */
+            //function isInside($x1, $y1, $x2, $y2, $x3, $y3, $x, $y)
+
+            //Old world //(isInside(96, 31, 193, 27, 148, 121, pageX, pageY
+            if(isInside(86, 9, 184, 8, 135, 58, offsetX, offsetY)){
+                //echo "Inside"; 
+              console.log('old world');
+              $.fn.fullpage.moveTo(4, 0);
+//               window.location.href = '#oldworld'; 
+//               window.location.reload();
+
+            }else if( isInside(221, 30, 267, 107, 169, 111, offsetX, offsetY) ){
+                console.log('Rustic');
+              	$.fn.fullpage.moveTo(7, 0);
+            }else if( isInside(270, 157, 219, 238, 170, 154, offsetX, offsetY) ){
+                console.log('Whimsieal');
+              	//$.fn.fullpage.moveTo(9, 0);
+              	$.fn.fullpage.moveTo('Whimsical');
+            }else if( isInside(183, 259, 77, 255, 138, 169, offsetX, offsetY) ){
+                console.log('Bohemian');
+              	$.fn.fullpage.moveTo('Bohemian');
+            }else if( isInside(43, 234, 3, 153, 91, 152, offsetX, offsetY) ){
+                console.log('Exotic');
+              	$.fn.fullpage.moveTo('Exotic');
+            }else if( isInside(4, 100, 59, 24, 88, 108, offsetX, offsetY) ){
+                console.log('Garden');
+              	$.fn.fullpage.moveTo('Garden');
+            }else{
+            	console.log('no');              
+            }
+
+
+
+
+        } else {
+            console.log('no collision');
+        }
+    }, false);
+
+            
+
+
+    // Handler for mouseMove events. Computes mouseX and mouseY properties.
+    function mouseMove_B(e)
+    { //console.log(e);
+
+        if (e.pageX)   
+        {
+            mouse.x = e.pageX;
+        } 
+            else if (e.clientX)   
+        {
+            mouse.x = e.clientX + document.body.scrollLeft
+                + document.documentElement.scrollLeft;
+        }
+        mouse.x = mouse.x - canvasElement_B.offsetLeft;
+        if (e.pageY)   
+        {
+            mouse.y = e.pageY;
+        } 
+        else if (e.clientY)   
+        {
+            mouse.y = e.clientY + document.body.scrollTop
+                + document.documentElement.scrollTop;
+        }
+        mouse.y = mouse.y - canvasElement_B.offsetTop;
+    }
+    // The arrow drawing we are rotating.
+    
+    var arrow_b = 
+    {
+        //strokeColor: "#8ED6FF",
+        //fillColor: "#0000ff",
+
+        x: -50,     // Starting x
+        y: -25,     // Starting y
+        _radians:0, // Rotation value required for the canvas rotate method.
+        centerX: 0, // Center x point on canvas to draw
+        centerY: 0, // Center y point on canvas to draw.
+        mouse: {},  // Mouse object
+        _dx:0,
+        _dy:0,
+        update_b: function()
+        {
+            // Distance from mouse x and center of canvas.
+            this._dx = mouse.x - this.centerX; 
+            // Distance from mouse y and center of canvas.
+            this._dy = mouse.y - this.centerY; 
+            // Radians for the canvas rotate method.
+            this._radians = Math.atan2(this._dy,this._dx);
+        },
+        draw_b: function() // Draw.
+        {
+           
+            // Draw off canvas
+            canvas_b.save();
+            //Translate canvas to center
+            canvas_b.translate(this.centerX, this.centerY);
+            // Rotate            
+            canvas_b.rotate(this._radians);
+            // Create new drawing
+            canvas_b.beginPath();
+            // Start point top left of arrow shaft.
+            //alert(this.y)
+            canvas_b.moveTo(this.x, this.y);  
+            //Top left of arrow shaft plus top left of arrow head.         
+            // canvas.lineTo(this.x + 50 , this.y);        
+            // canvas.lineTo(this.x + 50, this.y - 25);            
+            // // // Arrow point.
+            // canvas.lineTo(this.x + 100, this.y + 25);       
+            // canvas.lineTo(this.x + 50, this.y + 75);    
+            // // // Bottom left of arrow head and bottom left of arrow shaft.
+            // canvas.lineTo(this.x + 50, this.y + 50);    
+            // canvas.lineTo(this.x, this.y + 50);
+            // // // Close the bottom of arrow shaft.         
+            // canvas.lineTo(this.x, this.y);  
+            canvas_b.fillStyle = this.strokeColor;
+            canvas_b.fill();
+            canvas_b.strokeStyle = this.fillColor;        
+            canvas_b.stroke();
+            // Put it on the canvas
+            canvas_b.drawImage(arrowImgElement, -10, -10); //-20, -19            
+            canvas_b.restore();
+        }
+    };
+
+    // Update the model data.
+    function update_b() 
+    {
+        if (isPlaying)
+        { 
+            arrow_b.update_b();
+        }
+    }
+    // Draw the views
+    function draw_b() 
+    { 
+        canvas_b.clearRect(0, 0, CANVAS_WIDTH_B, CANVAS_HEIGHT_B);
+        canvas_b.strokeStyle = "transparent";
+        canvas_b.strokeRect(0, 0, CANVAS_WIDTH_B, CANVAS_HEIGHT_B);
+        canvas_b.drawImage(imgElement_B, 0, 0);
+        //canvas.drawImage(oldworldImgElement, 90, 10);
+
+       // canvas.fillStyle = "#eee";
+       // canvas.fillRect(.5, .5, CANVAS_WIDTH-1, CANVAS_HEIGHT-1);
+        arrow_b.draw_b();
+    }
+    // JQuery ready - start here
+    $(function() 
+    {
+        //function canvasImageCall(){
+           // Initialization. Since arrow is a singleton, need to set initalization values.
+            arrow_b.centerX = canvasCenterX_B;
+            arrow_b.centerY = canvasCenterY_B;
+            arrow_b.mouse = mouse;
+            // Timer for animation.
+            setInterval(function() 
+            {
+                update_b();
+                draw_b();
+            }, 1000/FPS_B);
+ 
+        //}
+    });
+
+</script>
+     {% endcomment %} 
+	</div>
+		</div>
+	<!--
+	    <div class="slide" id="slide1">
+			<h1>Slide 2</h1>
+			<img src="imgs/iphone-blue.png" alt="iphone" id="iphone-two" />
+		</div>
+      -->
+
+	<div class="section get-start" id="section2">
+		<div class="intro">			
+          <div class="container-fluid get_started_sec">
+            <div class="left_topBg_img"></div>
+              <div class="row quiz_home_sec">
+                {% section 'get_start-section' %}
+                
+                <div class="col-md-6" id="compass_plain_large_460">                  
+<!--                 	<img class="compass_section_3" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-460-blank_60da2819-5713-43c2-b8ad-9d6e8658ec85.png?4236402106574276914" usemap="#MapPlainLarge" border="0"/> -->
+                  
+<!--                   <img style="display: none" id="base_image_l" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-460-blank_60da2819-5713-43c2-b8ad-9d6e8658ec85.png?4236402106574276914" usemap="#MapPlain" border="0">
+<img style="display: none" id="arrow_image_l" src="small3.svg">
+<canvas id="compass_l" width="462" height="462" style="cursor: pointer;display:none;"></canvas>
+<img id="base_image_static_l" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-460-blank_60da2819-5713-43c2-b8ad-9d6e8658ec85.png?4236402106574276914" usemap="#MapPlain" border="0">
+   -->
+                  {% section 'compass_oldworld_svg' %}
+
+                  
+                  
+                 
+                </div>  
+                <div class="col-md-12">
+                <center>
+                  <p>or <b>scroll</b> to explore the styles<br>
+                    <a href="#oldworldCreate"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/btn-blk-icon.png?17293604132117419709"></a>
+                  </p>
+                  </center>
+                </div>
+                
+            </div>
+            <div class="left_btmBg_img"></div>
+            <div class="right_btmBg_img"></div>
+          </div>          
+		</div>
+      
+	</div>
+
+  <div class="section" id="section3">
+    {% section 'home-style-content' %}  
+  </div>
+  
+  <div class="featuredsection_main section" id="section4">
+    {% section 'old-world-featured-content' %}
+  </div>  
+
+  <!-- Style section 1       -->
+
+  <div class="section" id="section5">		
+      {% section 'rustic-style-content' %}
+  </div>
+  
+  <div class="featuredsection_main section" id="section6">
+    {% section 'rustic-featured-content' %}
+  </div>    
+<!--  Section 2  -->
+  
+<!-- Style section 3      -->
+  <div class="section" id="sectionWhimsical">		
+    {% section 'whimsical-style-content' %}
+  </div>
+  <div class="featuredsection_main section" id="sectionWhimsicalCreate">
+    {% section 'whimsical-featured-section' %}
+  </div> 
+<!--  Section 3  -->
+ 
+<!-- Style section 4     -->
+  <div class="section" id="sectionBohemian">	
+    {% section 'bohemian-style-content' %}
+  </div>
+  
+  <div class="featuredsection_main section" id="sectionBohemianCreate">
+    {% section 'bohemian-featured-content' %}     
+  </div> 
+<!--  Style Section 4  -->
+  
+  <!-- Style section 5     -->
+  <div class="section" id="sectionExotic">	
+    {% section 'exotic-style-content' %}
+  </div>
+  
+  <div class="featuredsection_main section" id="sectionExoticCreate">
+    {% section 'exotic-featured-content' %}
+  </div> 
+<!--  Style Section 5  -->
+  
+  <!-- Style section 6    -->
+  <div class="section" id="sectionGarden">
+    {% section 'garden-style-content' %}      
+  </div>
+  
+  <div class="section" id="sectionGardenCreate">
+    {% section 'garden-featured-content' %}    
+  </div> 
+<!--  Style Section 6  -->
+  
+  
+  
+  <div class="section" id="section7Vision">
+    {% section 'our-vision' %}    
+   
+<div class="flower_section">
+	<ul>
+		<li class="product-image"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-office-vintage.png?9049876404915706596"></a>
+		<!-- <div class="hover_content_new">
+                                    <div class="hover_sym">
+                                      Florocracy
+                                    </div>
+                                </div> -->
+		</li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pexels-photo-424670.png?9049876404915706596"></a>
+	</li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pexels-photo-371052.png?9049876404915706596"></a>
+	</li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/coffee-flowers-notebook-work-desk-163123.png?9049876404915706596"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-desk-office-vintage.png?9049876404915706596"></a></li>
+		<li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/6-layers.png?9049876404915706596"></a></li>
+	</ul>
+</div>
+    
+    {% section 'footer' %}
+    
+  </div>
+  
+            
+</div>	
+
+<script type="text/javascript">
+$(document).ready(function() { 
+  if (screen.width > 991) {			
+    
+    $.getScript("//cdn.shopify.com/s/files/1/0011/5104/1588/t/1/assets/scrolloverflow.min.js?7515241387760381385", function() {
+            //console.log('included'); 
+      
+    $.getScript("//cdn.shopify.com/s/files/1/0011/5104/1588/t/1/assets/jquery.fullpage.extensions.min.js?7515241387760381385", function() {
+            //console.log('included2');  
+      
+      $('#fullpage').fullpage({
+          anchors: ['home', 'browse', 'quiz', 'oldworld','oldworld', 'Rustic', 'Rustic', 'Whimsical', 'Whimsical', 'Bohemian', 'Bohemian', 'Exotic', 'Exotic','Garden','Garden', 'Vision'],
+          sectionsColor: ['#fff', '#1BBC9B', '#7E8F7C', '#fff',  '#F8F7F2', '#fff', '#F8F7F2', '#fff', '#F8F7F2', '#fff', '#F8F7F2', '#fff', '#F8F7F2' , '#fff', '#F8F7F2', '#4A4A4A'],
+          css3: true,
+          scrollingSpeed: 1000,
+          paddingBottom: 70,
+          navigation: false,
+          slidesNavigation: false,
+          dragAndMove: false,
+        	parallax: true,
+        	scrollOverflow: true,
+        	scrollOverflowOptions: {
+          		preventDefault: false
+        	},
+          afterLoad: function(anchorLink, index){           
+              //console.log('===============');
+              //console.log("afterLoad--" + "anchorLink: " + anchorLink + " index: " + index );
+              	//$('.new_fixed_compass_logo').show();
+              $(".new_Large_compass_logo").css("opacity", "0");
+              $(".new_fixed_compass_logo").css("opacity", "1"); 
+              $(".fixed_title_section").css("opacity", "0");
+            
+              if(index == 4 || index == 5){ //OldWorld
+                $(".fixed_title_section.oldworld").css("opacity", "1");
+                rotateCompass('oldworld', 'scroll');
+              }else if(index == 6 || index == 7){ //rustic
+                $(".fixed_title_section.rustic").css("opacity", "1");
+                rotateCompass('rustic', 'scroll');
+              }else if(index == 8 || index == 9){ //Whimsical
+                $(".fixed_title_section.Whimsical").css("opacity", "1");
+                rotateCompass('Whimsical', 'scroll');
+              }else if(index == 10 || index == 11){ //bohemian
+                $(".fixed_title_section.bohemian").css("opacity", "1");
+                rotateCompass('bohemian', 'scroll');
+              }else if(index == 12 || index == 13){ //exotic
+                $(".fixed_title_section.exotic").css("opacity", "1");
+                rotateCompass('exotic', 'scroll');
+              }else if(index == 14 || index == 15){ //garden
+                $(".fixed_title_section.garden").css("opacity", "1");
+                rotateCompass('garden', 'scroll');
+              }else if( index > 15){ //Others
+                //rotateCompass('oldworld', 'footer');
+                //$('.new_fixed_compass_logo').hide();
+                $(".new_fixed_compass_logo").css("opacity", "0");
+              }else if( index == 3){ //Quiz           
+                //$('.new_fixed_compass_logo').hide();
+                $(".new_Large_compass_logo").css("opacity", "1"); 
+                $(".new_fixed_compass_logo").css("opacity", "0"); 
+              }else{
+                rotateCompass('plain', 'scroll');
+              }
+          }
+    	});
+      
+	}); 
+    
+      
+      
+	});        
+    
+  }else{
+
+    
+  }
+  
+});
+</script>
+
+{% endcomment %}

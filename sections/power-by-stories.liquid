@@ -1,0 +1,148 @@
+<div class="">
+  <div class="power-by-story mt-100">
+    <div class="left"><div class="left_sec">
+      <div class="slider_info">
+        <h2 class="heading">{{ section.settings.title }}</h2>
+        <ul class="detail_text">
+          <li> {{ section.settings.subtitle1 }}</li>
+          <li> {{ section.settings.subtitle2 }}</li>
+          <li> {{ section.settings.subtitle3 }}</li>
+        </ul>
+        <a class="slide_button" href="{{ section.settings.btn_url }}"> {{ section.settings.btn_title }} <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Solid_arrow.png?2144" alt=""></a>
+      </div>
+   	 <div class="story_slider">
+      <div class="quote_slider">
+        <div class="item_quote">
+          <div class="quote">
+            <h2>“I get scared, but <strong> I’m staying.</strong>”</h2>
+            <p>- Poignant words of a murdered Mogadishu florist </p>
+          </div>
+        </div>
+        <div class="item_quote">
+          <div class="quote">
+            <h2>“I get scared, but <strong>I’m staying.</strong>”</h2>
+            <p>- Lorem Ipsum is the printing and typesetting industry. </p>
+          </div>
+        </div>
+        <div class="item_quote">
+          <div class="quote">
+            <h2>“I get scared, but <strong>I’m staying.</strong>”</h2>
+            <p>- Lorem Ipsum is simply dummy text. </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="paginator-center">
+        <ul>
+          <li class="prev"></li>
+          <li class="next"></li>
+        </ul>
+      </div>
+    </div>
+      </div></div>
+     <div class="img_slider">
+        <div class="item_img">
+          <span class="slide_bg">
+            <img src="{{ section.settings.image | img_url:'large' }}" />
+          </span>
+        </div>
+        <div class="item_img">
+          <span class="slide_bg">
+            <img src="//cdn.shopify.com/s/files/1/0011/5104/1588/files/autumn-bloom-blossom-226145_e1362dad-61f1-4c6f-bbce-77c20078c875.png?v=1553583623" />
+          </span>
+        </div>
+        <div class="item_img">
+          <span class="slide_bg">
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/products/rustic_2.jpg?v=1540083644" />
+          </span>
+        </div>
+      </div>
+
+    
+    
+
+  </div>
+</div>
+
+{% schema %}
+{
+"name": "Power by Stories",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Heading"
+},
+{
+"type": "text",
+"id": "subtitle1",
+"label": "Subheading"
+},
+{
+"type": "text",
+"id": "subtitle2",
+"label": "Subheading"
+},
+{
+"type": "text",
+"id": "subtitle3",
+"label": "Subheading"
+},
+{
+"type": "text",
+"id": "btn_title",
+"label": "Button Heading"
+},
+{
+"type": "url",
+"id": "btn_url",
+"label": "Button Link"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Image"
+}
+],
+"presets": [
+{
+"name": "Power by Stories",
+"category": "Text"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+<script>
+  
+  $('.img_slider').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+    centerMode: true,
+     centerPadding: '60px',
+ variableWidth: true,
+  asNavFor: '.quote_slider'
+});
+$('.quote_slider').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  asNavFor: '.img_slider',
+  arrows: true,
+  centerMode: true,
+  focusOnSelect: true,
+  prevArrow: $('.prev'),
+    nextArrow: $('.next')
+});
+  
+//   $('.quote_slider').slick({
+//     arrows: true,
+// //     centerMode: true,
+// //     centerPadding: '20%',
+//     prevArrow: $('.prev'),
+//     nextArrow: $('.next')
+//   });
+</script>

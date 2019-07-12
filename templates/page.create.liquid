@@ -1,0 +1,743 @@
+{% assign delivery_date = 'null' %}
+
+<div class="old_world product-pages ">
+  <div class="comp_slide">
+    <div class="slider-nav">
+      <div class="oldworld">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/collections/bloom-blossom-flora-130154--1----rectangle-5-mask.png?v=1527145881');" data-index="1">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/icon-old-world.png?2451581714063533265" width="45">
+              
+                <h2>Old World</h2>
+                  <h6>Traditional style</h6>
+                
+                <h4>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Old_World_Line_Flourish.svg?5492183152008772804"></h4>
+                
+                {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=OW&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My OLD WORLD  Design</a>
+                 {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+                  <a href="https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=OW&delivery_date={{ delivery_date }}&type=create" class="coll_btn">Create My OLD WORLD  Design</a>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['old-world'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Old World Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/old-world">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                   {%  if collections['old-world'].products.count > 0%}
+                    {% for product in collections['old-world'].products limit: 3 %}
+                    <div class="bohem-item">
+                      <a href="{{ product.url | within: collection }}">
+                        <div class="product-image-cont-innerr">
+                          <img id="{{ img_id }}"
+                               class="product-img-display"
+                               src="{{ product.featured_image | img_url: '118x118' }}"
+                               data-src="{{ img_url }}"
+                               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                               data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                               data-sizes="auto"
+                               alt="{{ product.featured_image.alt | escape }}">
+                        </div>
+                      </a>
+                    </div>
+                    {% endfor %}
+                  {% else %}
+                  	   {% for product in collections['all'].products limit: 3 %}
+                    <div class="bohem-item">
+                      <a href="{{ product.url | within: collection }}">
+                        <div class="product-image-cont-innerr">
+                          <img id="{{ img_id }}"
+                               class="product-img-display"
+                               src="{{ product.featured_image | img_url: '118x118' }}"
+                               data-src="{{ img_url }}"
+                               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                               data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                               data-sizes="auto"
+                               alt="{{ product.featured_image.alt | escape }}">
+                        </div>
+                      </a>
+                    </div>
+                    {% endfor %}
+                  {% endif %}
+                </div>
+
+                {% if paginate.pages > 1 %}
+
+                {% comment %}
+                {% include 'pagination' %}
+                {% endcomment %}
+
+                {% endif %}
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_1.png?15606854177374528987"><span>Pieris Japonica</span></div>
+                  <div class="bohem-item"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_2.png?15606854177374528987"><span>Echinacea</span></div>
+                  <div class="bohem-item"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_3.png?15606854177374528987"><span>Yarrow</span></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="white-clr circleClr" style="background-image: linear-gradient(180deg, #fff 0%, #f1f1f1 100%);"></a></li>
+                      <li><a href="#" class="green-clr circleClr" style="background-image: linear-gradient(180deg, #53b619 0%, #297f0b 100%);"></a></li>
+                      <li></li>
+                      </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                       <li><a href="#" class="pink-clr circleClr"  style="background-image: linear-gradient(180deg, #efd5e2 0%, #dbabc1 100%);"></a></li>
+                        <li><a href="#" class="brown-clr circleClr"  style="background-image: linear-gradient(180deg, #d59b94 0%, #ab625b 100%);"></a></li>
+                        <li><a href="#" class="drak-clr circleClr"  style="background-image: linear-gradient(180deg, #8a2d35 0%, #521418 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="drk_pink-clr circleClr"  style="background-image: linear-gradient(180deg, #f4b0db 0%, #e578b5 100%);"></a></li>
+                        <li><a href="#" class="red-clr circleClr"  style="background-image: linear-gradient(180deg, #f77e53 0%, #ec4829 100%);"></a></li>
+                        <li><a href="#" class="drak-red-clr circleClr"  style="background-image: linear-gradient(180deg, #d83e3e 0%, #af1d1d 100%);"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="rustic">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/collections/group-14.png?v=1527158441');" data-index="2">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Rustic_White.svg?15279935865730901628" width="45">
+               
+                  <h2>Rustic</h2>
+                  <h6>Natural style</h6>
+                
+                <h4>
+                 
+                  <br>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Rustic_Line.svg?5492183152008772804"></h4>
+                {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=RS&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My Rustic Design</a>
+                  {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+                  <a href='https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=RS&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My Rustic Design</a>
+                 {% endif %}
+       
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['rustic'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Rustic Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/rustic">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                  {% for product in collections['rustic'].products limit: 3 %}
+                  <div class="bohem-item">
+                    <a href="{{ product.url | within: collection }}">
+                      <div class="product-image-cont-innerr">
+                        <img id="{{ img_id }}"
+                             class="product-img-display"
+                             src="{{ product.featured_image | img_url: '118x118' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ product.featured_image.alt | escape }}">
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/lavender-2426376-640.png?6915539326863170728"><span>Lavender</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/sea-holly-flower-14129-640.png?6915539326863170728"><span>Sea Holly</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/christian-roses-2197754-640.png?6915539326863170728"><span>Hellabore</span></a></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #c01717 0%, #c01717 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efca24 0%, #efca24 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #88a4d6 0%, #88a4d6 100%);"></a></li>	
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                       <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #da6e70 0%, #da6e70 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #829ed2 0%, #829ed2 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #beafe6 0%, #beafe6 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #870c3b 0%, #870c3b 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d8696b 0%, #d8696b 100%);"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="whimsical">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/collections/Whimsical_banner.png?v=1531398874');" data-index="2">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Whimsical_White.svg?14070028804716725977" width="45">
+                
+                  <h2>Whimsical</h2>
+                  <h6>Playful style</h6>
+               
+                <h4>
+                
+                  <br>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Whimsical_Line_Flourish.svg?5492183152008772804"></h4>
+                
+                {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=WH&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My whimsical Design</a>
+                 {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+                 <a href='https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=WH&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My whimsical Design</a>
+                 {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['whimsical'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Whimsical Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/whimsical">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                  {% for product in collections['whimsical'].products limit: 3 %}
+                  <div class="bohem-item">
+                    <a href="{{ product.url | within: collection }}">
+                      <div class="product-image-cont-innerr">
+                        <img id="{{ img_id }}"
+                             class="product-img-display"
+                             src="{{ product.featured_image | img_url: '118x118' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ product.featured_image.alt | escape }}">
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                {% if paginate.pages > 1 %}
+
+                {% comment %}
+                {% include 'pagination' %}
+                {% endcomment %}
+
+                {% endif %}
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/cindy-bonfini-hotlosz-354736-unsplash.png?532098405765488240"><span>Sunflower</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/feverfew-8173-640.png?532098405765488240"><span>Feverfew</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/white-snapdragons-yellow-rose-1170704-640.png?532098405765488240"><span>Snap Dragon</span></a></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #7491cb 0%, #7491cb 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                       <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>						
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>	
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                    <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>						
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>	
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="bohemian">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Old_World_Intro.png?12565');" data-index="2">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bohimaian_icon_white.png" width="45">
+               
+                 <h2>Bohemian</h2>
+                  <h6>Modern style</h6>
+              
+                <h4>
+                  
+                  <br>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_Line_and_Flourish.svg?5492183152008772804"></h4>
+                
+               {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=BH&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My Bohemian Design</a>
+                 {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+               <a href='https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=BH&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My Bohemian Design</a>
+                 {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['bohemian'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Bohemian Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/bohemian">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                  {% for product in collections['bohemian'].products limit: 3 %}
+                  <div class="bohem-item">
+                    <a href="{{ product.url | within: collection }}">
+                      <div class="product-image-cont-innerr">
+                        <img id="{{ img_id }}"
+                             class="product-img-display"
+                             src="{{ product.featured_image | img_url: '118x118' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ product.featured_image.alt | escape }}">
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                {% if paginate.pages > 1 %}
+
+                {% comment %}
+                {% include 'pagination' %}
+                {% endcomment %}
+
+                {% endif %}
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pieris-japonica-3346481-640.png?15196262994584834595"><span>Pieris Japonica</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/cone-flower-2876541-640.png?15196262994584834595"><span>Echinacea</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/yarrow-350381-640.png?15196262994584834595"><span>Yarrow</span></a></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #9f81a7 0%, #9f81a7 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #bf95ba 0%, #bf95ba 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #80284b 0%, #80284b 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f8d4cc 0%, #f8d4cc 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ff936f 0%, #ff936f 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #da005e 0%, #da005e 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #8224a7 0%, #8224a7 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #de0067 0%, #de0067 100%);"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="exotic">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/collections/Exotic_BG.jpg?v=1532352037');" data-index="2">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Exotic_White.svg?2920158896774126125" width="45">
+             
+                  <h2>Exotic</h2>
+                  <h6>Structured style</h6>
+               
+                <h4>            
+                  <br>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_Line_and_Flourish.svg?5492183152008772804"></h4>
+                
+                 {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=EX&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My exotic Design</a>
+                 {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+                 <a href="https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=EX&delivery_date={{ delivery_date }}&type=create" class="coll_btn">Create My exotic Design</a>
+                {% endif %}
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['exotic'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Exotic Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/exotic">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                  {% for product in collections['exotic'].products limit: 3 %}
+                  <div class="bohem-item">
+                    <a href="{{ product.url | within: collection }}">
+                      <div class="product-image-cont-innerr">
+                        <img id="{{ img_id }}"
+                             class="product-img-display"
+                             src="{{ product.featured_image | img_url: '118x118' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ product.featured_image.alt | escape }}">
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                {% if paginate.pages > 1 %}
+
+                {% comment %}
+                {% include 'pagination' %}
+                {% endcomment %}
+
+                {% endif %}
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/orchid-2869758-640.png?13948426289172064932"><span>Orchid</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flower-1532040-640.png?13948426289172064932"><span>Bird of Paradise</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dandelion-1142584-640.png?13948426289172064932"><span>Alstroemeria</span></a></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                     <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f5e94d 0%, #f5e94d 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #9f14a6 0%, #9f14a6 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d13382 0%, #d13382 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #6366b8 0%, #684790 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #674690 0%, #674690 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #faabcf 0%, #faabcf 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+
+                    <ul>
+                     <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #a42767 0%, #a42767 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ca2b76 0%, #ca2b76 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f9a7cd 0%, #f9a7cd 100%);"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="gardern">
+        <div class="gallery_image_section prdct-slider" style="background-image: url('https://cdn.shopify.com/s/files/1/0011/5104/1588/collections/Garden_BG.jpg?v=1532352499');" data-index="2">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="sub_gallery_img">
+              <div class="traditional_style">
+                <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Garden_White_5a147338-404f-4106-ab10-fac5187e93a5.svg?8236386941483921239" width="45">
+                <h1>
+                  garden
+                </h1>
+                <h4>
+                  romantic style
+                  <br>
+                  <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Garden_Line_Flourishes.svg?5492183152008772804"></h4>
+                {% if customer %}
+                <a href='https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl=GD&delivery_date={{ delivery_date }}&type=create' class="coll_btn">Create My garden Design</a>
+                {% else %} 
+                  {% assign user_id = 'null' %}
+                  {% assign user_name = 'null' %}
+                  {% assign user_email = 'null' %}
+                  <a href="https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl=GD&delivery_date={{ delivery_date }}&type=create" class="coll_btn">Create My garden Design</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-info-row"> 
+          <div class="container">
+            <div class="col_info"> 
+              <div class="coll_products bohem-wrap-row">
+                {% paginate collections['garden'].products by 3 %}
+                <div id="AjaxinatePagination" class="col-flex-title">
+                  <h4>Existing Garden Arrangements</h4>
+                  {% if paginate.next %}
+                  <a href="/collections/garden">View More</a>
+                  {% endif %}
+                </div>
+                <div id="AjaxinateLoop" class="bohem-wrap">
+                  {% for product in collections['garden'].products limit: 3 %}
+                  <div class="bohem-item">
+                    <a href="{{ product.url | within: collection }}">
+                      <div class="product-image-cont-innerr">
+                        <img id="{{ img_id }}"
+                             class="product-img-display"
+                             src="{{ product.featured_image | img_url: '118x118' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ product.featured_image.alt | escape }}">
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+
+                {% if paginate.pages > 1 %}
+
+                {% comment %}
+                {% include 'pagination' %}
+                {% endcomment %}
+
+                {% endif %}
+
+                {% endpaginate %}
+
+              </div>
+
+              <div class="popular_flowers bohem-wrap-row">
+                <h4>TOP FLOWERS IN THIS STYLE</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-3298888-640.png?14876893374270080587"><span>Rose</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/tulip-3372258-640.png?14876893374270080587"><span>Tulip</span></a></div>
+                  <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/sweet-william-2693986-640.png?14876893374270080587"><span>Sweet William</span></a></div>
+                </div>
+
+              </div>
+
+              <div class="Color_palettes bohem-wrap-row">
+                <h4>Color palettes</h4>
+                <div class="bohem-wrap">
+                  <div class="bohem-item">
+                    <ul>
+                      <li><a href="#" class="white-clr circleClr" style="background-image: linear-gradient(180deg, #fff 0%, #f1f1f1 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #e2b9cc 0%, #e2b9cc 100%);"></a></li>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #b62323 0%, #b62323 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+                    <ul>
+                       <li><a href="#" class="white-clr circleClr" style="background-image: linear-gradient(180deg, #fff 0%, #f1f1f1 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #c49cbe 0%, #c49cbe 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #852b4f 0%, #852b4f 100%);"></a></li>
+                    </ul>
+                  </div>
+                  <div class="bohem-item">
+
+                    <ul>
+                      <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f9d7ce 0%, #f9d7ce 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ff9571 0%, #ff9571 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #fab0d3 0%, #fab0d3 100%);"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="shopify-section-compass_fixed_svg" class="shopify-section">
+          
+      <div class="bottom_logo_banner_fixed"> <div class="compasstext"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass_text.png?12533" alt="" /></div> {% section 'compass_oldworld_svg' %} </div>
+    </div>
+
+
+  </div>
+<!--   <div class="container"> -->
+    {% section 'static-pro-data' %}
+<!--   </div> -->
+</div>
+
+{% section 'flower-with-patelles' %}
+
+<script type="text/javascript">
+//   document.addEventListener("DOMContentLoaded", function() {
+//     var endlessClick = new Ajaxinate({
+//       method: 'click'
+//     });
+//   });
+
+  $('.slider-nav').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+     dots: false,
+    fade: true,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          dots: true
+        }
+      }
+   ]
+  });
+  
+  
+  $("body").on("click", "a[data-slide]", function(e){
+    $('a[data-slide]').removeClass('active');
+    $(this).addClass('active');
+    e.preventDefault();
+    var slideno = $(this).data('slide');
+    $('.slider-nav').slick('slickGoTo', slideno);
+    
+    var datar = $(this).attr("data-r");
+    $(this).parent("svg").css({'transform': 'rotate(0deg)'});
+    $(this).parent("svg").css({'transform': 'rotate('+datar+'deg)'});
+//     $(this).parent("svg").css({'transform': 'rotate('+datar+'deg)'}); 
+    $(this).parent("svg").attr('dataroate',datar);  
+  
+  });
+  
+   $("body").on("click", ".slick-arrow", function(e){
+      e.preventDefault();
+     var attrDataindex = $('.slider-nav .slick-active').attr('data-slick-index');
+//      setTimeout(function(){ 
+     $("svg a.compass_needle").removeClass("active");
+     $("svg a[data-slide='"+attrDataindex+"']").addClass("active");
+     var transformVal = $("svg a[data-slide='"+attrDataindex+"']").attr("data-r");
+      $("svg").css({'transform': 'rotate('+transformVal+'deg)'}); 
+//      }, 500);
+   });
+  
+  
+</script>

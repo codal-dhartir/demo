@@ -1,0 +1,710 @@
+{% include 'product-category-popup-main' %}
+
+{%- include 'bold-product' with product, hide_action: 'break', output: 'none' -%}
+<div class="product-template__container page-content-container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+  {% comment %}
+  Get first variant, or deep linked one
+  {% endcomment %}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign product_image_zoom_size = '1024x1024' -%}
+  {%- assign product_image_scale = '2' -%}
+  {%- assign enable_zoom = section.settings.enable_zoom -%}
+
+  {% case section.settings.image_size %}
+  {% when 'small' %}
+  {%- assign product_image_width = 'medium-up--one-third' -%}
+  {%- assign product_description_width = 'medium-up--two-thirds' -%}
+  {%- assign product_thumbnail_width = 'medium-up--one-third' -%}
+  {%- assign height = 345 -%}
+  {% when 'medium' %}
+  {%- assign product_image_width = 'medium-up--one-half' -%}
+  {%- assign product_description_width = 'medium-up--one-half' -%}
+  {%- assign product_thumbnail_width = 'medium-up--one-quarter' -%}
+  {%- assign height = 530 -%}
+  {% when 'large' %}
+  {%- assign product_image_width = 'medium-up--two-thirds' -%}
+  {%- assign product_description_width = 'medium-up--one-third' -%}
+  {%- assign product_thumbnail_width = 'medium-up--one-fifth' -%}
+  {%- assign height = 720 -%}
+  {% when 'full' %}
+  {%- assign product_image_width = '' -%}
+  {%- assign product_description_width = '' -%}
+  {%- assign product_thumbnail_width = 'medium-up--one-eighth' -%}
+  {%- assign height = 1090 -%}
+  {%- assign enable_zoom = false -%}
+  {% endcase %}
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      {% assign product_collection = product.collections.first %}
+      {% if product_collection %}
+      {{ product_collection.title | link_to: product_collection.url }}
+      {% endif %}
+    </li>
+  </ul>
+  <div class="grid product-detail-page product-single{% if section.settings.enable_payment_button %} product-single--{{ section.settings.image_size }}-image{% endif %}">
+    <div class="filters-toolbar__item  text-right  deliveron-text">
+      <label class="flora-label" for="">Deliver on:<span id="deliver_on_info">No date or location selected</span></label>
+      <a href="#" class="add-date-location-link"  id="add_change_deliver_info">CHANGE DATE & OCCASION</a>
+    </div>
+    <div class="product-single__photos product-sizequntity">
+
+      {%- assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
+      {% for image in product.images %}
+      {% if forloop.index == 1 %}
+      {% capture img_id %}FeaturedImage-{{ section.id }}-{{ image.id }}{% endcapture %}
+      {% capture img_class %}product-featured-img{% endcapture %}
+      {% capture zoom_img_id %}FeaturedImageZoom-{{ section.id }}-{{ image.id }}{% endcapture %}
+      {% capture img_wrapper_id %}{{ zoom_img_id }}-wrapper{% endcapture %}
+      {%- assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+      {% include 'image-style' with small_style: true, width: height, height: height, wrapper_id: img_wrapper_id, img_id: img_id %}
+		<div class="product-rightimage">
+        <img id="{{ img_id }}"
+             class="feature-row__image {{ img_class }} lazyload{% unless featured_image == image %} lazypreload{% endunless %}"
+             src="{{ image | img_url: '300x300' }}"
+             alt="{{ image.alt | escape }}">
+            <p><b>ARRANGEMENT</b></p>
+      </div>
+      
+      <div class="product-midimage">
+        <div class="midimage-sesion">
+          <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/lr-arrow.png?5421354055287758898" alt="arrow">
+        </div>
+      </div>
+      
+      
+      <div class="product-leftimage">
+        <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/rose.png?5421354055287758898" alt="prosuct">
+         <p><b>ORIGINAL DESIGN</b></p>
+    
+      </div>
+      
+      {% endif %}
+      {% endfor %}
+
+    </div>
+
+    <div class="page-world-arrangement">
+      <div class="container">
+
+
+        {% if section.settings.show_vendor %}
+        <p class="product-single__vendor">{{ product.vendor }}</p>
+        {% endif %}
+
+        <div class="innerworld-arrangement">
+          <div class="clarke_oldworld">
+            <h3 class="product-single__title">{{ product.title }}</h3>
+            <span>
+              <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-icon.png?2971904105527706714"/>
+              {% if product_collection %}
+              {{ product_collection.title }}
+              {% endif %}
+            </span>
+            <p class="product-single__price product-single__price-{{ section.id }}{% unless current_variant.available %} product-price--sold-out{% endunless %}">
+              {% if current_variant.compare_at_price > current_variant.price %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s id="ComparePrice-{{ section.id }}">{{ current_variant.compare_at_price | money }}</s>
+              <span class="product-price__price product-price__price-{{ section.id }} product-price__sale product-price__sale--single">
+                <span id="ProductPrice-{{ section.id }}">
+                  {{ current_variant.price | money }}
+                </span>
+                <span class="product-price__sale-label product-price__sale-label-{{ section.id }}">{{ 'products.product.on_sale' | t }}</span>
+              </span>
+              {% else %}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s id="ComparePrice-{{ section.id }}" class="hide">{{ current_variant.compare_at_price | money }}</s>
+              <span class="product-price__price product-price__price-{{ section.id }}">
+                <span id="ProductPrice-{{ section.id }}">
+                  {{ current_variant.price | money }}
+                </span>
+                <span class="product-price__sale-label product-price__sale-label-{{ section.id }} hide">{{ 'products.product.on_sale' | t }}</span>
+              </span>
+              {% endif %}
+            </p>
+
+            {% capture "form_classes" -%}
+            product-form product-form-{{ section.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}{% if section.settings.enable_payment_button and product.has_only_default_variant%} product-form--payment-button-no-variants{% endif %}
+            {%- endcapture %}
+
+            <div id="description_size" class="product_description">
+              <div class="account_tab_section">
+                {% comment %}
+                <ul class="nav nav-pills">
+                  <li class="active"><a data-toggle="pill" href="#Quantity">Size &amp; Quantity</a></li>
+                  <li class="active"><a data-toggle="pill" href="#Description">Description</a></li>
+                </ul>
+                {% endcomment %}
+                {% form 'product', product, class:form_classes %}
+                <input id="product-id" type="hidden" value="{{ product.id }}" data-variant="{{ current_variant.id }}">
+                <div class="tab-content">
+
+                  <div id="Description" class="tab-panee">
+                    <!--                       <label class="pro-qnty">Description</label> -->
+                    <div class="old-description">
+                      <ul>
+                        <li><label>SIZE</label><span>30 - 50 flowers</span></li>
+                        <li><label>COLOR PALETTE</label>
+                          <span>
+                            <ul>
+                             {% if product.metafields.color_palette.red != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.red }}"></li>
+                             {% endif %}
+                             
+                             {% if product.metafields.color_palette.pink != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.pink }}"></li>
+                             {% endif %}
+                              
+                             {% if product.metafields.color_palette.blue != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.blue  }}"></li>
+                             {% endif %}
+                              
+                             {% if product.metafields.color_palette.purple != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.purple }}"></li>
+                             {% endif %}
+                              
+                             {% if product.metafields.color_palette.green  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.green  }}"></li>
+                             {% endif %}
+                              
+                              {% if product.metafields.color_palette.yellow  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.yellow  }}"></li>
+                             {% endif %}
+                              
+                              {% if product.metafields.color_palette.orange  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.orange  }}"></li>
+                             {% endif %}
+                              
+                              {% if product.metafields.color_palette.white  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.white }}"></li>
+                             {% endif %}
+                              
+                              {% if product.metafields.color_palette.burgundy  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.burgundy  }}"></li>
+                             {% endif %}
+                              
+                             
+                               {% if product.metafields.color_palette.lavender  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.lavender  }}"></li>
+                             {% endif %}
+                              
+                               {% if product.metafields.color_palette.cream  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.cream  }}"></li>
+                             {% endif %}
+                              
+                               {% if product.metafields.color_palette.coral  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.coral  }}"></li>
+                             {% endif %}
+                              
+                               {% if product.metafields.color_palette_gold.gold  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette_gold.gold  }}"></li>
+                             {% endif %}
+                              
+                               {% if product.metafields.color_palette.tan  != blank %}
+                              <li class="rosee-cl" style="background-color:{{ product.metafields.color_palette.tan  }}"></li>
+                             {% endif %}
+                              
+                            </ul>
+                          </span>
+                        </li>
+                       
+                       {% if product.metafields.body_shape.Shape1 != blank %}
+                        <li><label>SHAPE</label> <span> 
+                          {{ product.metafields.body_shape.Shape1 }} 
+                         {% if product.metafields.radiation_shape.shape2 != blank %}
+                          with {{ product.metafields.radiation_shape.shape2 }}
+                          {% endif %}
+                          </span>
+                        </li>
+                         {% endif %}
+                        
+                        <li><label>FLOWERS</label>
+                          <span>
+                            <div class="quantity-flowers">
+                              <ul>
+                                {% if product.metafields.Flower.Image1  != blank %}
+                                <li>
+                                   <img src="{{ product.metafields.Flower.Image1 }}" />
+                                  <p>{{ product.metafields.Flower.Image1_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image2  != blank %}
+                                 <li>
+                                   <img src="{{ product.metafields.Flower.Image2 }}" />
+                                  <p>{{ product.metafields.Flower.Image2_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                               {% if  product.metafields.Flower.Image3  != blank %}
+                                 <li>
+                                   <img src="{{ product.metafields.Flower.Image3 }}" />
+                                   <p>{{ product.metafields.Flower.Image3_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image4  != blank %}
+                                 <li>
+                                   <img src="{{ product.metafields.Flower.Image4 }}" />
+                                   <p>{{ product.metafields.Flower.Image4_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image5  != blank %}
+                               <li>
+                                   <img src="{{ product.metafields.Flower.Image5 }}" />
+                                   <p>{{ product.metafields.Flower.Image5_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image6  != blank %}
+                                <li>
+                                   <img src="{{ product.metafields.Flower.Image6 }}" />
+                                   <p>{{ product.metafields.Flower.Image6_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image7  != blank %}
+                                <li>
+                                   <img src="{{ product.metafields.Flower.Image7 }}" />
+                                   <p>{{ product.metafields.Flower.Image7_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                                {% if  product.metafields.Flower.Image8  != blank %}
+                                <li>
+                                   <img src="{{ product.metafields.Flower.Image8 }}" />
+                                   <p>{{ product.metafields.Flower.Image8_text }}</p>
+                                </li>
+                                {% endif %}
+                                
+                              </ul>
+                            </div>
+                          </span>
+                        </li>
+                        <li><label>Description</label>
+                          <span> <div class="product-detailstilte">
+                            {{ product.description }}
+                            </div> 
+                          </span>
+                        </li>
+                        
+<!--                         <li><label>Metafield</label>
+                          <span>{{ product.metafields.Flower.inventory_json  }}</span>
+                         </li> -->
+                        
+                      </ul>
+                    </div>  
+
+                  </div>
+             {% comment %}
+                   <div id="Quantity" class="tab-panee fade active in">
+                    <!--                       <label class="pro-qnty">Size &amp; Quantity</label> -->
+                    <div class="subquantity_panel">
+                      <div class="mypanel_details">
+                        <ul>
+                          {% unless product.has_only_default_variant %}
+                          <li>
+                            <div class="select_mypanel">
+                              {% for option in product.options_with_values %}
+                              <select class="single-option-selector single-option-selector-{{ section.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                                {% for value in option.values %}
+                                <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                                {% endfor %}
+                              </select>
+                              {% endfor %}
+                              {% if product.available and product.variants.size > 0 %}
+                              {% include 'swatch' with 'Size' %}
+                              {% endif %}
+
+                            </div>
+                          </li>
+                          {% endunless %}
+
+                          <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
+                            {% for variant in product.variants %}
+                            {% if variant.available %}
+                            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                              {{ variant.title }}
+                            </option>
+                            {% else %}
+                            <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                            {% endif %}
+                            {% endfor %}
+                          </select>
+
+                          {% comment %}
+                          NATHAN - added the following one-line snippet to install infinite options plugin
+                          {% endcomment %}
+
+                          <div id="infiniteoptions-container"></div>		
+
+                          {% if section.settings.show_quantity_selector %}
+                          <li>
+                            <div class="product_quantity_icr">
+                              <span for="Quantity">{{ 'products.product.quantity' | t }}</span>
+                              <div class="multi_mypanel celpad">
+                                <span class="quantity_update">-</span>
+                                <input type="number" id="product_quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
+                                <span class="quantity_update">+</span>
+                              </div>
+                            </div>
+                          </li>
+                          {% endif %}
+
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- add to cart button -->  
+                  </div>
+              {% endcomment %}
+
+                  <div class="oldworld_button">
+                    <p>Please wait for a moment, we are dispalying product based on avaibility.</p>
+                      <div class="product-form__item product-form__item--submit{% if section.settings.enable_payment_button %} product-form__item--payment-button{% endif %}{% if product.has_only_default_variant %} product-form__item--no-variants{% endif %}">
+<!--                         <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn flora-primary-btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}">
+                          <span id="AddToCartText-{{ section.id }}">
+                            {% unless current_variant.available %}
+                            {{ 'products.product.sold_out' | t }}
+                            {% else %}
+                            {{ 'products.product.add_to_cart' | t }}
+                            {% endunless %}
+                          </span>
+                        </button> -->
+                        {% if section.settings.enable_payment_button %}
+                        {{ form | payment_button }}
+                        {% endif %}
+                      </div>
+                  </div>
+                </div>
+                {% endform %}
+              </div>
+            </div>
+          </div>
+        </div>
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+{% unless product == empty %}
+<script type="application/json" id="ProductJson-{{ section.id }}">
+    {{ product | json }}
+</script>
+{% endunless %}
+
+{% schema %}
+{
+"name": "Product pages",
+"settings": [
+{
+"type": "select",
+"id": "image_size",
+"label": "Image size",
+"options": [
+{
+"value": "small",
+"label": "Small"
+},
+{
+"value": "medium",
+"label": "Medium"
+},
+{
+"value": "large",
+"label": "Large"
+},
+{
+"value": "full",
+"label": "Full-width"
+}
+],
+"default": "medium"
+},
+{
+"type": "checkbox",
+"id": "show_quantity_selector",
+"label": "Show quantity selector",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "show_variant_labels",
+"label": "Show variant labels",
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": "Show vendor",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "enable_zoom",
+"label": "Enable image zoom",
+"default": true
+},
+{
+"type": "checkbox",
+"id": "enable_payment_button",
+"label": "Show dynamic checkout button",
+"info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "show_share_buttons",
+"label": "Show social sharing buttons",
+"default": true
+}
+]
+}
+{% endschema %}
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+<script>
+  $("body").on("click", "#AddToCart-product-template", function(e){
+    e.preventDefault();
+    var elem = $(this);
+    $(elem).prop("disabled", true);
+    var product_id = $('#product-id').val();
+    var variant_id = $('#product-id').attr('data-variant');
+    //     console.log(variant_id);
+    var form_id = '#product_form_'+ product_id;
+    var product = [];
+    $.each($("form").serializeArray(), function (i, field) {
+      //       console.log(field.name,':->', field.value);
+      if(field.name == 'id' || field.name == 'quantity'){  
+        product[field.name] = field.value;
+      }
+    });
+
+    $.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      dataType: 'json',
+      data: {'quantity': product.quantity, 'id':  variant_id},
+      success: function(cart) {
+        $('#AddToCart-product-template').prop("disabled", false);
+        jQuery.getJSON('/cart.js', function(cart) {
+          jQuery.ajax({
+            type: 'GET',
+            url: '/cart.json',
+            dataType: 'jsonp',
+            success: function(data) { 
+              var item_count = data['item_count'];
+              var total_price = data['total_price']/100;
+
+              //If there are items in cart
+              if (item_count > 0) {
+                // cart count
+                $('#CartCount').text('('+item_count+')');
+                $('.checkout-btn').text('CHECK OUT ('+item_count+')');
+
+                // mini cart data
+                $('.mini-cart-subtotal .price').text('Subtotal $' + total_price.toFixed(2));
+
+                var cart_list = [];
+
+                for( var i = 0; i < data['items'].length ; i++ ){
+                  if ( data['items'][i]['id'] != null ) {
+                    var item_id = data['items'][i]['id'];
+                    var product_title = data['items'][i]['product_title'];
+                    // var product_title = data['items'][i]['title'];
+                    var product_handle = data['items'][i]['handle'];
+                    var quantity = data['items'][i]['quantity'];
+                    var line_price = data['items'][i]['price']/100;
+                    var url = data['items'][i]['url'];
+                    if(data['items'][i]['image'] != null){
+                      var image_url = data['items'][i]['image'];
+                    }
+                    else{
+                      var image_url = 'https://cdn.shopify.com/s/assets/no-image-100-c91dd4bdb56513f2cbf4fc15436ca35e9d4ecd014546c8d421b1aece861dfecf_small.gif';
+                    }
+                    var variants = data['items'][i]['variant_options'];
+
+                    if ( product_title == 'Gift Wrap' ) {
+                      var product_url = product_title;
+                    } else {
+                      var product_url = '<a href="' + url + '">' + product_title + '</a>';
+                    }
+
+                    var options = [];
+                    for ( var o = 0; o < variants.length; o++ ) {
+                      var selected = data['items'][i]['variant_options'][o];
+                      if ( selected !== 'Default Title' ) {
+                        options.push( selected + '<br>' );
+                      }
+                    }
+                    var selected_options = options.join('');
+
+                    cart_list.push('<li><img src="' + image_url + '"  alt="' + product_title + '" /><div class="tablesession-description"><h3>' + product_url + '</h3><span>' + selected_options + '</span><b>$'+ line_price.toFixed(2) +'</b><div class="multi_mypanel celpad"><span class="cart_quantity_update" data-id="'+item_id+'" >-</span><input class="product-qty-update product-cart-qty-'+item_id+'" data-id="'+item_id+'" value="' + quantity + '" pattern="[0-9]*" name="select_quantity" type="number"><span class="cart_quantity_update" data-id="'+item_id+'">+</span><a href="javascript:void(0);" data-id="'+item_id+'" id="update-qty" class="btn update-qty">Update</a></div></div><input type="hidden" id="updates_' + item_id + '" value="' + quantity + '" /></li>');
+                  } //endif
+                } // endfor
+                $('.multi_footercart').css('display','block');
+                $("#cart-qantity .dropdown-toggle").trigger( "click" );
+                $('.mini-cart-items ul').html( cart_list.join('') );
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                //display error
+                $('.mycart-tablesession-header h2 img').css('display','inline-block');
+                $('.mycart-tablesession-header h2 span').data('add', true);
+                $('.mycart-tablesession-header h2 span').text('Added to bag');
+                setTimeout(function() {
+                  $('.mycart-tablesession-header h2 span').text('My bag').data('add', false);
+                  $('.mycart-tablesession-header h2 img').css('display','none');
+                }, 3000);
+              }
+            }
+          });//end inner ajax
+        });
+      },
+      error: function(err) {
+        $('#AddToCart-product-template').prop("disabled", false);
+        alert(err.responseJSON.description);
+      }
+    });
+  });
+
+  $( window ).load(function() {
+    
+    var identifier;
+    var productId = {{ product.id }};
+    var proVarinats = {{ product.variants | json }};
+    var producturlId = getQueryStringValue("order_id");
+    if(producturlId){
+      $.ajax({ 
+        "crossDomain": true,
+        "url": "https://customize.floracracy.com/api/shopifyorderdata/?email={{customer.email}}&order_id="+producturlId+"",
+        "method": "GET",
+        success: function(data){
+        console.log('data',data);
+        for(var i =0;i <= data.length-1;i++)
+        {
+        var item = data[i];
+        var variantImage = item.variant_image;
+        var variantDjangoid = item.order_id;
+        if(variantDjangoid){
+        $('.product-rightimage img').attr('src', variantImage);
+      }
+             }
+             }
+             });
+    }
+
+    var localdeliveryDate = localStorage.getItem('DeliveryDate');
+     if(localdeliveryDate == null){
+       localdeliveryDate = document.getElementById("available_date").value;
+      localStorage.setItem('DeliveryDate', localdeliveryDate);
+      $('#deliver_on_info').html(localdeliveryDate);
+    }
+    else{
+      $('#deliver_on_info').html(localdeliveryDate);
+    }
+    
+    var metaUrl = 'https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/'+productId+'/metafields.json';
+
+    $.ajax({
+      type: 'GET',
+      "async": false,
+      "crossDomain": true, 
+      url:  metaUrl,
+      dataType:   "json", 
+      success:    function(data){
+        for( var i = 0; i < data['metafields'].length ; i++ ){
+          if(data['metafields'][i]['key'] == 'inventory_json'){
+            identifier = data['metafields'][i]['value'];
+
+            if(identifier) {
+              $.ajax({
+                "async": false,
+                "crossDomain": true,        
+                "url": "https://customize.floracracy.com/api/order/checkFlowerStatus/?delivery_date="+localdeliveryDate+"&flower_identifier="+identifier+"",
+                "method": "GET",
+                "dataType": "json",
+
+                beforeSend: function() {
+//                   alert('dfd');
+//                    setTimeout(function(){
+//                 $('.oldworld_button').html(''); 
+//                    }, 9000);
+                },  
+                success: function(data){
+                  var counter=0;
+                  for( var i = 0; i < data.length ; i++ ){
+                    var status = data[i]['status'];
+                    console.log('prostatus',status);
+                    if(status == false){
+                      $.ajax({ 
+                        "type": 'GET',
+                        "async": false,
+                        "crossDomain": true, 
+                        "url":  "https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/{{ product.id }}.json",
+                        "dataType":   "json", 
+                        success:    function(product){
+                        var productData = product['product'];
+                        var proIVarint = productData['variants'];
+                        for(var k =0; k <= proIVarint.length-1;k++){
+                        var variantPrice = proIVarint[k]['price'];
+                        var variantTitle = proIVarint[k]['title'];
+                        var variantInvenroty = proIVarint[k]['inventory_quantity'];
+                        var  varId = proIVarint[k]['id'];
+                      }
+                             if(variantInvenroty == 0){
+                        $('.oldworld_button').html('<button type="submit" name="add" disabled="disabled" id="AddToCart-product-template" class="btn flora-primary-btn product-form__cart-submit"><span id="AddToCartText-product-template">Sold Out</span></button>');
+                      }
+                      else{
+
+                        $('.oldworld_button').html('<p class="error">Not available, Please choose different delivery date</p>');
+                      }
+
+                    }
+                  });
+                  break;
+                }
+                    
+                    if(status == true){
+                      counter++;
+                    }
+                    
+                   if(counter == data.length){
+                      $.ajax({
+                        "type": 'GET',
+                        "async": false,
+                        "crossDomain": true, 
+                        "url":  "https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/{{ product.id }}.json",
+                        "dataType":   "json", 
+                        success:    function(product){
+                         console.log('cartpro22->',product);
+                        var productData = product['product'];
+                        var proIVarint = productData['variants'];
+                        for(var k =0; k <= proIVarint.length-1;k++){
+                        var variantPrice = proIVarint[k]['price'];
+                        var variantTitle = proIVarint[k]['title'];
+                        var variantInvenroty = proIVarint[k]['inventory_quantity'];
+                        var  varId = proIVarint[k]['id'];
+                      }
+                             if(variantInvenroty == 0){
+                         $('.oldworld_button').html('<button type="submit" name="add" disabled="disabled" id="AddToCart-product-template" class="btn flora-primary-btn product-form__cart-submit"><span id="AddToCartText-product-template">Sold Out</span></button>');
+                      }
+                      else{
+                        
+                        $('.oldworld_button').html('<button type="submit" name="add" id="AddToCart-product-template" class="btn flora-primary-btn product-form__cart-submit"><span id="AddToCartText-product-template">Add to cart</span></button>');
+                      }
+                    }
+                  });
+                    }
+                  }
+                }
+              });
+            }
+          }
+        }
+      }
+    });
+  });
+</script>

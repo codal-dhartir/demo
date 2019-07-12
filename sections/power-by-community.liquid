@@ -1,0 +1,89 @@
+<div class="power-by-community pt-100">
+  <div class="page-width container v-center reverse">
+    <div class="col-md-5 col-sm-6 col-xs-12 community-text index_block right_side pl-75">
+      <h2>{{ section.settings.title }}</h2>
+      <ul>
+        <li> {{ section.settings.subtitle1 }}</li>
+        <li> {{ section.settings.subtitle2 }}</li>
+      </ul>
+      <a class="nav_btn" href="{{ section.settings.btn_url }}"> {{ section.settings.btn_title }} <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Solid_arrow.png?2144" alt=""> </a>
+    </div>
+    <div class="col-md-7 col-sm-6 col-xs-12 community_visual style_view left_side">
+      {% for block in section.blocks %}
+      <div class="item">
+        <div class="main_visual">
+        	<img src="{{ block.settings.image | img_url:'medium' }}" />
+        </div>
+        <div class="item_visualizer">
+        	<img src="{{ block.settings.small_image | img_url:'small' }}">
+          <span>Visualizer </span>
+        </div>
+      </div>
+      {% endfor %}
+  	</div> 
+    
+  </div>
+</div>
+
+{% schema %}
+   {
+    "name": "Power by Community",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle1",
+        "label": "Subheading"
+      },
+	  {
+        "type": "text",
+        "id": "subtitle2",
+        "label": "Subheading"
+      },
+	  {
+        "type": "text",
+        "id": "btn_title",
+        "label": "Button Heading"
+      },
+	  {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "image_picker",
+            "id": "small_image",
+            "label": "Small Image"
+          }
+       ]
+      }
+     ],
+    "presets": [
+      {
+        "name": "Power by Community",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,374 @@
+{% comment %}
+<div class="main_page_tab">
+
+  <h6>You have achieved </h6>
+  <h3>Apprentice Status</h3>
+
+  <div class="one-whole pts_reward"> 
+    <div class="one-half small--one-whole" >
+      <div class="lft_pts">
+        <div class="progress_cir"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flower_points_new.png?15226217814541604861"></div>
+        <p>550 Points</p>
+
+      </div>
+      <div class="rgt_pts">
+        <h5>1,950 points til </h5>
+        <h2>Craftsman</h2>
+      </div>
+    </div>
+
+    <div class="one-half small--one-whole rewards">
+      <h3>rewards</h3>
+      <h1>floracracy design house rewards</h1>
+      <a href="/" class="btn flora-primary-btn">Learn More </a>
+    </div>
+  </div>
+</div>
+{% endcomment %}
+
+
+<div class="form-vertical login-frm">
+  <div class="one-half small--one-whole login-lft-side">
+    <h2 class="text-left flora-page-title">Personal Info</h2>
+    <div class="flora-onoborading-container">
+      <form action="javascript:CustomerProfileUpdate();">
+
+        <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
+        <input type="text" required onchange="trimInputValue('FirstName')" name="FirstName" id="FirstName" {% if customer.first_name %}value="{{ customer.first_name }}"{% endif %}> <!-- autofocus-->
+
+        <label for="LastName">{{ 'customer.register.last_name' | t }}</label>
+        <input type="text" required onchange="trimInputValue('LastName')" name="LastName" id="LastName" {% if customer.last_name %}value="{{ customer.last_name }}"{% endif %}>
+
+        <label for="CustomerCompanyname">Company name <span class="optional_tag">Optional</span>{{ customer.note }}</label>
+        <input type="text" onchange="trimInputValue('CustomerCompanyname')" id="CustomerCompanyname" name="customerCompanyname" value="{{ customer.note }}">
+
+        <label for="Emaill">{{ 'customer.register.email' | t }}</label>
+        <input type="email" required name="CustomerEmail" id="CustomerEmail" class="{% if form.errors contains 'email' %} input--error{% endif %}" {% if customer.email %} value="{{ customer.email }}" {% endif %} autocorrect="off" autocapitalize="off">
+
+
+        <label for="CustomerPhoneno">Phone number <span class="optional_tag">Optional</span></label>
+        <input type="text" id="CustomerPhoneno" name="CustomerPhoneno">
+
+        <label for="DOB" class="flora-label">Date of Birth <span class="optional_tag">Optional</span></label>
+        {% include 'date-field' %}
+
+        <p class="text-center">
+          <button class="flora-primary-btn" type="submit" style="margin-top: 20px !important;">Save changes</button>
+        </p>
+      </form>
+
+      <div class="change_password_section">
+        <h2 class="text-left flora-page-title">Change Password</h2>
+        <form action="javascript:ChangeCustomerPassword();">
+          <label for="CURRENT PASSWORD">CURRENT PASSWORD</label>
+          <input class="flora-form-control" type="password" required name="current_password" id="current_password">
+
+          <label for="New PASSWORD">NEW PASSWORD</label>
+          <input class="flora-form-control" type="password" required name="newpasword" id="newpasword">
+          
+            <label for="Confirm New PASSWORD">CONFIRM NEW PASSWORD</label>
+          <input class="flora-form-control" type="password" required id="confirm_newpasword" name="confirm_newpasword">     
+          
+          <ul class="pwd_lst">
+            <li><p>Must be 6 or more characters</p></li>
+           <li><p>Must contain at least 1 number</p></li>
+          </ul>
+
+                   
+
+          <p class="text-center">
+            <button class="flora-primary-btn" type="submit" style="margin-top: 5px !important;">SAVE PASSWORD</button>
+          </p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="one-half small--one-whole login-rgt-side">
+    {% paginate customer.addresses by 5 %}
+    <h2 class="text-left flora-page-title">Addresses</h2>
+
+    <div class="flora-onoborading-container" id="customer_address_sections">           
+      {% comment %}
+      Add address form, hidden by default
+      {% endcomment %}
+      <div id="AddressNewForm" class="form-vertical hide">
+        {% form 'customer_address', customer.new_address %}
+        <!--               <h2>{{ 'customer.addresses.add_new' | t }}</h2> -->
+
+        <div class="">                
+
+          <div class="">
+            <!--           For Address type         -->
+            <label  class="flora-label" for="AddressCompanyNew">Address type</label>                  	
+            <select required class="flora-form-control select-fixed-width" id="AddressCompanyNew" name="address[company]" data-default="{{ form.company }}">
+              <option value="Home">Home</option>
+              <option value="Work">Work</option>
+              <option value="Other">Other</option>
+            </select>
+          </div> 
+
+          <div class="">
+            <label class="flora-label" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
+            <input required class="flora-form-control" onblur="trimInputValue('AddressFirstNameNew')" type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}">
+          </div>
+
+          <div class="">
+            <label  class="flora-label" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
+            <input required class="flora-form-control" onblur="trimInputValue('AddressLastNameNew')" type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}">
+          </div>
+        </div>
+
+        <div class="">
+          <div class="">
+            <!--
+<label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
+<input type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}">
+-->
+            <label  class="flora-label" for="AddressAddress1New">Address</label>
+            <input required class="flora-form-control" type="text" onblur="trimInputValue('AddressAddress1New')" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}">
+
+            <!-- <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label> -->
+            <input class="flora-form-control" type="text" onblur="trimInputValue('AddressAddress2New')" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}">
+          </div>
+        </div>
+
+        <div class="">         
+
+          <div class="">
+            <label class="flora-label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+            <select required class="flora-form-control select-normal-ctrl" id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+          </div>
+          
+          <div class="">
+            <label class="flora-label" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+            <input required class="flora-form-control" onblur="trimInputValue('AddressCityNew')" type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}">
+          </div>
+        </div>
+
+        <div id="AddressProvinceContainerNew" style="display:none">
+          <label  class="flora-label" for="AddressProvinceNew">State <!--{{ 'customer.addresses.province' | t }} --></label>
+          <select required class="flora-form-control select-normal-ctrl" onblur="trimInputValue('AddressProvinceNew')" id="AddressProvinceNew" name="address[province]" data-default="{{ form.province }}"></select>
+        </div>
+
+        <label class="flora-label" for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
+        <input required class="flora-form-control" type="text" onblur="trimInputValue('AddressZipNew')" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+		<!--
+        <label class="flora-label"  for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+        <input class="flora-form-control" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}">
+		
+        
+        <div class="address_check_box">
+          
+          <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
+        </div>
+        -->
+        
+        <div class="rem_me text-left">
+          <label class="flora-remeber-label">
+            {{ form.set_as_default_checkbox }}
+            <span class="checkmark"></span> <span class="rem_txt">{{ 'customer.addresses.set_default' | t }}</span>
+          </label>
+        </div>
+        
+
+        <div><input type="submit" class="btn flora-primary-btn" value="{{ 'customer.addresses.add' | t }}"></div>
+        <div><button type="button" class="text-link address-new-toggle flora-cancel-btn cancelChangesBtnNew">{{ 'customer.addresses.cancel' | t }}</button></div>
+
+        {% endform %}
+
+      </div>
+		
+      {% comment %}
+      List all customer addresses with a unique edit form.
+      Also add pagination in case they have a large number of addresses
+      {% endcomment %}
+      
+       {% for address in customer.addresses %}
+      <div id="EditAddress_{{ address.id }}" class="form-vertical hide">
+        {% form 'customer_address', address %}
+
+<!--         <h4 class="h2">{{ 'customer.addresses.edit_address' | t }}</h4> -->
+
+        <div class="">
+          <div class="">
+            <label class="flora-label" for="AddressCompany_{{ form.id }}">Address Type</label>
+            <!--               <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}"> -->
+            <select required class="flora-form-control select-fixed-width" id="AddressCompany_{{ form.id }}" name="address[company]" data-default="{{ form.company }}">
+              <option value="Home" {% if form.company == 'Home' %} selected {% endif %}>Home</option>
+              <option value="Work" {% if form.company == 'Work' %} selected {% endif %}>Work</option>
+              <option value="Other" {% if form.company == 'Other' %} selected {% endif %}>Other</option>
+            </select>
+          </div>
+
+          <div class="">
+            <label class="flora-label" for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
+            <input required class="flora-form-control"  type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}">
+          </div>
+
+          <div class="">
+            <label class="flora-label" for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+            <input required class="flora-form-control" type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}">
+          </div>
+        </div>              
+
+        <label class="flora-label" for="AddressAddress1_{{ form.id }}">Address <!-- {{ 'customer.addresses.address1' | t }}--></label>
+        <input required class="flora-form-control" type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}">
+
+        <!-- <label for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label> -->
+        <input class="flora-form-control" type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}">
+
+        <div class="">          
+          <div class="">
+            <label class="flora-label" for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
+            <select required id="AddressCountry_{{ form.id }}" class="address-country-option flora-form-control select-normal-ctrl" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+          </div>
+          
+          <div class="">
+            <label class="flora-label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+            <input required class="flora-form-control" type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}">
+          </div>
+        </div>
+
+        <div id="AddressProvinceContainer_{{ form.id }}" style="display:none">
+          <label class="flora-label" for="AddressProvince_{{ form.id }}">State <!--{{ 'customer.addresses.province' | t }}--></label>
+          <select required class="flora-form-control select-normal-ctrl" id="AddressProvince_{{ form.id }}" name="address[province]" data-default="{{ form.province }}"></select>
+        </div>
+
+        <div class="">
+          <div class="">
+            <label class="flora-label" for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
+            <input required class="flora-form-control" type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+          </div>
+
+	<!--           
+	<div class="">
+      <label class="flora-label" for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
+      <input class="flora-form-control" type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}">
+    </div> 
+	-->
+        </div>
+
+        <div class="text-center">
+<!--           
+	<div class="address_check_box">
+            {{ form.set_as_default_checkbox }}
+            <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+          </div>  
+-->
+          <div class="rem_me text-left">
+          <label class="flora-remeber-label">
+            {{ form.set_as_default_checkbox }}
+            <span class="checkmark"></span> <span class="rem_txt" for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</span>
+          </label>
+        </div>
+          
+
+          <div><input type="submit" class="btn flora-primary-btn" value="{{ 'customer.addresses.update' | t }}"></div>
+          <div><button type="button" class="text-link address-edit-toggle flora-cancel-btn cancelChangesBtn" data-form-id="{{ form.id }}"><span> CANCEL CHANGES TO ADDRESSES<!-- {{ 'customer.addresses.cancel' | t }}--></span></button></div>
+        </div>
+        {% endform %}              
+      </div>
+      {% endfor %}
+      
+      <p>
+        <button type="button" class="btn address-new-toggle flora-primary-btn"> Add new address</button>
+      </p>
+      
+      {% for address in customer.addresses %}
+
+      <div class="address text-left"> 
+        <div class="add_left">
+          {% assign icon_url = '' %}
+          {% if address.company == 'Home' %}
+          {% assign icon_url = 'https://cdn.shopify.com/s/files/1/0011/5104/1588/files/home--7.png?5917302406920932266' %}
+          {% else %}
+          {% assign icon_url = 'https://cdn.shopify.com/s/files/1/0011/5104/1588/files/briefcase--1.png?5917302406920932266' %}
+          {% endif %}
+
+
+          <div class="address_type_icon"><img src="{{ icon_url }}"> </div>
+          <div class="address_description">
+            <p><strong>{{ address.company }}</strong></p>
+            <p class="add_fn">{{ address.first_name }} {{ address.last_name }}</p>
+            <p class="add_add">{{ address.address1 }} {{ address.address2 }}</p>
+            <p class="add_prov">{{ address.province }} {{ address.zip }}</p>
+            {% if address == customer.default_address %}
+            <p class="add_default">This is your default shipping address</p>
+            {% endif %}
+          </div>
+        </div>
+
+        {% comment %}
+        {% if address == customer.default_address %}
+        <p><strong>{{ 'customer.addresses.default' | t }}</strong></p>              
+        {% endif %}
+        {{ address | format_address }}
+        {% endcomment %}
+
+        <div class="add_rgt">
+          <p>
+            <button type="button" class="btn btn--small address-edit-toggle" data-form-id="{{ address.id }}">{{ 'customer.addresses.edit' | t }}</button>
+            <button type="button" class="btn btn--secondary btn--small address-delete" data-form-id="{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">{{ 'customer.addresses.delete' | t }}</button>
+          </p>
+        </div>
+      </div>
+
+      
+      {% endfor %}
+
+     
+
+      {% if paginate.pages > 1 %}
+      {% include 'pagination' %}
+      {% endif %}
+    </div>    
+    {% endpaginate %}      
+
+   {% comment %}
+    <div class="change_password_section">
+      <h2 class="text-left flora-page-title" id="social-account-title">Social Accounts</h2>
+      <div class="social_front">    
+        <link rel="stylesheet" type="text/css" href="https://wdsapp.com/APPS/shopify/loginwithsocialmedia/assets/css/social_media.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        <div class="social">              
+          <ul>
+            <li style="width: 100%;">   <a class="facebook" href="javascript: void(0);">
+              <span class="fa fa-facebook">  <span class="social_media_name"> FACEBOOK</span></span>
+              <span class="connect_tag">Connect</span></a></li> 
+            
+            <li style="width: 100%;">   <a class="google-plus" href="javascript: void(0);">
+              <span class="fa fa-google-plus"> <span class="social_media_name"> GMAIL</span></span>
+              <span class="connect_tag">Connect</span></a></li> 
+            
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+
+
+  </div>
+</div>
+<script>
+  $('.cancelChangesBtn').on('click', function() {
+    var formId = $(this).data('form-id');    
+    $('#address_form_' + formId).trigger("reset");
+  });
+  
+  $('.cancelChangesBtnNew').on('click', function() {
+    var formId = $(this).data('form-id');
+    $('#address_form_new').trigger("reset");
+    $('.address-new-toggle').removeClass('hide');
+  });
+  
+  $('.address-new-toggle').click(function(){
+    
+    $(this).addClass('hide');
+    $('.address-new-toggle.cancelChangesBtnNew ').removeClass('hide');
+  });
+  
+</script>

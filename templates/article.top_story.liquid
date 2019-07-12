@@ -1,0 +1,352 @@
+{% comment %}
+  Comments will not appear right after they are submitted, either to be checked for spam
+  or to await moderation. When a comment is submitted, the browser is redirected to a page
+  that includes the new comment id in its URL.
+    Example: http://shopname.myshopify.com/blogs/news/2022072-my-post?comment=3721372
+{% endcomment %}
+ 
+
+{% section 'custom-blog-template' %}
+
+{%- assign new_comment = false -%}
+{% if comment and comment.created_at %}
+  {%- assign new_comment = true -%}
+  {%- assign new_comment_id = comment.id -%}
+{% endif %}
+
+{% if new_comment %}
+  {%- assign duplicate_comment = false %}
+  {% for comment in article.comments %}
+    {% if comment.id == new_comment_id %}
+      {%- assign duplicate_comment = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if duplicate_comment %}
+    {%- assign number_of_comments = article.comments_count -%}
+  {% else %}
+    {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+  {% endif %}
+{% else %}
+  {%- assign number_of_comments = article.comments_count -%}
+{% endif %}
+
+<div class="blogpostgal-container">
+<article class="blogpostsingle-display">
+      {% section 'article-template' %}
+</article>
+</div>
+
+{% if blog.comments_enabled? %}
+<div class="page-width">
+  {% if number_of_comments > 0 %}
+    
+      <div class="blogpost-comment-block">
+        <div class="comment-counts-heading">
+          <h1>{{ 'blogs.comments.comments_with_count' | t: count: number_of_comments }}</h1>
+        </div>
+          {% paginate article.comments by 5 %}
+
+            {% comment %}
+              #comments is required, it is used as an anchor link by Shopify.
+            {% endcomment %}
+            <div id="comments">
+
+              {% if new_comment %}
+                <p class="note form-success">
+                  {% if blog.moderated? %}
+                    {{ 'blogs.comments.success_moderated' | t }}
+                  {% else %}
+                    {{ 'blogs.comments.success' | t }}
+                  {% endif %}
+                </p>
+              {% endif %}
+		
+              
+              
+              
+                {% comment %}
+                  If a comment was just submitted with no blank field, show it.
+                {% endcomment %}
+                {% if new_comment %}
+              
+              		
+                    {% include 'comment' %}
+              
+                {% endif %}
+				
+
+                
+                
+                      {% include 'comment' %}
+              
+
+              {% if paginate.pages > 1 %}
+                {% include 'pagination' %}
+              {% endif %}
+
+            </div>
+          {% endpaginate %}
+        
+      </div>
+  {% endif %}
+
+  	<div class="comment-entry-block">
+                    <div class="comment-entry-block-inner">
+                      {% form 'new_comment', article %}
+                        <h3 class="">Leave a comment</h3>
+                        <textarea name="comment[body]" id="CommentBody" class="{% if form.errors contains 'body' %} input--error{% endif %}" placeholder='Enter your message'Enter your message >{{ form.body }}</textarea>
+                        <div class="col-md-12 col-sm-12 col-xs-12 no-padding" style="margin-top:30px;">
+                            <div class="comment-inputs">
+                              <label>First Name</label>
+                              <input type="text" name="comment[author]" id="CommentAuthor" class="{% if form.errors contains 'author' %} input--error{% endif %}" value="{{ form.author }}"autocorrect="off" autocapitalize="off">
+                            </div>
+                            <div class="comment-inputs right-side" style="">
+                                <label>Last Name <span class="optional_tag">Optional</span></label>
+                                <input type="text" name="comment[authorsecond]" id="CommentAuthorsecond" class="{% if form.errors contains 'authorsecond' %} input--error{% endif %}" value="{{ form.authorsecond }}"autocorrect="off" autocapitalize="off">
+                            </div>
+                          
+                         
+                              <div class="comment-inputs">
+                                <label>Email</label>
+                                <input type="email" name="comment[email]" id="CommentEmail" class="{% if form.errors contains 'email' %} input--error{% endif %}" value="{{ form.email }}" autocorrect="off" autocapitalize="off" placeholder="youremail@domain.com">
+                              </div>
+                              <div class="comment-inputs right-side" style="">
+                                  <div class="comment-block-login">Already have an account?<a href="/account">Login</a></div>
+                              </div>
+                            </div>
+                            <div class="comment-inputs">
+                              <div class="rem_me checkbox-with-text">
+                                <label class="flora-remeber-label">
+                                  <input type="checkbox" id="" name="" value="">
+                                  <span class="checkmark small-check"></span>
+                                  <span class="rem_txt label-text ">Save info and create an account (don’t worry you will stay on this page so you wont
+                                    lose your comment)</span>
+                                </label>
+                              </div>
+                              <div class="rem_me checkbox-with-text">
+                                  <label class="flora-remeber-label">
+                                    <input type="checkbox" id="" name="" value="">
+                                    <span class="checkmark small-check"></span>
+                                    <span class="rem_txt label-text ">Notify me by email when someone replies</span>
+                                  </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <div id="" class="post-comment-btn" style="">
+                                  <a href="#">Post Comment</a>
+                              </div>
+                            </div>
+						{% endform %}
+                            
+                    </div>                
+
+                  </div>
+    
+    {% comment %}
+    <div class="grid">
+      <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+        <div class="comment-form form-vertical">
+          {% form 'new_comment', article %}
+
+            <h2 class="h3">{{ 'blogs.comments.title' | t }}</h2>
+
+            {{ form.errors | default_errors }}
+
+            <div class="grid">
+
+              <div class="grid__item medium-up--one-half">
+                <label for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+                <input type="text" name="comment[author]" id="CommentAuthor" class="input-full{% if form.errors contains 'author' %} input--error{% endif %}" value="{{ form.author }}">
+              </div>
+
+              <div class="grid__item medium-up--one-half">
+                <label for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+                <input type="email" name="comment[email]" id="CommentEmail" class="input-full{% if form.errors contains 'email' %} input--error{% endif %}" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+              </div>
+
+              <div class="grid__item">
+                <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+                <textarea name="comment[body]" id="CommentBody" class="input-full{% if form.errors contains 'body' %} input--error{% endif %}">{{ form.body }}</textarea>
+              </div>
+
+            </div>
+
+            {% if blog.moderated? %}
+              <p class="fine-print">{{ 'blogs.comments.moderated' | t }}</p>
+            {% endif %}
+
+            <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+          {% endform %}
+        </div>
+      </div>
+       </div>
+    {% endcomment %}
+ 
+    </div>
+{% endif %}
+<div class="page-width">
+  <div class=" tags-block col-md-12 col-sm-12 col-xs-12">
+    {% if article.tags.size > 0 %}
+      <label class="tags-label">Tags:</label> 
+        <div class="tags-container">
+          {% for tag in article.tags %}
+            {% if tag == 'Top Stories' %}       
+          		<a href=" {{ shop.url }}/pages/top-stories" class="tag-item">{{ tag }}</a>
+            {% else %}
+            	<a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="tag-item">{{ tag }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+    {% endif %}
+    
+    {% if blog.next_article.size > 0 %} 
+    	<a href="{{blog.next_article}}" class="next-article-btn">Next Article</a>
+    {% elsif blog.previous_article.size > 0 %}
+    	<a href="{{blog.previous_article}}" class="previous-article-btn">Prevoius Article</a>
+    {% else %}
+    <span class="not_found">No Article Related</span>
+    {% endif %}
+  </div>
+</div>
+
+
+<!-- Blog lists bottom -->
+
+  <div class="blog-display">
+    <div class="container blog-display-wrap">
+      <div class="comment-counts-heading">
+        <h1>{{ blog.title }}</h1>       
+        <span class="sub-heading-top">More from</span>               
+      </div>
+      <div class="blog-display-element-wrap">
+        {% assign top_stories_count_date = 1 %}
+        {% for article in blog.articles %}
+          <div class="blog-elements col-md-4 col-sm-4 col-xs-4">
+              <div class="blog-element-img">
+                  {% if article.image %}
+                {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+                <div class="blog-element-img" id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+                  <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" class="article__grid-image-container">
+                    <img id="{{ img_id }}"
+                         class="article__grid-image lazyload"
+                         src="{{ article.image | img_url: '300x300' }}"
+                         data-src="{{ img_url }}"
+                         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                         data-aspectratio="{{ article.image.aspect_ratio }}"
+                         data-sizes="auto"
+                         alt="{{ article.image.alt | escape }}">
+                  </a>
+                </div>
+
+                <noscript>
+                  <a href="{{ article.url }}" class="article__grid-image-wrapper">
+                    {{ article | img_url: '345x', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                  </a>
+                </noscript>
+              {% else %}
+              	<div class="article__grid-image-wrapper js blog-element-img collection-grid-item__overlay" style="background-image: url('//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x1024.gif')">
+                  <a href="{{ article.url }}" class="article__grid-image-container">
+                   
+                  </a>
+                </div>
+              {% endif %}
+              </div>
+              <div class="blog-short-desc">
+                 <p class="top_stories_article_custom_time {{top_stories_count_date}}">{{ article.published_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+                <h3>{{ blog.title }}  <span class="blog-time-stamp {{top_stories_count_date}}">9 hours ago</span></h3>
+                <p><a class="extra-char_removal" href="{{ article.url }}">{{ article.title | strip_html 	}}</a></p>
+                 	  <script type="text/javascript">
+  						document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+					  </script>
+                      <script> 
+                         $(document).ready(function() {
+         				var date1, date2; 
+                        var count= {{top_stories_count_date}}
+                        var custom_class =$('.blog-time-stamp.'+count); 
+						var custom_get_value = $('.top_stories_article_custom_time.'+count+' time')
+                        var publish_unprocessed = custom_get_value.html();
+                        
+         				publish = new Date(publish_unprocessed );
+                        current_full = new Date();
+                        $.format = DateFormat.format;
+                        var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+                         current = new Date(current_unprocessed);
+                        
+                         var res = Math.abs(current - publish) / 1000;
+                         var days = Math.floor(res / 86400);                         
+                         var hours = Math.floor(res / 3600) % 24;
+                       
+                        
+                        if(days > 1){
+                          custom_class.html(days+' days ago.');
+                        } else {
+                          custom_class.html(hours+' hours ago.');
+                        }
+                       
+                         });
+                      </script>
+              </div>
+          </div>
+        {% assign top_stories_count_date = top_stories_count_date | plus: 1 %}
+        {% endfor %}
+     </div>
+    </div>
+  </div>
+
+<!-- Blog lists bottom -->
+
+<div class="text-center return-link-wrapper">
+  <a href="{{ blog.url }}" class="btn btn--secondary btn--has-icon-before return-link">
+    {% include 'icon-arrow-left' %}
+    {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+  </a>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "articleBody": "{{ article.content | strip_html }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ shop.url }}{{ page.url }}"
+  },
+  "headline": "{{ article.title }}",
+  {% if article.excerpt != blank %}
+    "description": "{{ article.excerpt | strip_html }}",
+  {% endif %}
+  {% if article.image %}
+    {% assign image_size = article.image.width | append: 'x' %}
+    "image": [
+      "https:{{ article | img_url: image_size }}"
+    ],
+  {% endif %}
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+  "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    {% if settings.share_image %}
+      {% assign image_size = settings.share_image.width | append: 'x' %}
+      "logo": {
+        "@type": "ImageObject",
+        "height": "{{ settings.share_image.height }}",
+        "url": "https:{{ settings.share_image | img_url: image_size }}",
+        "width": "{{ settings.share_image.width }}"
+      },
+    {% endif %}
+    "name": "{{ shop.name }}"
+  }
+}
+</script>
+ <div class="powr-comments" id="49e2ccb7_1535535512"></div> 

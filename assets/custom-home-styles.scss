@@ -1,0 +1,557 @@
+/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: arial,helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}	
+
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+	/* Fixed header and footer.
+	* --------------------------------------- */
+	#header{
+		position:fixed;
+		height: 80px;
+		display:block;
+		width: 100%;		
+		z-index:9;
+		text-align:center;				
+	}
+
+	#header{
+		top:0px;
+	}
+  #fullpage{
+  	margin-top: 77px;
+  }
+  
+  .banner_content p {
+    color: #fff;
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+  .sub_gallery_img h1 {
+    font-size: 73px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    color: #9c7b49;
+    font-family: "PlayfairDisplay-Regular";
+    font-size: 54px;
+    font-weight: 400;
+}
+.product-pages.rose-page .sub_gallery_img h1 {
+  	text-transform: capitalize;
+}
+.product-pages .gallery_sub_content p{
+  	color: #fff;
+    font-family: "Montserrat-Medium";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+  	text-align:center;
+}	
+.product-pages.rose-page .gallery_sub_content p{
+  color: #9c7b49;
+}
+.sub_gallery_img h4 {
+    color: #fff;
+    font-size: 24px;
+    padding-bottom: 20px;    
+    width: 100%;
+    float: none;
+    display: inline-block;
+}
+.collection_style_line{
+  	padding-top: 20px;
+}
+.old_world{width:100%; float:left;text-align:center; position:relative;}
+.sub_gallery_img {
+    padding: 5% 0px 0% 0px;
+    color: #fff;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+.traditional_style{
+    max-width: 454px;
+    display: inline-block;
+    float: none;
+}
+.gallery_sub_content {
+    color: #4a4a4a;
+    max-width: 570px;
+    display: inline-block;
+    float: none;
+    background: #fff;
+/*     padding: 40px; */
+    opacity: 0.7;
+	margin-bottom:5%;
+}
+.gallery_image_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bloom-blossom-banner.png?3280802394708994326) no-repeat;width:100%;background-size:cover;}
+.Whimsical_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Whimsical_banner.png?10409602261729633214) no-repeat;width:100%;background-size:cover;}
+.rustic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/rustic.png?10265087302121557893) no-repeat;width:100%;background-size:cover;}
+.Bohemian_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bohemian_BG.jpg?2903199273541728910) no-repeat;width:100%;background-size:cover;}
+.exotic_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_BG.jpg?1196191872253849755) no-repeat;width:100%;background-size:cover;}
+.garden_banner_section{background:url(https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Garden_BG.jpg?1119999389374086260) no-repeat;width:100%;background-size:cover;}
+  
+.side_cnt h1 {
+    /* -webkit-transform: rotate(-90deg);	 */
+	/* -moz-transform: rotate(-90deg); */
+	/* -ms-transform: rotate(-90deg); */
+	/* -o-transform: rotate(-90deg); */
+	/* filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); */
+	/* font-size:73px; */
+	/* white-space: nowrap; */
+	/* Style for "OLD WORLD" */
+
+
+transform: rotate(-90deg);
+color: #000000;
+font-size: 73px;
+font-weight: 700;
+text-transform: uppercase;
+/* Text style for "OLD WORLD" */
+letter-spacing: 0.56px;
+ white-space: nowrap; 
+}
+.img_position{position:relative;}
+.beta_content a {
+    max-width: 433px;
+    height: 43px;
+    background-color: #000000;
+    color: #fff;
+    float: none;
+    line-height: 43px;
+    width: 100%;
+    display: inline-block;
+    margin:40px 0px !important;
+}
+.link_top_scroll p{
+color: #ffffff;
+font-family: Helvetica;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 0.14px;
+}
+.link_top_scroll {
+    padding-bottom: 10%;
+}
+.side_cnt {
+    width: 100%;
+    float: left;
+}
+.old_world > img {
+    position: absolute;
+    left: 0px;
+    bottom: 20px;
+    z-index: 999999;
+}
+.link_made a{width: 216px;
+height: 16px;
+color: #4a4a4a;
+font-family: Helvetica;
+font-size: 14px;
+font-weight: 300;
+text-decoration: underline;
+/* Text style for "shop alrea" */
+letter-spacing: 0.11px
+  
+}
+  
+  
+  #section4 .link_made {
+    position: relative;
+    top: -20px;
+}
+  
+.gallery_sub_content p{margin:0px; text-align: left;}
+.gallery_image_section img{display:inline-block;float:none;}
+
+  .world_arrange {
+    width: 100%;
+    float: left;
+    text-align: left;
+    padding: 15% 20px 0% 0px;
+    margin-right: 20px;
+}
+  .popular_flowers h4 {
+    text-align: left;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+  .popular_flowers ul li {
+    float: left;
+    padding-right: 20px;
+    max-width: 143px;
+}
+.visualizer_sec {    
+    float: left;
+    width: 85%;
+    padding: 0px;
+}  
+  
+  .no-padding {
+    padding: 0px;
+}
+  .visualizer_sec img {
+    position: relative;
+    top: 20px;
+    width:100%;
+}
+  .small_image {
+    z-index: 9999999999;
+    position: relative;
+	left: 17px;
+    top: -10px;
+    width: auto;
+    float: left;
+    clear:both;
+}
+  .Color_palettes {
+    width: 100%;
+    float: left;
+}
+  .Color_palettes > ul > li > ul > li {
+    float: left;
+    margin-right: 10px;
+	margin-top: 10px;
+	width:25px;
+}
+.Color_palettes ul{width:100%; float:left;max-width: 355px;}
+.Color_palettes > ul > li > ul > li .white-clr{
+background-image: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%); width: 26px;
+height: 25px;
+border-radius: 13px;
+ border: 1px solid #979797;
+ float:left;
+}
+  
+.Color_palettes .circleClr{ 
+  width: 26px;
+  height: 25px;
+  border-radius: 13px;
+  border: none;
+  float:left;
+}
+  
+.Color_palettes > ul > li > ul > li .drk_pink-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f4b0db 0%, #e578b5 100%);
+ float:left;
+}
+.Color_palettes > ul > li > ul > li .red-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f77e53 0%, #ec4829 100%);
+ float:left;
+}
+.Color_palettes > ul > li > ul > li .drak-red-clr{
+
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #d83e3e 0%, #af1d1d 100%);
+ float:left;
+}
+.Color_palettes > ul > li{
+width:100%;
+float:left;
+border-bottom: 1px solid #979797;
+padding-bottom:10px;
+}
+.Color_palettes > ul > li > ul > li .green-clr{
+float:left;
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #53b619 0%, #297f0b 100%);
+
+}
+.Color_palettes > ul > li > ul > li .yellow-clr{
+float:left;
+
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #a5bee5 0%, #6c8ac7 100%);
+}
+.Color_palettes > ul > li > ul > li .lit_blue{
+float:left;
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #f6df36 0%, #eabc19 100%);
+}
+.Color_palettes > ul > li > ul > li .drak-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #8a2d35 0%, #521418 100%);
+float:left;
+}
+
+.Color_palettes > ul > li > ul > li .pink-clr{
+float:left;	
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #efd5e2 0%, #dbabc1 100%);
+}
+.Color_palettes > ul > li > ul > li .brown-clr{
+width: 26px;
+height: 25px;
+border-radius: 13px;
+background-image: linear-gradient(180deg, #d59b94 0%, #ab625b 100%);
+float:left;
+}
+  .Color_palettes > ul > li > ul > li:last-child {
+    border: 0px;
+    width: auto;
+}
+.Color_palettes h6 {
+    text-align: left;
+    font-size: 16px;
+}  
+  .side_cnt img {
+/*     width: 56px; */
+    max-width: 65%;
+    float: right;
+    margin-top: 45%;
+}
+  .link_made a {
+     width: 216px;
+    height: 16px;
+    color: #3d3d3d;
+    font-family: Montserrat-Light;
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: underline;
+    letter-spacing: 0.11px;
+}
+  .beta_btns {
+    width: 100%;
+    float: left;
+}
+  .old_world_intro{
+  	background: url();
+  }
+  .site-header__icons-wrapper svg path{ fill: #3d3d3d !important; }
+  .bottom_logo_banner img {
+    margin-bottom: 40px;
+    max-width: 272px;
+}
+ .bottom_logo_banner {
+    position: static;
+    margin-left: 4.4%;
+    text-align: left;
+    left: 0px;
+    bottom: 10px;
+    margin-top: 0;
+    z-index: 999;
+}
+  /*
+  .bottom_logo_banner img {    
+    position: absolute;
+    top: 7.5%;
+    left: 4.4%;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+  */
+  .numberlistBg_section{position: relative;}
+ .browse_sec::before {    
+    position: absolute;
+    left: -36px;
+    width: 206px;
+    height: 159px;
+    opacity: 0.05;
+    color: #3d3d3d;
+    font-family: "PlayfairDisplay-Regular";
+    font-size: 165px;
+    font-weight: 700;
+    top: -38%;
+}
+  .brosecsec_one::before{
+  content: "1";
+  }
+  .browesec_two::before{
+  content: "2";
+  }
+  .browsesec_three::before{
+  content: "3";
+  }
+  .sec2_bottom_logo_banner {
+    position: absolute;
+    bottom: 70px;
+    left: 4%;
+    z-index: 9999;
+}
+  .container-fluid.browse_section {
+    position: relative;
+}
+  .brosecsec_one p, .browesec_two p, .browsesec_three p{
+  	font-size: 14px !important;
+  }
+  .Color_palettes > ul > li > ul > li{text-align:left;}
+ 
+  .fixed_title_section{
+    position: fixed;
+    bottom: 325px;
+    left: 4.5%;
+    width: 6%;
+  }
+  .fixed_title_section img{ 
+    max-width: 65%;
+  }
+  .side_cnt img{
+    display: none;
+  }
+
+.flower-type-cont{
+ 	margin-top:60px; 
+  	box-shadow: 0 2px 4px rgba(192, 192, 192, 0.5);
+  	padding:30px 30px 10px 30px;
+  	background-color:#fff;
+  	max-width:460px;
+ }
+
+/* Category Rose Page  */
+  .gallery_image_section.rose-page{
+    background:url(rose-banner-bg.png) no-repeat; 
+   
+  }
+  .product-pages.rose-page .sub_gallery_img {
+    margin-top: 50px;
+}
+.product-pages.rose-page #shopify-section-compass_fixed_svg{
+    display:none;
+}
+.product-pages.occasion-page .traditional_style p{
+  color: #ffffff;
+  font-family: "Montserrat-Medium";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 26px;
+  text-align: justify;
+}
+
+.flower-type-detail label{
+    color: #3d3d3d;
+    font-family: "Montserrat-SemiBold";
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.flower-type-detail p{
+    color: #3d3d3d;
+    font-family: "Montserrat-Light";
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+}
+.flower-type-detail{
+  	padding-bottom:20px;
+  	padding-left:0px;
+}
+.flower-type-detail #flower-type-expand {
+  color: #9c7b49;
+  font-family: "Montserrat-SemiBold";
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.flower-type-cont-expanded {
+  padding: 30px 30px 10px 30px;
+  background-color: #fff;
+  max-width: 460px; 
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.flower-type-detail .flower-color-block{
+  padding:5px 8px;
+  color: #ffffff;
+  font-family: "Montserrat-Medium";
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+.flower-type-cont-expanded .flower-type-detail p{
+  color: #3d3d3d;
+  font-family: "Montserrat-Light";
+  font-size: 10px;
+  font-weight: 300;
+  text-align: center;
+}
+.flower-type-cont-expanded .flower-type-detail{
+
+}
+.flower-type-cont-expanded{
+  display:block;
+  box-shadow: 0 2px 4px rgba(192, 192, 192, 0.5);
+}
+.product-pages.rose-page .gallery_sub_content{
+  margin-bottom: 80px; 
+}
+
+.product-pages.rose-page .side_cnt img {
+  margin-top: 90%;
+}
+
+.clr-dark-red{
+  background-color:#b80216;
+  color: #ffffff !important;
+}
+.clr-red{
+  background-color:#d0031b;
+  color: #ffffff !important;
+}
+.clr-antique-pink{
+  background-color:#e1676d;
+  color: #ffffff !important;
+}
+.clr-yellow{
+  background-color:#efba1e;
+  color: #ffffff !important;
+}
+.clr-pale-peach-love{
+  background-color:#ffdad9;
+  color: #373737 !important;
+}
+.clr-pale-peach-frdship{
+  background-color:#ffdbbd;
+  color: #373737 !important;
+}
+.clr-cream{
+  background-color:#fff1db;
+  color: #373737 !important;
+}
+.clr-white{
+  background-color:#ffffff;
+  border: 1px solid #f1f1f1;
+  color: #373737 !important;
+}
+.flower-type-expand{
+  cursor:pointer;
+}
+  
+/* Category Rose Page  */
+
+

@@ -1,0 +1,451 @@
+{% include 'product-category-popup-main' %}
+
+<div class="page-width" data-section-id="{{ section.id }}" data-section-type="cart-template">
+  <div class="loader"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/loader.gif" alt="loader"/> 
+    <p> Please wait for a moment, we are dispalying product based on avaibility. </p></div>
+
+  {% if cart.item_count > 0 %}
+  <div class="section-header text-center">
+    <h1>{{ 'cart.general.title' | t }}</h1>
+  </div>
+  <div class="filters-toolbar__item  text-right  deliveron-text">
+    <label class="flora-label" for="">Deliver on:<span id="deliver_on_info">No date or location selected</span></label>
+    <a href="#" class="add-date-location-link"  id="add_change_deliver_info">CHANGE DATE & OCCASION</a>
+  </div>
+
+
+  <form action="/cart" method="post" novalidate class="cart">
+    <table>
+      <thead class="cart__row cart__header">
+        <th colspan="2">{{ 'cart.label.product' | t }}</th>
+        <!--         <th>ocassion</th> -->
+        <th>{{ 'cart.label.price' | t }}</th>
+        <th class="text-center">{{ 'cart.label.quantity' | t }}</th>
+        <th class="text-right">{{ 'cart.label.total' | t }}</th>
+      </thead>
+      <tbody>
+        {% for item in cart.items %}
+        {%- include 'bold-options-hybrid-cart-item' with item -%}
+        <tr class="cart__row border-bottom line{{ forloop.index }} cart-flex{% if forloop.first %} border-top{% endif %}">
+          <td class="cart__image-wrapper cart-flex-item">
+            <a href="{{ item.url | within: collections.all }}">
+
+              {% if item.properties['Flower Selections'] %}
+              <img class="cart__image item_pro_img" src="{{ item.properties['Image'] }}" alt="{{ item.title | escape }}">
+              {% else %}
+              <img class="cart__image" src="{{ item | img_url: '95x95', scale: 2 }}" alt="{{ item.title | escape }}">
+
+              {% endif %}
+            </a>
+          </td>
+          <td class="cart__meta small--text-left cart-flex-item">
+            <div class="list-view-item__title">
+              <a href="{{ item.url }}">
+                {{ item.product.title }}
+                {% if item.quantity > 1 %}
+                <span class="medium-up--hide"><span class="visually-hidden">{{ 'cart.label.quantity' | t }}</span>(x{{ item.quantity }})</span>
+                {% endif %}
+              </a>
+            </div>
+            <!--             <input id="order-id" type="text" name="attributes[order id]" value="{{ cart.attributes["order id"] }}"> -->
+
+            {% unless item.variant.title contains 'Default' %}
+            <div class="cart__meta-text">
+              {% for option in item.product.options %}
+              {{ option }}: {{ item.variant.options[forloop.index0] }}<br/>
+              {% endfor %}
+            </div>
+            {% endunless %}
+
+            {% comment %}
+            Optional, loop through custom product line items if available
+
+            Line item properties come in as having two parts. The first part will be passed with the default form,
+            but p.last is the actual custom property and may be blank. If it is, don't show it.
+
+            For more info on line item properties, visit:
+            - http://docs.shopify.com/support/your-store/products/how-do-I-collect-additional-information-on-the-product-page-Like-for-a-monogram-engraving-or-customization
+            {% endcomment %}
+            {%- assign property_size = item.properties | size -%}
+            <span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_properties" style="display:none !important;"></span>{% if property_size > 0 %}
+            <div class="cart__meta-text  {% if item.properties['Flower Selections'] %}flower_selectionn{%endif%}">
+              {% comment %} Flower Selection: {{  item.properties['Flower Selections'] }} {% endcomment %}
+
+              {% for p in item.properties %}
+              {%- if p.first.first == '_' -%}{%- continue -%}{%- endif -%}
+              {% unless p.last == blank %}
+              <span class="{% if  p.first== 'Flower Selections' or p.first== 'Occasion'%}flower_selection_show{%endif%}"> {{ p.first }}:
+
+                {% comment %}
+                Check if there was an uploaded file associated
+                {% endcomment %}
+                {% if p.last contains '/uploads/' %}
+                <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                {% else %}
+                {{ p.last }} </span>
+              {% endif %}
+              {% endunless %}
+              {% endfor %}
+
+
+            </div>
+            {% endif %}
+
+            <p class="small--hide">
+              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--small btn--secondary cart__remove">{{ 'cart.general.remove' | t }}</a>
+            </p>
+            
+            <p class="error"></p>
+          </td>
+          <!--           <td>
+<p class="line-item-property__field">
+<label>occassion</label><br>
+<select id="occassion" name="properties[occassion]">
+<option value="Condolence / Funeral">Condolence / Funeral</option>
+<option value="Congratulation / Birth">Congratulation / Birth</option>
+</select>
+</p>
+</td> -->
+          <td class="cart__price-wrapper cart-flex-item">
+            <span class="bold_cart_item_price-wrapper"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" style="display:none !important;"></span>{{ item.price | money }}</span>
+
+            {% for discount in item.discounts %}
+            <div class="cart-item__discount medium-up--hide">{{ discount.title }}</div>
+            {% endfor %}
+
+            <div class="cart__edit medium-up--hide">
+              <button type="button" class="btn btn--secondary btn--small js-edit-toggle cart__edit--active" data-target="line{{ forloop.index }}">
+                <span class="cart__edit-text--edit">{{ 'cart.general.edit' | t }}</span>
+                <span class="cart__edit-text--cancel">{{ 'cart.general.cancel' | t }}</span>
+              </button>
+            </div>
+          </td>
+          <td class="cart__update-wrapper cart-flex-item text-right">
+            <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--small btn--secondary cart__remove medium-up--hide">{{ 'cart.general.remove' | t }}</a>
+            <div class="cart__qty">
+              <label for="updates_{{ item.key }}" class="cart__qty-label">{{ 'cart.label.quantity' | t }}</label>
+              <input class="cart__qty-input" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" pattern="[0-9]*" data-id="{{ item.key }}">
+            </div>
+            <input type="submit" name="update" class="btn btn--small cart__update medium-up--hide" value="{{ 'cart.general.update' | t }}">
+          </td>
+          <td class="text-right small--hide">
+            {% if item.original_line_price != item.line_price %}
+            <div class="cart-item__original-price"><s>{{ item.original_line_price | money }}</s></div>
+            {% endif %}
+
+            <div>
+              <span class="bold_cart_item_total-wrapper"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" style="display:none !important;"></span>{{ item.line_price | money }}</span>
+            </div>
+
+            {% for discount in item.discounts %}
+            <div class="cart-item__discount">{{ discount.title }}</div>
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <footer class="cart__footer">
+      <div class="grid">
+
+        <p class="cart-attribute__field">
+          <input id="delivery-date" type="hidden" name="attributes[Delivery Date]" value="{{ cart.attributes["Delivery Date"] }}">
+        </p>
+
+        {% if section.settings.cart_notes_enable %}
+        <div class="grid__item medium-up--one-half cart-note">
+          <label for="CartSpecialInstructions" class="cart-note__label small--text-center">Add a handwritten note</label>
+          <textarea name="note" id="CartSpecialInstructions" class="cart-note__input" required>{{ cart.note }}</textarea>
+        </div>
+        {% endif %}
+        <div class="grid__item text-right small--text-center{% if section.settings.cart_notes_enable %} medium-up--one-halff{% endif %}">
+          <div class="delivery_hospital text-left">
+            <p class="cart-attribute__field" id="isAddSelected">
+              <input type="hidden" name="attributes[This address is a hospital]" value="No">
+              <input type="checkbox" id="cart_meta" name="attributes[This address is a hospital]" value="Yes"{% if cart.attributes["This address is a hospital"] == "Yes" %} checked{% endif %}>
+              <label>Is this going to a hospital?</label>
+            </p>
+
+            <div class="" id="txtAge" style="display:none">
+              <div class="grid__item medium-up--nine-twelfths cart-attribute__field">
+                <label for="hospital-name">Hospital Name</label>
+                <input class="required" id="hospital-name" type="text" name="attributes[Hospital Name]" value="{{ cart.attributes["Hospital Name"] }}" required>
+              </div>
+
+              <p class="grid__item medium-up--one-quarter cart-attribute__field">
+                <label for="roomward">Room/Ward</label>
+                <input required class="required" id="roomward" type="text" name="attributes[Room/Ward]" value="{{ cart.attributes["Room/Ward"] }}">
+              </p>
+
+              <p class="grid__item medium-up--one-whole cart-attribute__field">
+                <label for="hospital-phone-number">Hospital phone number</label>
+                <input required class="required" id="hospital-phone-number" type="text" name="attributes[Hospital phone number]" value="{{ cart.attributes["Hospital phone number"] }}">
+              </p>
+
+              <p class="grid__item medium-up--one-whole cart-attribute__field">
+                <label>When do you want the flowers delivered to your recipient?</label><br>
+                <input required class="required" type="checkbox" id="9am-- 12 pm" hidden-data="When-do you want the flowers delivered to your recipient?" onchange="fillHidden('When-do you want the flowers delivered to your recipient?')" value="9am - 12 pm"><label for="9am-- 12 pm">9am - 12 pm</label><br>
+                <input required class="required" type="checkbox" id="12-pm - 3pm" hidden-data="When-do you want the flowers delivered to your recipient?" onchange="fillHidden('When-do you want the flowers delivered to your recipient?')" value="12 pm - 3pm"><label for="12-pm - 3pm">12 pm - 3pm</label><br>
+                <input required class="required" type="checkbox" id="3-pm - 6pm" hidden-data="When-do you want the flowers delivered to your recipient?" onchange="fillHidden('When-do you want the flowers delivered to your recipient?')" value="3 pm - 6pm"><label for="3-pm - 6pm">3 pm - 6pm</label><br>
+                <input type="hidden" id="When-do you want the flowers delivered to your recipient?" name="attributes[When do you want the flowers delivered to your recipient?]">
+                <script>
+                  function fillHidden(hiddenname) {
+                    var checkboxes = document.querySelectorAll('[hidden-data="'+hiddenname+'"]');
+                    var hiddenfield = document.getElementById(hiddenname);
+                    hiddenfield.value = ""
+                    var i;
+                    for (i = 0; i < checkboxes.length; i++) {
+                      var x = checkboxes[i];
+                      if(x.checked){
+                        if(hiddenfield.value==""){
+                          hiddenfield.value = x.value;
+                        }else{
+                          hiddenfield.value = hiddenfield.value + ", " + x.value; 
+                        } 
+                      }
+                    }
+                  }
+                </script>
+              </p>
+
+              <!--               <p class="cart-attribute__field">
+<label for="add-a-handwritten-note">Add a handwritten note</label>
+<textarea id="add-a-handwritten-note" name="attributes[Add a handwritten note]">{{ cart.attributes["Add a handwritten note"] }}</textarea>
+</p> -->
+            </div>
+          </div>
+          <div>
+            <span class="cart__subtotal-title">{{ 'cart.general.subtotal' | t }}</span>
+            <span class="cart__subtotal"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{ cart.total_price | money }}</span>
+          </div>
+          {% if cart.total_discounts > 0 %}
+          <div class="cart__savings">
+            {{ 'cart.general.savings' | t }}
+            <span class="cart__savings-amount">{{ cart.total_discounts | money }}</span>
+          </div>
+          {% endif %}
+          <div class="cart__shipping">{{ 'cart.general.shipping_at_checkout' | t }}</div>
+
+
+
+          <!-- Zapiet | Store Pickup + Delivery -->
+          <!--           <div id="storePickupApp"></div> -->
+          <!-- Zapiet | Store Pickup + Delivery -->
+          <a href="collections/all" class="btn btn--secondary cart__update cart__continue--large small--hide" >{{ 'cart.general.continue_shopping' | t }}</a>
+          <input type="submit" name="update" class="btn btn--secondary cart__update cart__update--large small--hide" value="{{ 'cart.general.update' | t }}">
+          <input type="submit" name="checkout" class="btn btn--small-wide" value="{{ 'cart.general.checkout' | t }}" disabled='disabled'>
+          {% if additional_checkout_buttons %}
+          <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </footer>
+  </form>
+  {% else %}
+  <div class="empty-page-content text-center">
+    <h1>{{ 'cart.general.title' | t }}</h1>
+    <p class="cart--empty-message">{{ 'cart.general.empty' | t }}</p>
+    <div class="cookie-message">
+      <p>{{ 'cart.general.cookies_required' | t }}</p>
+    </div>
+    <a href="/" class="btn btn--has-icon-after cart__continue-btn">{{ 'general.404.link' | t }}{% include 'icon-arrow-right' %}</a>
+  </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+"name": "Cart page",
+"settings": [
+{
+"type": "checkbox",
+"id": "cart_notes_enable",
+"label": "Enable cart notes",
+"default": false
+}
+]
+}
+{% endschema %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('input#cart_meta').click(function(){
+      if($(this).prop("checked") == true){
+        $("#txtAge").css('display','block');
+      }
+      else if($(this).prop("checked") == false){
+        $("#txtAge").css('display','none');
+      }
+    });
+
+
+  });
+
+  $( window ).load(function(e){
+    e.preventDefault();
+    var localdeliveryDate = localStorage.getItem('DeliveryDate');
+    if(localdeliveryDate == null){
+      localdeliveryDate = document.getElementById("available_date").value;
+      localStorage.setItem('DeliveryDate', localdeliveryDate);
+      $('#deliver_on_info').html(localdeliveryDate);
+      $('input#delivery-date').val(localdeliveryDate);
+    }
+    else{
+      $('#deliver_on_info').html(localdeliveryDate);
+      $('input#delivery-date').val(localdeliveryDate);
+    }
+
+    var DjangoOrderId, proData, proImage, proId, proVariantid, identifier, productId, allstatusTrue;
+    allstatusTrue = true;
+
+//     jQuery.getJSON('/cart.js', function(cart) {
+     $.ajax({
+          type: 'GET',
+          "async": false,
+          "crossDomain": true, 
+          "url":  '/cart.js',
+          dataType:   "json", 
+          success:function(data){
+            
+      // now have access to Shopify cart object
+//       console.log({{ cart | json }});
+
+      {% for item in cart.items %}
+      DjangoOrderId = {{item.properties['DjangoOrderId'] | json}};
+      proData = {{item.properties['Flower Selections'] | json}};
+      proImage = {{item.properties['image'] | json}};
+      proId =  {{item.id | json}};
+      productId = {{item.product_id | json}};
+      proVariantid = {{item.variant_id | json}};
+
+      if(proData){
+        var arr =  $.unique(proData.split(','));
+        var arr1 = [];
+        for (i = 0; i < arr.length; i++) {
+          arr1.push(arr[i].trim());
+        }
+        arr1 = $.unique(arr1);
+        arr = arr1.join(",");
+        $('.line{{ forloop.index }} .flower_selectionn').text('Flower selections: '+arr);
+          }
+
+
+          if(DjangoOrderId){
+          $.ajax({ 
+            "crossDomain": true,
+            "url": "https://customize.floracracy.com/api/shopifyorderdata/?order_id="+DjangoOrderId+"",
+            "method": "GET",
+            success: function(data){
+              for(var i =0;i <= data.length-1;i++)
+              {
+                var item = data[i];
+                var handle = item.handle;
+                var itemvariantId = item.variant_id;
+                var productUrl = '/products/'+handle+'?variant='+itemvariantId+'';
+                var variantImage = item.variant_image;
+                var variantDjangoid = item.order_id;
+                var finalproUrl = productUrl+'&order_id='+variantDjangoid
+                $('.line{{ forloop.index }} .list-view-item__title a').attr('href', finalproUrl);
+                  $('.cart__image-wrapper a').attr('href', finalproUrl);
+
+                //   $('.line{{ forloop.index }} .cart__image').attr('src', variantImage);	
+              }
+            }
+          });
+        }
+
+        var metaUrl = 'https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/'+productId+'/metafields.json';
+        console.log('metaUrl',metaUrl);
+
+        $.ajax({
+          type: 'GET',
+          "async": false,
+          "crossDomain": true, 
+          url:  metaUrl,
+          dataType:   "json", 
+          success:function(data){
+            for( var i = 0; i < data['metafields'].length ; i++ ){
+              if(data['metafields'][i]['key'] == 'inventory_json'){
+                identifier = data['metafields'][i]['value'];
+//                 console.log("identifier -" +identifier);
+                if(identifier) {
+                  $.ajax({
+                    "async": false,
+                    "crossDomain": true,        
+                    "url": "https://customize.floracracy.com/api/order/checkFlowerStatus/?delivery_date="+localdeliveryDate+"&flower_identifier="+identifier+"",
+                    "type": "GET",
+                    "dataType": "json",
+
+                    beforeSend: function() {
+                      // setting a timeout
+                      $('.loader').addClass('loading');
+                    },  
+                    success: function(data){
+//                       console.log('cartdata',data);
+                      setTimeout(function(){ $('.loader').removeClass('loading'); }, 9000);
+                      
+
+                      var counter=0;
+                      for( var i = 0; i < data.length ; i++ ){
+                        var status = data[i]['status'];
+
+                        if(status == false){
+                          allstatusTrue = false;
+//                           console.log('cartpro1->',productId);
+                          $('.additional-checkout-buttons').css({'pointer-events':'none','opacity':'0.5','display':'block'});
+                          $.ajax({
+                            "type": 'GET',
+                            "async": false,
+                            "crossDomain": true, 
+                            "url":  "https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/"+productId+".json",
+                            "dataType":   "json", 
+                            success:    function(product){
+//                               console.log('cartpro11->',product);
+                              $('.line{{forloop.index}} .cart__meta').find('p.error').html('Not available, Please choose different delivery date');
+                            }
+                          });
+                          break;
+                          //                        $('input[name=checkout]').css({'pointer-events':'none','opacity':'0.5'});
+                        }
+                        if(status == true){
+                          counter++;
+                        }
+                        
+                        if(counter == data.length){
+//                           console.log('cartpro2->',productId);
+                            if(allstatusTrue){
+                              $('.additional-checkout-buttons').css({'pointer-events':'auto','opacity':'1','display':'block'});
+                              $('.additional-checkout-button--google-pay').css('display','inline-block');
+                              $('input[name=checkout]').removeAttr('disabled');
+                            }
+                            
+                          $.ajax({
+                            "type": 'GET',
+                            "async": false,
+                            "crossDomain": true, 
+                            "url":  "https://5dab3a09770d2fe96a89afd513dd58b7:ffe4be44b8c27e3b184b273e7cb70232@floracracy.myshopify.com/admin/products/"+productId+".json",
+                            "dataType":   "json", 
+                            success:    function(product){
+//                               console.log('cartpro22->',product);
+                          }
+                                 });
+                        }
+                      }
+                    }
+                  });
+                }
+              }
+            }
+          }
+        });
+        {% endfor %}
+                }
+      });
+
+    });
+
+</script>
+

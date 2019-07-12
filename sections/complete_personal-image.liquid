@@ -1,0 +1,27 @@
+{% if section.settings.brand_img != "" %}
+  <div class="col-md-5 pull-right">
+     <img src="{{ section.settings.brand_img | img_url: '457x367'}}" alt="" />
+<!--     <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/autumn-bloom-blossom-226145.png?14084465736887656325"> -->
+  </div> 
+{% endif %}
+{% schema %}
+  {
+    "name": "Complete Personal Image'",
+    "settings": [
+     
+       {
+       "type": "image_picker",
+       "id": "brand_img",
+       "label": "Personal Image"
+       }
+   	   
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

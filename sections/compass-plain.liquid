@@ -1,0 +1,274 @@
+ 
+          <img style="display: none" id="base_image" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-270-plain_5bc0ecc5-48e5-4ce2-beb7-57f9986e0d4c.png?4236402106574276914">
+          <img style="display: none" id="arrow_image" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/small-needle.svg?17757579347767366544">
+          <img style="display: none" id="old_world_image" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world.png?16296780029905975763">
+
+         
+        <div>
+          <canvas id="compass" width="272" height="272" style="cursor:pointer;display:none;"></canvas>
+        </div>			
+
+
+	<!-- <script src=js/compass.js></script> -->
+	<script type="text/javascript">
+      $('#base_image_static').hover(function(){
+        $('#base_image_static').hide();
+        $('#compass').show();
+    });
+      
+    $("#compass").mouseleave(function(){
+        $('#base_image_static').show();
+        $('#compass').hide();
+    });
+
+      
+    var CANVAS_WIDTH = 272;     // Canvas width
+    var CANVAS_HEIGHT = 272;    // Canvas height
+    var FPS = 30;               // Frames per second
+    // Canvas center points.
+    var canvasCenterX = CANVAS_WIDTH / 2;
+    var canvasCenterY = CANVAS_HEIGHT / 2;
+    // Object to hold mouse information.
+    var mouse = 
+    {
+        x:0,
+        y:0
+    };
+    // State for playing or not playing the animations.
+    var isPlaying = true;
+    // Create html syntax for canvas element.
+    var canvasElement = document.getElementById('compass');
+    var imgElement = document.getElementById("base_image");
+    var arrowImgElement = document.getElementById("arrow_image");
+    var oldworldImgElement = document.getElementById("old_world_image");
+    
+    // Reference to the canvas 2d context.
+    var canvas = canvasElement.getContext("2d");
+    // Dynamically append a canvas element to the body tag.
+
+    // canvasElement.appendTo('body'); 
+
+    // Add the mousemove event listener to the canvas element.
+    canvasElement.addEventListener("mousemove", mouseMove, false);
+    canvasElement.addEventListener('click', function(e) {
+        if (e) {
+          //             console.log(e);
+          //             console.log('Client x: '+e.clientX);
+          //             console.log('Client Y: '+e.clientY);
+          //             console.log('Page x: '+e.pageX);
+          //             console.log('Page Y: '+e.pageY);
+			console.log('offsetX : '+e.offsetX);
+            console.log('offsetY: '+e.offsetY);
+          
+            var clientX = e.clientX;
+            var clientY = e.clientY;
+            var pageX = e.pageX;
+            var pageY = e.pageY;
+          	var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+          
+            /*
+            if( (pageX >= 100 && pageX <= 196 && pageY >=29 && pageY <=75) ){
+                alert('Old world');
+            }
+
+            if( (pageX >= 214 && pageX <= 280 && pageY >=59 && pageY <=133) ){
+                alert('Rustic');
+            }
+
+            if( (pageX >= 214 && pageX <= 280 && pageY >=59 && pageY <=133) ){
+                alert('Whimsieal');
+            }
+            */
+            //function isInside($x1, $y1, $x2, $y2, $x3, $y3, $x, $y)
+
+            //Old world //(isInside(96, 31, 193, 27, 148, 121, pageX, pageY
+            if(isInside(86, 9, 184, 8, 135, 58, offsetX, offsetY)){
+                //echo "Inside"; 
+              console.log('old world');
+              $.fn.fullpage.moveTo(4, 0);
+//               window.location.href = '#oldworld'; 
+//               window.location.reload();
+
+            }else if( isInside(221, 30, 267, 107, 169, 111, offsetX, offsetY) ){
+                console.log('Rustic');
+              	$.fn.fullpage.moveTo(7, 0);
+            }else if( isInside(270, 157, 219, 238, 170, 154, offsetX, offsetY) ){
+                console.log('Whimsieal');
+              	//$.fn.fullpage.moveTo(9, 0);
+              	$.fn.fullpage.moveTo('Whimsical');
+            }else if( isInside(183, 259, 77, 255, 138, 169, offsetX, offsetY) ){
+                console.log('Bohemian');
+              	$.fn.fullpage.moveTo('Bohemian');
+            }else if( isInside(43, 234, 3, 153, 91, 152, offsetX, offsetY) ){
+                console.log('Exotic');
+              	$.fn.fullpage.moveTo('Exotic');
+            }else if( isInside(4, 100, 59, 24, 88, 108, offsetX, offsetY) ){
+                console.log('Garden');
+              	$.fn.fullpage.moveTo('Garden');
+            }else{
+            	console.log('no');              
+            }
+
+
+
+
+        } else {
+            console.log('no collision');
+        }
+    }, false);
+
+            /* A utility function to calculate
+              area of triangle formed by (x1, y1), 
+              (x2, y2) and (x3, y3) */
+            function area($x1, $y1, $x2, 
+                          $y2, $x3, $y3)
+            {
+                return Math.abs(($x1 * ($y2 - $y3) + 
+                            $x2 * ($y3 - $y1) +  
+                            $x3 * ($y1 - $y2)) / 2.0);
+            }
+             
+            /* A function to check whether 
+               P(x, y) lies inside the 
+               triangle formed by A(x1, y1), 
+               B(x2, y2) and C(x3, y3) */
+            function isInside($x1, $y1, $x2, $y2, 
+                              $x3, $y3, $x, $y)
+            { 
+                 
+                /* Calculate area of triangle ABC */
+                $A = area ($x1, $y1, $x2, $y2, $x3, $y3);
+                 
+                /* Calculate area of triangle PBC */
+                $A1 = area ($x, $y, $x2, $y2, $x3, $y3);
+                 
+                /* Calculate area of triangle PAC */
+                $A2 = area ($x1, $y1, $x, $y, $x3, $y3);
+                 
+                /* Calculate area of triangle PAB */
+                $A3 = area ($x1, $y1, $x2, $y2, $x, $y);
+                 
+                /* Check if sum of A1, A2
+                and A3 is same as A */
+                return ($A == $A1 + $A2 + $A3);
+            }
+
+
+    // Handler for mouseMove events. Computes mouseX and mouseY properties.
+    function mouseMove(e)
+    { //console.log(e);
+
+        if (e.pageX)   
+        {
+            mouse.x = e.pageX;
+        } 
+            else if (e.clientX)   
+        {
+            mouse.x = e.clientX + document.body.scrollLeft
+                + document.documentElement.scrollLeft;
+        }
+        mouse.x = mouse.x - canvasElement.offsetLeft;
+        if (e.pageY)   
+        {
+            mouse.y = e.pageY;
+        } 
+        else if (e.clientY)   
+        {
+            mouse.y = e.clientY + document.body.scrollTop
+                + document.documentElement.scrollTop;
+        }
+        mouse.y = mouse.y - canvasElement.offsetTop;
+    }
+    // The arrow drawing we are rotating.
+    var arrow = 
+    {
+        //strokeColor: "#8ED6FF",
+        //fillColor: "#0000ff",
+
+        x: -50,     // Starting x
+        y: -25,     // Starting y
+        _radians:0, // Rotation value required for the canvas rotate method.
+        centerX: 0, // Center x point on canvas to draw
+        centerY: 0, // Center y point on canvas to draw.
+        mouse: {},  // Mouse object
+        _dx:0,
+        _dy:0,
+        update: function()
+        {
+            // Distance from mouse x and center of canvas.
+            this._dx = mouse.x - this.centerX; 
+            // Distance from mouse y and center of canvas.
+            this._dy = mouse.y - this.centerY; 
+            // Radians for the canvas rotate method.
+            this._radians = Math.atan2(this._dy,this._dx);
+        },
+        draw: function() // Draw.
+        {
+
+            // Draw off canvas
+            canvas.save();
+            //Translate canvas to center
+            canvas.translate(this.centerX, this.centerY);
+            // Rotate
+            canvas.rotate(this._radians);
+            // Create new drawing
+            canvas.beginPath();
+            // Start point top left of arrow shaft.
+            canvas.moveTo(this.x, this.y);  
+            //Top left of arrow shaft plus top left of arrow head.         
+            // canvas.lineTo(this.x + 50 , this.y);        
+            // canvas.lineTo(this.x + 50, this.y - 25);            
+            // // // Arrow point.
+            // canvas.lineTo(this.x + 100, this.y + 25);       
+            // canvas.lineTo(this.x + 50, this.y + 75);    
+            // // // Bottom left of arrow head and bottom left of arrow shaft.
+            // canvas.lineTo(this.x + 50, this.y + 50);    
+            // canvas.lineTo(this.x, this.y + 50);
+            // // // Close the bottom of arrow shaft.         
+            // canvas.lineTo(this.x, this.y);  
+            canvas.fillStyle = this.strokeColor;
+            canvas.fill();
+            canvas.strokeStyle = this.fillColor;        
+            canvas.stroke();
+            // Put it on the canvas
+            canvas.drawImage(arrowImgElement, -10, -10);
+            canvas.restore();
+        }
+    };  
+    // Update the model data.
+    function update() 
+    {
+        if (isPlaying)
+        { 
+            arrow.update();
+        }
+    }
+    // Draw the views
+    function draw() 
+    { 
+        canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.strokeStyle = "transparent";
+        canvas.strokeRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.drawImage(imgElement, 0, 0);
+        //canvas.drawImage(oldworldImgElement, 90, 10);
+
+       // canvas.fillStyle = "#eee";
+       // canvas.fillRect(.5, .5, CANVAS_WIDTH-1, CANVAS_HEIGHT-1);
+        arrow.draw();
+    }
+    // JQuery ready - start here
+    $(function() 
+    {
+        // Initialization. Since arrow is a singleton, need to set initalization values.
+        arrow.centerX = canvasCenterX;
+        arrow.centerY = canvasCenterY;
+        arrow.mouse = mouse;
+        // Timer for animation.
+        setInterval(function() 
+        {
+            update();
+            draw();
+        }, 1000/FPS);
+    });
+</script>        

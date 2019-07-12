@@ -1,0 +1,129 @@
+<div class="flora_signin_bg_section" style="background-image: url('{{ 'login_bg_image_min.png' | asset_url }}')">
+<div class="page-width flora-login-page">
+  <div class="grid">
+   <div class="grid__item medium-up--one-whole flora-user-account-content">
+
+       <div id="" class="form-vertical login-frm">
+        
+
+          <h2 class="text-left">{{ 'customer.register.title' | t }}</h2>
+          <div class="one-half small--one-whole login-lft-side">
+            <div class="flora-onoborading-container">
+            {% form 'create_customer' %}
+              <p class="register_form_subtitle">Earn rewards, store profiles of people you frequently buy for, set reminders, etc</p>
+              {{ form.errors | default_errors }}
+
+              <label for="Email">{{ 'customer.register.email' | t }}</label>
+              <input type="email" name="customer[email]" id="Email" class="{% if form.errors contains 'email' %} input--error{% endif %}" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off">
+
+              <label for="FirstName">{{ 'customer.register.first_name' | t }}</label>
+              <input type="text" onchange="trimInputValue('FirstName')" name="customer[first_name]" id="FirstName" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autofocus>
+              <!-- 
+<label for="LastName">{{ 'customer.register.last_name' | t }}</label>
+<input type="text" onchange="trimInputValue('LastName')" name="customer[last_name]" id="LastName" {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+-->
+
+              <label for="CustomerCompanyname">Company name <span class="optional_tag">Optional</span></label>
+              <input type="text" onchange="trimInputValue('CustomerCompanyname')" id="CustomerCompanyname" name="customer[note][Companyname]">
+
+              <label for="CustomerPhoneno">Phone number <span class="optional_tag">Optional</span></label>
+              <input type="text" id="CustomerPhoneno" name="customer[note][Phoneno]">              
+
+              <label for="CreatePassword">{{ 'customer.register.password' | t }}</label>
+              <input type="password" name="customer[password]" id="CreatePassword" class="{% if form.errors contains 'password' %} input--error{% endif %} flora-form-control" onkeyup="checkValidPassword()">
+              <p class="password_warn_msg">Must be 6 or more characters and contain at least 1 number</p>
+
+              <p class="text-center">
+                <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn"  style="margin-top: 20px !important;">
+              </p>
+
+              <div class="options">
+                <h3><span>OR</span></h3>
+              </div>
+
+              {% endform %}
+            
+            </div>
+      </div>
+         
+        <div class="one-half small--one-whole login-rgt-side">
+          <div class="flora-onoborading-container">
+            <h4>Already have a Floracracy account?</h4>
+  <!--           <p>{{ 'Sign in' | customer_login_link }} </p> -->
+            <a href="/account/login" class="btn flora-primary-btn"> Sign in </a>          
+          </div>  
+		</div>
+         
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+
+<script>
+  $(window).on('load', function() {
+  //$(document).ready(function(){    	
+    function addSocialMediaTitle(){      
+      	if ( $( ".social .fa.fa-google-plus" ).length ) {          
+        	$('.social  .fa.fa-google-plus').append(' <span class="social_media_name"> GMAIL</span>');
+      	}
+      	if ( $( ".social .fa.fa-facebook" ).length ) {          
+        	$('.fa.fa-facebook').append('  <span class="social_media_name"> FACEBOOK</span>');
+      	}
+    }
+    setTimeout(addSocialMediaTitle,2000);   
+    
+	
+  });
+  
+  $("#create_customer").submit(function(){
+    var passwd = $("#CreatePassword").val();
+    
+    
+    if(passwd != ''){
+      // at least one number, one lowercase and one uppercase letter
+      // at least six characters
+      var re = /(?=.*\d).{6,}/;
+      //var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+      
+      var out = re.test(passwd);
+      if(!out){
+         $('.password_warn_msg').show();
+      	document.getElementById("CreatePassword").focus();
+      }else{
+      	$('.password_warn_msg').hide();
+      }     	      
+      return re.test(passwd);
+    }
+    if(passwd == ''){
+      $('.password_warn_msg').show();
+      document.getElementById("CreatePassword").focus();
+      return false;
+    }
+    
+});
+  
+  	//$('.password_warn_msg').hide();
+      function checkValidPassword(){
+        var passwd = $("#CreatePassword").val();        
+        
+        var re = /(?=.*\d).{6,}/;      
+        var out = re.test(passwd);
+        
+        //console.log(out);
+        
+        if(!out){          
+          $('.password_warn_msg').show();
+          document.getElementById("CreatePassword").focus();
+        }else{
+        	//$('.password_warn_msg').hide();
+        }          
+      }
+  
+  function trimInputValue(input_id){    
+  	var inputValue = document.getElementById(input_id).value;
+    //console.log(inputValue);
+    document.getElementById(input_id).value = inputValue.trim();    
+  }
+  
+</script>  

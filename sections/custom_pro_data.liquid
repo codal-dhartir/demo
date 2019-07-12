@@ -1,0 +1,51 @@
+  <div class="coll_products bohem-wrap-row">
+      {% paginate collections['all'].products by 3 %}
+      <div id="AjaxinatePagination" class="col-flex-title">
+        <h4>Existing Bohemian Arrangements</h4>
+        {% if paginate.next %}
+        <a href="{{ paginate.next.url }}">View More</a>
+        {% endif %}
+      </div>
+       <div id="AjaxinateLoop" class="bohem-wrap">
+          {% for product in collections['all'].products limit: 3 %}
+          <div class="bohem-item">
+            <a href="{{ product.url | within: collection }}">
+              <div class="product-image-cont-innerr">
+                <img id="{{ img_id }}"
+                     class="product-img-display"
+                     src="{{ product.featured_image | img_url: '118x118' }}"
+                     data-src="{{ img_url }}"
+                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                     data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                     data-sizes="auto"
+                     alt="{{ product.featured_image.alt | escape }}">
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+            
+       {% if paginate.pages > 1 %}
+      
+      {% comment %}
+      	{% include 'pagination' %}
+      {% endcomment %}
+      
+    {% endif %}
+      
+      {% endpaginate %}
+
+    </div>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

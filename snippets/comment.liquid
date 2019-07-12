@@ -1,0 +1,83 @@
+<!-- /snippets/comment.liquid -->
+{% comment %}
+<div class="comment__meta">
+  <span class="comment__meta-item">{{ comment.author }}</span>
+  <span class="comment__meta-item">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+</div>
+<div class="comment__content rte">
+  {{ comment.content }}
+</div>
+{% endcomment %}
+{% assign comment_count_date = 1 %}
+{% for comment in article.comments %}
+ {% unless comment.id == new_comment_id %}
+                
+                
+                      
+              
+               
+
+<div class="single-comment-block">
+  <div class="commenter-pic" style="background: #9c7b49;padding: 15px;">
+    <span style="font-size: 3em;"> {{ comment.author |  slice: 0 | upcase}}{{ comment.author |  slice: 1 | upcase }} </span>
+
+  </div>
+  <div class="comment-block-content">
+    <p class="top_stories_article_custom_time {{comment_count_date}}">{{ comment.created_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+    <span class="article__author">
+      {{ comment.author }} <span class="blog-time {{comment_count_date}}">{{ comment.created_at | time_tag: format: 'month_day_year' }}</span>
+    </span>
+    <script type="text/javascript">
+      document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script> 
+      $(document).ready(function() {
+        var date1, date2; 
+        var count= {{comment_count_date}}
+            var custom_class =$('.blog-time.'+count); 
+        var custom_get_value = $('.top_stories_article_custom_time.'+count+' time')
+        var publish_unprocessed = custom_get_value.html();
+
+        publish = new Date(publish_unprocessed );
+        current_full = new Date();
+        $.format = DateFormat.format;
+        var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+        current = new Date(current_unprocessed);
+
+        var res = Math.abs(current - publish) / 1000;
+        var days = Math.floor(res / 86400);                         
+        var hours = Math.floor(res / 3600) % 24;
+
+
+        if(days > 1){
+          custom_class.html(days+' days ago.');
+        } else {
+          custom_class.html(hours+' hours ago.');
+        }
+
+      });
+    </script>
+    <div class="comment-block-message">
+      {{ comment.content }}
+    </div>
+    <div class="comment-action-block">
+      <div class="like-counts-block">
+        <div class="like-count-display">
+          <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/like-count.png?1391883683120003362"><span>2</span> 
+        </div>
+
+      </div>
+      <div class="like-hit">
+        <a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/click-like.png?1391883683120003362"><span>Like</span></a>
+      </div>
+      <div class="comment-reply-btn">
+        <button type="button" id="" class="btn flora-primary-btn see-result-btn">Reply</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+   {% endunless %}
+{% assign comment_count_date = comment_count_date | plus: 1 %} 
+               	
+  {% endfor %}

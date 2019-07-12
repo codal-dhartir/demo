@@ -1,0 +1,201 @@
+<div class="flora_signin_bg_section" style="background-image: url('{{ 'login_bg_image_min.png' | asset_url }}')">
+<div class="page-width flora-login-page">
+  <div class="grid">
+    <div class="grid__item medium-up--one-whole flora-user-account-content">
+      <div class="note form-success login-frm hide" id="ResetSuccess">
+        <h2 class="text-left flora-page-title">{{ 'customer.recover_password.title' | t }}</h2>
+        
+        <div class="text-center">
+          <p class="reset_mail_sent_msg">RESET PASSWORD LINK HAS BEEN SENT TO YOUR EMAIL</p>          
+        
+          <p>{{ 'customer.recover_password.success' | t }}</p>
+          <div class="clearfix"> </div>
+          <div class="flora-btn-row">
+            <div class="small--one-whole login-lft-side">    
+              <h4> &nbsp; </h4>
+              <p><a class="btn flora-primary-btn" href="https://floracracy.myshopify.com/account/login#recover" onClick="window.location.reload()">RESEND LINK</a></p>
+            </div>
+
+            <div class="small--one-whole login-rgt-side">
+              <h4>Got to this screen by accident?</h4>
+              <!--           	<p>{{ 'Sign in' | customer_login_link }} </p> -->
+              <a href="/account/login" class="btn flora-secondary-btn"> Sign in </a>
+            </div>
+          </div>
+          
+          <div class="clearfix"></div>
+          <div class="row mar_btn_14"><a class="take_me_back_link" href="/">TAKE ME BACK TO FLORACRACY</a> </div>
+          
+        </div>
+        
+      </div>
+
+      <div id="CustomerLoginForm1" class="form-vertical login-frm">
+        
+        <h2 class="text-left flora-page-title">{{ 'customer.login.title' | t }}</h2>
+        
+        <div class="one-half small--one-whole login-lft-side">
+          <div class="flora-onoborading-container">
+          <div id="CustomerLoginForm">
+        {% form 'customer_login' %}
+
+          {{ form.errors | default_errors }}
+
+          <label for="CustomerEmail" class="flora-label">{{ 'customer.login.email' | t }}</label>
+          <input type="email" name="customer[email]" id="CustomerEmail" class="flora-form-control {% if form.errors contains 'email' %} input--error{% endif %}" autocorrect="off" autocapitalize="off" autofocus required>
+
+          {% if form.password_needed %}
+            <label for="CustomerPassword" class="flora-label">{{ 'customer.login.password' | t }}</label>
+            <input type="password" value="" name="customer[password]" id="CustomerPassword" class="flora-form-control {% if form.errors contains 'password' %} input--error{% endif %}" required>
+          {% endif %}
+
+          <div class="text-center">            
+            <!--             <div class="rem_me text-left"><input type="checkbox" id="rememberMe" name="rememberMe">Remember me</div> -->
+              <div class="rem_me text-left">
+                <label class="flora-remeber-label">
+                  <input type="checkbox" id="rememberMe" name="rememberMe">
+                  <span class="checkmark"></span> <span class="rem_txt">Remember me</span>
+                </label>
+              </div>
+            
+            {% if form.password_needed %}
+            <div class="text-right RecoverPassword">
+                <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+            </div>
+            {% endif %}
+
+            <input type="submit" class="btn flora-primary-btn" value="{{ 'customer.login.sign_in' | t }}"  id="login_customer">
+			
+            <div class="options">
+              <h3><span>OR</span></h3>
+            </div>
+            {% comment %}
+            <p>
+              {{ 'layout.customer.create_account' | t | customer_register_link }}
+            </p>
+            {% endcomment %}
+          </div>
+
+        {% endform %}
+          </div>
+          </div>
+          
+        </div>
+        <div class="one-half small--one-whole login-rgt-side">
+          <div class="flora-onoborading-container">
+          <h4 class="flora-sub-title">New to Floracracy?</h4>
+<!--           <p>{{ 'CREATE AN ACCOUNT' | customer_register_link }}</p> -->
+          <a href="/account/register" class="btn flora-secondary-btn"> CREATE AN ACCOUNT </a>
+          </div>
+		</div>
+        <div class="one-click-social-login"></div>
+      </div>
+
+      <div id="RecoverPasswordForm" class="hide login-frm">
+		<h2 class="text-left">{{ 'customer.recover_password.title' | t }}</h2>
+        <div class="one-half small--one-whole login-lft-side">
+          <div class="flora-onoborading-container">
+          <div class="text-left">          
+            <p class="register_form_subtitle">{{ 'customer.recover_password.subtext' | t }}</p>
+          </div>
+
+          <div class="form-vertical">
+            {% form 'recover_customer_password' %}
+
+            {{ form.errors | default_errors }}
+
+            {% comment %}
+            Add a hidden span to indicate the form was submitted succesfully.
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+            <span class="hide reset-password-success"></span>
+            {% endif %}
+
+            <label for="RecoverEmail" id="RecoverEmailEle">{{ 'customer.recover_password.email' | t }}</label>
+            <input required type="email" value="" name="email" id="RecoverEmail" class="input-full"autocorrect="off" autocapitalize="off" placeholder="youremail@email.com">
+
+            <div class="text-center">
+              <p>
+                <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+              </p>
+
+              <button type="button" id="HideRecoverPasswordLink" class="text-link">{{ 'customer.recover_password.cancel' | t }}</button>
+            </div>
+            {% endform %}
+          </div>
+          </div>
+        </div>
+        <div class="one-half small--one-whole login-rgt-side">
+          <div class="flora-onoborading-container">
+              <h4>Got to this screen by accident?</h4>
+    <!--           <p>{{ 'Sign in' | customer_login_link }} </p> -->
+              <a href="/account/login" class="btn flora-secondary-btn"> Sign in </a>
+          </div>
+		</div>
+
+      </div>
+
+      {% comment %}
+        If accounts are set as optional, the following will be shown as an option
+        during checkout, not on the default /login page.
+      {% endcomment %}
+      {% if shop.checkout.guest_login %}
+        <div class="text-center">
+          <hr class="hr--invisible">
+          <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+          {% form 'guest_login' %}
+            <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+          {% endform %}
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+</div>
+<script>
+  $(window).on('load', function() {
+  //$(document).ready(function(){    	
+    function addSocialMediaTitle(){      
+      	if ( $( ".social .fa.fa-google-plus" ).length ) {          
+        	$('.social  .fa.fa-google-plus').append(' <span class="social_media_name"> GMAIL</span>');
+      	}
+      	if ( $( ".social .fa.fa-facebook" ).length ) {          
+        	$('.fa.fa-facebook').append('  <span class="social_media_name"> FACEBOOK</span>');
+      	}
+    }
+    setTimeout(addSocialMediaTitle,2000);   
+    
+	
+  });
+  
+  $("#login_customer").click(function(){
+    
+  if ($('#rememberMe').is(':checked')) {
+            // save username and password
+            localStorage.userName = $('#CustomerEmail').val();
+            localStorage.password = $('#CustomerPassword').val();
+            localStorage.checkBoxValidation = $('#rememberMe').val();
+    		//alert('saved');
+        } else {
+            localStorage.userName = '';
+            localStorage.password = '';
+            localStorage.checkBoxValidation = '';
+          	//alert('not saved');
+        }
+  });
+  
+ $(document).ready(function(){
+  	var inputUsername = localStorage.getItem("userName");
+ 	var inputPassword = localStorage.getItem("password");
+       console.log(inputUsername);
+       console.log(inputPassword);
+   if(inputUsername && inputPassword){
+   		document.getElementById("CustomerEmail").value = inputUsername;
+     	document.getElementById("CustomerPassword").value = inputPassword;
+     	document.getElementById("rememberMe").checked = true;
+   }
+   
+ }); 
+</script>  

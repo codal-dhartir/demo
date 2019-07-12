@@ -1,0 +1,1336 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+<div class="loader_overlay">
+  <div class="customloader"></div>
+</div>
+<div class="reminder-notification-cont col-md-12 col-sm-12 col-xs-12 no-padding ">
+  <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+    <div class="sync-switch col-md-6 col-sm-6 col-xs-12 no-padding">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+        SYNC TO GOOGLE CALENDAR
+      </label>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 add-reminder-btn m-t-10-m">      
+      <button type="button" class="btn address-new-toggle flora-primary-btn pull-right" id="AddNewReminderModal-btn"> Add new reminder</button>
+    </div>
+  </div>
+
+  <div class="reminder-listcal-cont col-md-12 col-sm-12 col-xs-12 no-padding ">
+
+
+    <div class="account_tab_section list-cal-cont col-md-12 col-sm-12 col-xs-12 no-padding">
+      <div class=" col-md-12 col-sm-12 col-xs-12 past_orders_title border-bottom-heading no-padding m-t-10-m ">
+        <ul class="nav nav-pills">
+          <li class="active">
+            <a class="my_list-filter" data-toggle="pill" href="#list">List</a>
+          </li>
+          <li>
+            <a class="my_cal-filter" data-toggle="pill" href="#calendar">Calendar</a>
+          </li>
+        </ul>
+
+       {% comment %} <select class="flora-form-control order-list-data-select select-fixed-width pull-right">
+          <option>Sort by</option>
+        </select>{% endcomment %}
+        <span class="first_list_sort">Sort by <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851"></span>
+        
+        <div class="filter_check_box">
+          <h2>RECIPIENT</h2>
+        </div>
+
+      </div>
+      <div class="tab-content">
+        <div id="list" class="tab-pane fade in active">
+          <div class="list-tab">
+            <div class="list-table-cont col-md-12 col-sm-12 col-xs-12 no-padding">
+              <table class="table table-striped list-table table-resp">
+                <thead>
+                  <tr>
+                    <th scope="col">REMINDER NAME</th>
+                    <th scope="col">RECIPIENT</th>
+                    <th scope="col">EVENT</th>
+                    <th scope="col">EVENT DATE</th>
+                    <th scope="col">REMINDER</th>
+                    <th scope="col"></th>
+
+                  </tr>
+                </thead>
+                <tbody class="first_list">
+
+                </tbody>
+              </table>
+
+            </div>
+
+
+          </div>
+          <div class="order-list-add col-md-12 col-sm-12 col-xs-12 no-padding">
+            <span class="load_more"></span>
+          </div>
+          <!-- General holiday  -->
+          <div class="col-md-12 col-sm-12 col-xs-12 general-holi-cont no-padding">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding past_orders_title">
+              <h2 class="text-left flora-page-title" style="margin-bottom: 0px !important;">General Holidays</h2>
+
+              <span class="first_list_sort">Sort by <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851"></span>
+
+            </div>
+            <div class="list-table-cont col-md-12 col-sm-12 col-xs-12 no-padding">
+              <table class="table table-striped list-table table-resp">
+                <thead>
+                  <tr>
+                    <th scope="col">HOLIDAY</th>
+                    <th scope="col">HOLIDAY TYPE</th>
+                    <th scope="col">EVENT DATE</th>
+                    <th scope="col">REMINDER</th>
+                    <th scope="col"></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Mother's Day</td>
+                    <td>Major Holiday</td>
+                    <td>04/14/2018</td>
+                    <td><a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a>2 weeks before</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Father's Day</td>
+                    <td>Major Holiday</td>
+                    <td>04/14/2018</td>
+                    <td><!--   <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a>-->None</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Valentine’s Day</td>
+                    <td>Major Holiday</td>
+                    <td>04/14/2018</td>
+                    <td><a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a>2 weeks before</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Sweetest Day</td>
+                    <td>Secondary Holiday</td>
+                    <td>04/14/2018</td>
+                    <td><!--   <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a> -->None</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Boss's Day</td>
+                    <td>Secondary Holiday</td>
+                    <td>04/14/2018</td>
+                     <td><!-- <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a> -->None</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Thanksgiving Day</td>
+                    <td>Major Holiday</td>
+                    <td>04/14/2018</td>
+                    <td><!--   <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917"></a> -->None</td>
+                    <td class="table-textalign-right">
+                      <a href="#" class="table-in-icon"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                      <a href="#" class="table-in-text">+ RECIPIENT</a>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>  
+
+          <!-- General holiday -->
+
+
+        </div>
+        <div id="calendar" class="tab-pane fade my-order-cont">
+          {% comment %}<div class="calendar-tab">{% endcomment %}
+           {% comment %} <h2 class="text-left flora-page-title">calendar-tab</h2>{% endcomment %}
+                <div class="customcalendar"></div>
+                <input type="hidden" name="current_month" class="current_month" value=""> 
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padding reminder-content-right">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side calender-event ">
+                    
+                    <h2 class="event-month-header">April Events</h2>
+                     {% comment %}<div class="event-main-block">
+                          <div class="event-block1">
+                            <span class="calender-event-date">2018-07-31</span>
+                          </div>
+                           <div class="event-block2">
+                              <span class="calender-event-reminder_name">Raven’s Birthday</span>
+                              <span class="calender-event-recipient">Raven Reyes</span>
+                              <span class="calender-event-event_type">Birthday</span>
+                              <span class="calender-event-reminder_time">2 weeks before via email</span>
+                          </div>
+                           <div class="event-block3">
+                              <a href="javascript:void(0);" class="table-in-icon calendar-event-edit" data_id="'.$value["id"].'"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                              <a href="javascript:void(0);" class="table-in-icon calendar-event-delete" data_id="'.$value["id"].'"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?8419326134668097108"></a>
+                          </div>
+                        </div>{% endcomment %}
+                      
+                     {% comment %} <div class="event-main-block">
+                       
+                         <div class="event-block1">
+                            <span class="calender-event-date">2018-07-31</span>
+                          </div>
+                           <div class="event-block2">
+                              <span class="calender-event-reminder_name">Raven’s Birthday</span>
+                              <span class="calender-event-recipient">Raven Reyes</span>
+                              <span class="calender-event-event_type">Birthday</span>
+                              <span class="calender-event-reminder_time"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?9298683763100370917">2 weeks before via email</span>
+                          </div>
+                          <div class="event-block3">
+                              <a href="javascript:void(0);" class="table-in-icon calendar-event-edit" data_id="'.$value["id"].'"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?8419326134668097108"></a>
+                              <a href="javascript:void(0);" class="table-in-icon calendar-event-delete" data_id="'.$value["id"].'"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?8419326134668097108"></a>
+                          </div>
+                       
+                      </div>{% endcomment %}
+                    
+                  </div>
+                </div>
+          {% comment %}</div>{% endcomment %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Reminder Popup -->
+<div class="background-overlay-popup popup-all" id="AddNewReminderModal"  role="dialog">
+  <div class="modal-popup-custom flora-pages">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">&times;</button>
+          <h4 class="modal-title">ADD NEW REMINDER</h4>
+        </div>
+        <div class="modal-body">
+          <form action="javascript:void(0);" id="reminder_form">
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+              <div class="col-md-6 col-sm-6 col-xs-12 no-padding reminder-content-left">
+                <div class="flora-onoborading-container login-lft-side">
+                  {% comment %}<form action="javascript:CustomerProfileUpdate();">{% endcomment %}
+
+                  <label for="event_type">EVENT TYPE</label>
+                  <select name="event_type" id="event_type" class="flora-form-control select-normal">
+                    <option value="">Select the holiday or occassion</option>
+                    <option value="holiday">Holiday</option>
+                    <option value="occassion">Occassion</option>
+                  </select>
+                  <span class="error event_type"></span>
+
+                  <label for="recipient">RECIPIENT NAME</label>
+                  <input type="text" name="recipient" id="recipient" placeholder="Enter name of recipient">
+                  <span class="error recipient"></span>
+                  <label for="LastName">REMINDER NAME
+                    <span class="optional_tag">Optional</span>
+                  </label>
+                  <input type="text" name="reminder_name" id="reminder_name" placeholder="Name the event (e.g. Nana's Birthday)">
+                  <span class="error reminder_name"></span>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+                    <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left m-t-20">
+                      <div class="rem_me checkbox-with-text">
+                        <label class="flora-remeber-label">
+                          <input type="checkbox" class="time_interval" name="time_interval" value="Recurring event">
+                          <span class="checkmark small-check"></span>
+                          <span class="rem_txt label-text ">Recurring Event</span>
+                          <span class="checkbox-sub-text">e.g. Birthday or Anniversary</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 no-padding-left m-t-20">
+                      <div class="rem_me checkbox-with-text">
+                        <label class="flora-remeber-label">
+                          <input type="checkbox" class="time_interval" name="time_interval" value="One time event">
+                          <span class="checkmark small-check"></span>
+                          <span class="rem_txt label-text ">One-Time Event</span>
+                          <span class="checkbox-sub-text">e.g. Babyshower or Graduation</span>
+                        </label>
+                      </div>
+                    </div>
+                    <span class="error time_interval"></span>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side date-picker-inform">
+                    <label for="LastName">EVENT DATE</label>
+                    <div id="datepicker-reminder" class="input-group date flora-date-picker" data-date-format="yyyy-mm-dd">
+                      <input class="form-control" name="event_date" id="event_date" type="text" readonly />
+                      <span class="input-group-addon">
+                        <a href="#" class="table-in-icon">
+                          <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/calendar-icon.png?10759087893396004911">
+                        </a>
+                      </span>
+                    </div>              
+                    <span class="error event_date"></span>
+                  </div>
+
+                </div>
+
+                <!-- Reminder Timing -->
+                <div class="col-md-6 col-sm-6 col-xs-12 no-padding reminder-content-right">
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side reminder-timing-block ">
+                    <label for="">REMINDER TIMING</label>
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side ">
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="1 Day">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">Day of event</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="1 week">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">1 week before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="2 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">2 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="3 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">3 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="4 weeks">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">4 weeks before</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                        <div class="rem_me checkbox-with-text">
+                          <label class="flora-remeber-label">
+                            <input type="checkbox" class="reminder_time" name="reminder_time" value="2 months">
+                            <span class="checkmark small-check"></span>
+                            <span class="rem_txt label-text ">2 months before</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="error reminder_time"></span>
+                  </div>
+
+
+
+                  <!-- Reminder Type -->
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding reminder-content-right">
+                    <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side reminder-timing-block ">
+                      <label for="">REMINDER TYPE</label>
+                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding login-lft-side ">
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                          <div class="rem_me checkbox-with-text">
+                            <label class="flora-remeber-label">
+                              <input type="checkbox" class="reminder_type" name="reminder_type" value="text">
+                              <span class="checkmark small-check"></span>
+                              <span class="rem_txt label-text ">
+                                <a href="#" class="table-in-icon">
+                                  <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/email-1.png?7701866573972020811">
+                                </a>Text</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding-left  ">
+                          <div class="rem_me checkbox-with-text">
+                            <label class="flora-remeber-label">
+                              <input type="checkbox" class="reminder_type" name="reminder_type" value="email">
+                              <span class="checkmark small-check"></span>
+                              <span class="rem_txt label-text ">
+                                <a href="#" class="table-in-icon">
+                                  <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/message-icon-table.png?7701866573972020811">
+                                </a>Email</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="phone_numer-wr"> 
+                     <label class="flora-label" for="">YOU NEED TO ADD YOUR MOBILE NUMBER TO TURN ON TEXT REMINDERS
+                      <input type="text" name="contact_number" class="contact_number" placeholder="Add phone number">
+                      <span class="error contact_number"></span>
+                    </div>
+                    <span class="error reminder_type"></span>
+                  </div>
+
+                  <!-- Send reminders to -->
+                  <div class="col-md-12 col-sm-12 col-xs-12 no-padding reminder-content-right">
+                    <div class="col-md-10 col-sm-12 col-xs-12 no-padding  reminder-timing-block ">
+                      <label class="flora-label" for="">ALSO SEND REMINDERS TO
+                        <span class="optional_tag">Optional</span>
+                      </label>
+                      <div class="col-md-12 col-sm-12 col-xs-12 no-padding  reminder-emailto-block">
+                        <ul class="emailto-list email-added">
+                        </ul>  
+                        <ul class="emailto-list new-email_id">
+                          <li class="new_email">
+                            <input type="text" name="email-ids" class="email-ids" placeholder="Add Email address">
+                            <button class="remove_email">
+                              <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811">
+                            </button>
+                          </li>
+                          <span class="error email-ids"></span>
+                        </ul>
+                        <button class="add-newemail">+ ADD ANOTHER</button>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </div>
+              <div class="modal-footer ">
+                <input type="hidden" name="customer_id" id="customer_id" value="{{customer.id}}">
+                <input type="hidden" name="record_id" id="record_id" value="0">
+                <p>
+                  <button type="button" class="btn address-new-toggle flora-primary-btn reminder-save-btn">SAVE</button>
+                </p>
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+              </form>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Add Reminder Popup -->
+  
+  <!-- Success Popup -->
+  <div class="background-overlay-popup popup-all" id="success_popup"  role="dialog">
+  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">×</button>
+          <h4 class="modal-title">REMINDER ADDED</h4>
+        </div>
+        <div class="modal-body product-popin-login">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <p class="popup-content-p">Your reminder have been added.</p>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+            <p>
+              <button type="button" id="close close_all_mymodal" class="btn flora-primary-btn submit-btn close_all_mymodal">OKAY</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-footer product-popin-login">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  <!-- Success Popup end -->
+
+  <!-- Conformation Project -->
+  <div class="background-overlay-popup popup-all" id="conformation_popup"  role="dialog">
+  <div class="modal-popup-custom flora-pages Prod-category-signupconformation notification-popup">   
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close_all_mymodal">×</button>
+          <h4 class="modal-title">REMOVE EVENT & REMINDER</h4>
+        </div>
+        <div class="modal-body product-popin-login">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+            <p class="popup-content-p">Your event will be removed from your calendar and you will no longer get any reminders</p>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+            <div class="col-md-6 col-sm-6 col-xs-6 ">
+              <button type="button" class="btn flora-primary-btn submit-btn close_all_mymodal custom_background">NO, KEEP EVENT</button>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6 ">
+              <button type="button" class="btn flora-primary-btn submit-btn remove_conformation" data_id="">YES, REMOVE EVENT</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer product-popin-login">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
+  <script>
+    $('#datepicker-reminder').datepicker({
+      format: 'yyyy-mm-dd',      
+      autoclose: true, 
+      todayHighlight: true
+    });
+  </script>
+{{ 'calendar.css' | asset_url | stylesheet_tag }}
+
+<script type="text/javascript">
+  document.write(unescape("%3Cscript src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+  document.write(unescape("%3Cscript src='{{'calendar.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  var jQ = jQuery.noConflict(true);
+</script>
+<script type="text/javascript">
+/*Prabhakaran Start Calendar*/
+(function($){
+       
+      function recallfunctions(jsonString) {
+       jQ('.customcalendar').calendar({
+            width: 450, 
+            height: 400,
+            weekArray: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            monthArray: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            format: 'yyyy-mm-dd',
+            data : jsonString
+       });
+     }
+
+    var datas = [];
+    // var d = new Date();
+    // var n = d.getMonth();
+    $('.current_month').val(parseInt(n)+1);
+    jQ.ajax({
+     "async": true,
+     "crossDomain": true,        
+     "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remaindercalendar.json",
+     "method": "POST",
+     "data": { "customer_id": {{customer.id}}, 'month':$('.current_month').val(),"recipient_filter": 0},
+      success: function(response){
+        $.each( response.query, function( key, values ) { //First each loop
+              item = {}
+              item ["date"] = values['event_date'];
+              item ["value"] = values['reminder_name'];
+               datas.push(item);
+        });
+        
+        var jsonString = JSON.stringify(datas);
+          $('.customcalendar').calendar({
+            width: 300, 
+            height: 400,
+            weekArray: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+            monthArray: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            format: 'yyyy-mm-dd',
+            data : JSON.parse(jsonString)
+          });
+          var month = $('.get-month').html();
+          var fullmonth = $('.monthformat').html();
+          
+          $('.current_month').val(month);
+          $('.event-month-header').html(fullmonth + ' Events');
+          $('.calender-event').append(response.data);
+
+      }
+    });
+
+       
+  })(jQ);
+
+/*Prabhakaran end Calendar*/
+ 
+</script>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    /*Prabhakaran Start*/
+   $(document).on('click','.calendar-arrow span',function(){
+      var month = $('.get-month').html();
+      var fullmonth = $('.monthformat').html();
+      $('.event-month-header').html(fullmonth + ' Events');
+      $('.current_month').val(month);
+       var recipient_filter =''; 
+        $("input:checkbox[name=recipient_filter]").each(function(){
+            if($(this).is(":checked"))
+              if(recipient_filter == ''){
+                recipient_filter = $(this).val()+'|';
+              } else{
+                recipient_filter = recipient_filter + $(this).val()+'|';
+              }
+          });
+      jQ.ajax({
+       "async": true,
+       "crossDomain": true,        
+       "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remaindercalendarmonth.json",
+       "method": "POST",
+       "data": { "customer_id": {{customer.id}}, 'month':$('.current_month').val(),"recipient_filter": recipient_filter},
+        beforeSend:function() {
+            $('.loader_overlay').css('display','block');
+         },
+        success: function(response){
+      
+            // var month = $('.get-month').html();
+            // $('.current_month').val(month);
+            $('.event-main-block').remove();
+            $('.calender-event').append(response);
+            $('.loader_overlay').css('display','none');
+        }
+      });
+   });
+    $(document).on('click','.all-month',function(){
+      var month = $(this).find('.month_num').val();
+      var fullmonth = $(this).find('.month_full').val();
+      $('.event-month-header').html(fullmonth + ' Events');
+      $('.current_month').val(month);
+       var recipient_filter =''; 
+        $("input:checkbox[name=recipient_filter]").each(function(){
+            if($(this).is(":checked"))
+              if(recipient_filter == ''){
+                recipient_filter = $(this).val()+'|';
+              } else{
+                recipient_filter = recipient_filter + $(this).val()+'|';
+              }
+          });
+      jQ.ajax({
+       "async": true,
+       "crossDomain": true,        
+       "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remaindercalendarmonth.json",
+       "method": "POST",
+       "data": { "customer_id": {{customer.id}}, 'month':$('.current_month').val(),"recipient_filter":recipient_filter},
+        beforeSend:function() {
+            $('.loader_overlay').css('display','block');
+         },
+        success: function(response){
+           $('.loader_overlay').css('display','none');
+            $('.event-main-block').remove();
+            $('.calender-event').append(response);
+           
+        }
+      });
+   });
+    /*listing*/
+       $.ajax({
+       "async": true,
+       "crossDomain": true,        
+       "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderlist.json",
+       "method": "POST",
+       "data": { "customer_id": {{customer.id}}},
+       beforeSend:function() {
+            $('.loader_overlay').css('display','block');
+         },
+       success: function(response){
+        $('.first_list').append(response.data);
+        $('.filter_check_box').append(response.recipient);
+        if(response.count > 0){
+          $('.load_more').html('+'+response.count+'MORE');
+          $('.load_more').attr('count',response.count);
+        }
+        $('.loader_overlay').css('display','none');
+        }
+     }); 
+
+    $(document).on('click','.load_more',function(){
+      $.ajax({
+       "async": true,
+       "crossDomain": true,        
+       "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remaindermorelist.json",
+       "method": "POST",
+       "data": { "customer_id": {{customer.id}}},
+       beforeSend:function() {
+            $('.loader_overlay').css('display','block');
+         },
+       success: function(response){
+          $('.first_list').append(response);
+          $('.load_more').html('');
+          $('.load_more').attr('count','0');
+          $('.loader_overlay').css('display','none');
+       }
+      });
+    });
+
+     $(document).on('click','.list_row_delete',function(){
+      var id = $(this).attr('data_id');
+        $('#conformation_popup').css('display','block'); 
+        $('.remove_conformation').attr('data_id',id); 
+     });
+
+     $(document).on('click','.remove_conformation',function(){
+         var id = $(this).attr('data_id');
+         $('#conformation_popup').css('display','none'); 
+          $.ajax({
+         "async": true,
+         "crossDomain": true,        
+         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderremove.json",
+         "method": "POST",
+         "data": { "id": id},
+         success: function(response){
+            $('.list_'+id).remove();
+            message  =  'Your event and reminder have been removed.';
+            title = 'EVENT REMOVED';
+            $('#success_popup .modal-title').html(title);
+            $('#success_popup .popup-content-p').html(message);
+            $('#success_popup').css('display','block');
+         }
+        });
+     });
+     
+
+     $(document).on('click','.list_row_edit',function(){
+      var id = $(this).attr('data_id');
+        $.ajax({
+         "async": true,
+         "crossDomain": true,        
+         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderedit.json",
+         "method": "POST",
+         "data": { "id": id},
+         success: function(response){
+          $(".popup-all").fadeOut();
+          $("#AddNewReminderModal").fadeIn(100);
+          $.each( response, function( key, values ) { //First each loop
+            $.each( values, function( key, value ) { //Second each loop
+
+              /*Restoring Values to the popup*/
+               $('#customer_id').val(values['customer_id']);
+               $('#record_id').val(values['id']);
+
+              if( key == 'recipient' || key == 'reminder_name' || key == 'event_date'){
+                var id = '#'+key;
+                $(id).val(value);
+              } else if(key == 'event_type'){
+                $("#event_type > [value=" + value + "]").attr("selected", "true");
+              } else if(key == 'time_interval'){
+                var back_end_val = value.split("|");
+                $.each( back_end_val, function( key, bc_val ) {
+                  $("input:checkbox[name=time_interval]").each(function(){
+                    front_end_val = $(this).val();
+                      if(front_end_val == bc_val){
+                       $(this).prop('checked', true);
+                      }
+                  });
+                });
+              } else if(key == 'reminder_time'){
+                var back_end_val = value.split("|");
+                $.each( back_end_val, function( key, bc_val ) {
+                  $("input:checkbox[name=reminder_time]").each(function(){
+                    front_end_val = $(this).val();
+                      if(front_end_val == bc_val){
+                       $(this).prop('checked', true);
+                      }
+                  });
+                });
+              } 
+              else if(key == 'reminder_type'){
+                var back_end_val = value.split("|");
+                $.each( back_end_val, function( key, bc_val ) {
+                  $("input:checkbox[name=reminder_type]").each(function(){
+                      front_end_val = $(this).val();
+                      if(front_end_val == bc_val){
+                        $(this).prop('checked', true);
+                        if(front_end_val == 'text'){
+                          $('.phone_numer-wr').css('display','block');
+                          $('.contact_number').val(values['contact_number']);
+                        }
+                      }
+                  });
+                });
+              } else if(key == 'added_emails'){
+                 var back_end_val = value.split("|");
+                $.each( back_end_val, function( key, bc_val ) {
+                    if(bc_val != '')
+                      $('.email-added').append('<li data_val="'+bc_val+'"><div class="emailto-added"><span class="emailto-entry">'+bc_val+'</span><span class="list-tools pull-right"><button class="entered_mail-edit"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?7701866573972020811"></button><button class="entered_mail-delete"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></span></div></li>');
+                });
+              }
+              
+            });  // Second each loop End
+          }); // First each loop End
+         } // Ajax Success end
+        }); // Ajax end
+
+     });
+
+     /*List sort*/
+     $(document).on('change','.recipient_filter',function(){
+      var active_element = $('.reminder-listcal-cont .account_tab_section .nav-pills .active').find('a').attr('href');
+      if(active_element == '#calendar'){
+          customfiltercal();
+      }else{
+        customfilterlist();
+      }
+     
+     });
+    $(document).on('click',' .my_cal-filter, .my_list-filter',function(){
+        var active_element = $('.reminder-listcal-cont .account_tab_section .nav-pills .active').find('a').attr('href');
+        if(active_element == '#calendar'){
+            customfiltercal();
+        }else{
+          customfilterlist();
+        }
+     
+     });
+      $('.first_list_sort').click(function(e){
+          e.stopPropagation();
+          $( ".filter_check_box" ).stop().slideToggle( "slow" );
+      });
+
+     function customfilterlist(){
+      var recipient_filter =''; 
+        $("input:checkbox[name=recipient_filter]").each(function(){
+            if($(this).is(":checked"))
+              if(recipient_filter == ''){
+                recipient_filter = $(this).val()+'|';
+              } else{
+                recipient_filter = recipient_filter + $(this).val()+'|';
+              }
+          });
+         $.ajax({
+         "async": true,
+         "crossDomain": true,        
+         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderfilter.json",
+         "method": "POST",
+         "data": { "recipient_filter": recipient_filter},
+         beforeSend:function() {
+            $('.loader_overlay').css('display','block');
+         },
+         success: function(response){
+            $('.first_list').html('');
+            $('.loader_overlay').css('display','none');
+            $('.first_list').append(response.data);
+            if(response.count > 0){
+              $('.load_more').html('+'+response.count+'MORE');
+              $('.load_more').attr('count',response.count);
+            } else{             
+              $('.load_more').html('');
+              $('.load_more').attr('count','0');
+            }
+        
+         }
+        });
+     }
+
+     function customfiltercal(){
+      var recipient_filter =''; 
+        $("input:checkbox[name=recipient_filter]").each(function(){
+            if($(this).is(":checked"))
+              if(recipient_filter == ''){
+                recipient_filter = $(this).val()+'|';
+              } else{
+                recipient_filter = recipient_filter + $(this).val()+'|';
+              }
+          });
+
+          jQ.ajax({
+         "async": true,
+         "crossDomain": true,        
+         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remaindercalendarmonth.json",
+         "method": "POST",
+         "data": { "customer_id": {{customer.id}}, 'month':$('.current_month').val(), "recipient_filter": recipient_filter},
+          beforeSend:function() {
+              $('.loader_overlay').css('display','block');
+           },
+          success: function(response){
+              $('.event-main-block').remove();
+              $('.calender-event').append(response);
+              $('.loader_overlay').css('display','none');
+          }
+        });
+
+        //  $.ajax({
+        //  "async": true,
+        //  "crossDomain": true,        
+        //  "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderfiltercal.json",
+        //  "method": "POST",
+        //  "data": {},
+        //  beforeSend:function() {
+        //     $('.loader_overlay').css('display','block');
+        //  },
+        //  success: function(response){
+        //     $('.first_list').html('');
+        //     $('.loader_overlay').css('display','none');
+        //     $('.first_list').append(response.data);
+        //     if(response.count > 0){
+        //       $('.load_more').html('+'+response.count+'MORE');
+        //       $('.load_more').attr('count',response.count);
+        //     } else{             
+        //       $('.load_more').html('');
+        //       $('.load_more').attr('count','0');
+        //     }
+        
+        //  }
+        // });
+     }
+
+
+
+    /*Add new Remainder Popup*/
+     $("#AddNewReminderModal-btn").click(function(){
+       $(".popup-all").fadeOut();
+       $("#AddNewReminderModal").fadeIn(100);
+     });
+    
+    $('.close_all_mymodal ').on('click', function () {
+      $('#reminder_form')[0].reset();
+      $('.error').html('');
+      $('.email-added li').remove();
+      $('.error').css('display','none');
+      $(".popup-all").fadeOut();
+    });
+    
+      $(".add-newemail").click(function(){
+          $('.new-email_id').append('<li><input type="text" name="email-ids" class="email-ids" placeholder="Add Email address"><button class="remove_email"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></li>');
+      });
+
+      $(document).on('click','.remove_email',function(){
+          $(this).closest('li').remove();
+      });
+
+      $(document).on('blur','.email-ids',function(){
+        var entered_email_val = $(this).val();
+        if(entered_email_val != ''){
+          var pattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+          email_validation = $.trim(entered_email_val).match(pattern) ? true : false;
+          if(email_validation){
+            $(this).closest('li').remove();
+            $('.email-added').append('<li data_val="'+entered_email_val+'"><div class="emailto-added"><span class="emailto-entry">'+entered_email_val+'</span><span class="list-tools pull-right"><button class="entered_mail-edit"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/edit-icon-table.png?7701866573972020811"></button><button class="entered_mail-delete"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></span></div></li>');
+          } else{
+              $('.error.email-ids').html('Enter the valid email format');
+              $('.error.email-ids').css('display','block');
+          }
+        }
+      });
+
+      $(document).on('blur','.contact_number',function(){
+        var entered_mobile_val = $(this).val();
+        var filter = /^\d*(?:\.\d{1,2})?$/;
+        if(entered_mobile_val != ''){
+          mobile_validation = $.trim(entered_mobile_val).match(filter) ? true : false;
+          if(!mobile_validation){
+            if(entered_mobile_val.length !=10){
+              $('.error.contact_number').html('Enter the valid mobile number');
+              $('.error.contact_numbers').css('display','block');
+            }
+          }
+        }
+        
+      });
+       $(document).on('keypress','.contact_number',function(e){
+          $('.error.contact_number').html('');
+          if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+              $('.error.contact_number').html('Number only');
+              $('.error.contact_numbers').css('display','block');
+                   return false;
+          }
+       });
+
+      $(document).on('click','.entered_mail-edit',function(){
+        var mail_to_edit = $(this).closest('li').attr('data_val');
+        $(this).closest('li').remove();
+        $('.new-email_id').prepend('<li><input type="text" name="email-ids" class="email-ids" value="'+mail_to_edit+'"><button class="remove_email"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close-small-icon-table.png?7701866573972020811"></button></li>');
+      });
+
+      $(document).on('click','.entered_mail-delete',function(){
+          $(this).closest('li').remove();
+      });
+
+      $(document).on('change','.reminder_type',function(){
+           if($(this).is(":checked")){
+              remainder_mob = $(this).val();
+              if(remainder_mob == 'text'){
+                $('.phone_numer-wr').css('display','block');
+              } 
+           } else{
+              remainder_mob = $(this).val();
+                if(remainder_mob == 'text'){
+                  $('.phone_numer-wr').css('display','none');
+                } 
+           }
+      });
+
+        $('.reminder-save-btn').click(function(e){
+          e.preventDefault();
+          var elements = [];
+          var event_type     = $('#event_type').val();
+          var recipient      = $('#recipient').val();
+          var reminder_name  = $('#reminder_name').val();
+          var event_date     = $('#event_date').val();
+          var id             = $('#record_id').val();
+          var time_interval  = '';
+          var contact_number = '0';
+          $("input:checkbox[name=time_interval]").each(function(){
+            if($(this).is(":checked"))
+              if(time_interval == ''){
+                time_interval = $(this).val()+'|';
+              } else{
+                time_interval = time_interval + $(this).val()+'|';
+              }
+          });
+          var reminder_time = '';
+          $("input:checkbox[name=reminder_time]").each(function(){
+            if($(this).is(":checked"))
+              if(reminder_time == ''){
+                reminder_time = $(this).val()+'|';
+              } else{
+                reminder_time = reminder_time + $(this).val()+'|';
+              }
+          });
+          var reminder_type = '';
+          $("input:checkbox[name=reminder_type]").each(function(){
+            if($(this).is(":checked")){
+              remainder_mob = $(this).val();
+              if(remainder_mob == 'text'){
+                contact_number = $('.contact_number').val();
+              }
+              if(reminder_type == ''){
+                reminder_type = $(this).val()+'|';
+              } else{
+                reminder_type = reminder_type + $(this).val()+'|';
+              }
+            }
+          });
+          var added_emails = '';
+          $(".email-added li").each(function(){
+            if($(this).attr('data_val') != '')
+              if(added_emails == ''){
+                added_emails = $(this).attr('data_val')+'|';
+              } else{
+                added_emails = added_emails + $(this).attr('data_val')+'|';
+              }
+          });
+          
+          elements.push({
+            event_type: event_type, 
+            recipient:  recipient,
+            reminder_name: reminder_name, 
+            time_interval:  time_interval,
+            event_date : event_date,
+            reminder_time: reminder_time, 
+            reminder_type:  reminder_type,
+            contact_number: contact_number,
+            added_emails:  added_emails,
+            customer_id: {{customer.id}}
+          });
+
+        /*validation */
+          var status = true;
+          $.each( elements, function( key, values ) {
+            $.each( values, function( key, value ) {
+              if(value == ''){
+                if(key == 'added_emails'){
+                  status = true;
+                  // var class_name ='.error.email-ids'
+                } else{
+                  var class_name = '.error.'+key;
+                $(class_name).css('display','block');
+                $(class_name).html('Field is empty');
+                status = false;
+                }
+              }
+            });
+          });
+
+          if(status) {
+            url = (id == 0)?"https://app.floracracy.com/index.php/webservice/api/mobile/remaindernew.json" : "https://app.floracracy.com/index.php/webservice/api/mobile/remainderupdate.json"
+             $.ajax({
+               "async": true,
+               "crossDomain": true,        
+               "url":url ,
+               "method": "POST",
+               "dataType": "json",
+               "data": { "elements": elements,id:id},
+                beforeSend:function() {
+                  $('.loader_overlay').css('display','block');
+               },
+               success: function(data){
+                $('.loader_overlay').css('display','none');
+                if(data == 1){
+                  $('#reminder_form')[0].reset();
+                  title = (id == 0) ? 'REMINDER ADDED' : 'REMINDER UPDATED';
+                  success_message  = (id == 0) ? 'Your reminder have been added.' : 'Your reminder have been updated.';
+                  $('#success_popup .modal-title').html(title);
+                  $('#success_popup .popup-content-p').html(success_message);
+                  $('#success_popup').css('display','block');
+                    $.ajax({
+                     "async": true,
+                     "crossDomain": true,        
+                     "url": "https://app.floracracy.com/index.php/webservice/api/mobile/remainderlist.json",
+                     "method": "POST",
+                     "data": { "customer_id": {{customer.id}}},
+                     success: function(response){
+                      $('.first_list tr').remove();
+                       $('.filter_check_box').html('');
+                      $('.first_list').append(response.data);
+                      $('.filter_check_box').append(response.recipient);
+                      recipient
+                      if(response.count > 0){
+                        $('.load_more').html('+'+response.count+'MORE');
+                        $('.load_more').attr('count',response.count);
+                      }
+                     }
+                   }); 
+                }
+               }
+             }); 
+          }
+
+      });
+
+        $('#event_type, #recipient, #reminder_name, #event_date').focus(function(){
+          var class_name = '.error.'+$(this).attr('id');
+          $(class_name).css('display','none');
+        });
+        $('.time_interval, .reminder_time, .reminder_type, .email-ids, .contact_number').focus(function(){
+          var class_name = '.error.'+$(this).attr('class');
+          $(class_name).css('display','none');
+        });
+
+    /*Prabhakaran End*/
+  });
+
+
+</script>
+<style type="text/css">
+  .emailto-list button {
+    background-color: #fff;
+    border: none;
+    outline: none;
+  }
+
+  span.error {
+    display: none;
+    color: #b22c2c;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 15px;
+    font-family: 'Montserrat-Regular';
+}
+#success_popup, #conformation_popup{
+  display: none;
+}
+.flora-pages .modal-body{
+  width: 100%;
+}
+.flora-pages input[type="text"]{
+  width: 90%;
+}
+.phone_numer-wr{
+  display: none;
+}
+.loader_overlay{
+  display: none;
+  position: fixed;
+  background: rgba(0,0,0, 0.3);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  width: 100%;
+}
+.customloader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #9c7b49;
+  width: 40px;
+  height: 40px;
+  z-index: 9999;
+  -webkit-animation: spin 2s linear infinite;  Safari 
+  animation: spin 2s linear infinite;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.custom_background{
+  background-color: #f3efe9;
+  color: #9c7b49;
+}
+.custom_background:hover{
+  color: #9c7b49;
+}
+.account_tab_section .customcalendar ul li{
+  margin-right: 0;
+}
+.calendar-display span:first-child {
+    display: none;
+}
+li.markmyclass span {
+    background: #e4d9b9;
+    color:#9c7b49;
+}
+li.now:hover {
+    color: #fff !important;
+}
+/* Safari */
+/*@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}*/
+  
+  #calendar .reminder-content-right
+  {
+    width: 290px;
+    max-height: 460px;
+    background-color: #fbfbfb;
+    float: right;
+    padding: 20px!important;
+    overflow-y: auto;
+    min-height: 50px;
+  }
+    #calendar .reminder-content-right h2
+  {
+    color: #3d3d3d;
+    font-family: "Montserrat-Medium";
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    margin:  0;
+    margin-bottom: 15px;
+    text-transform:  capitalize;
+    letter-spacing:  initial;
+  }
+  
+  .event-main-block{float: left;width:100%;margin-bottom: 15px;}
+  .event-block1
+  {
+        width: 30px;
+        height: auto;
+        color: #9c7b49;
+        font-family: "Montserrat-SemiBold";
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        float: left;
+        margin: 0;
+        margin-right: 10px;
+  }
+  .event-block2
+  {
+    width: 150px;
+    height: auto;
+    color: #3d3d3d;
+    font-size: 11px;
+    line-height: 18px;
+    font-family: "Montserrat Medium";
+    font-weight: 500;
+    font-family: "Montserrat-Light";
+    font-weight: 300;
+    margin: 0;
+    display: inline-block;
+    float: left;
+  }
+  .event-block2 span{width:100%;padding-bottom:5px;display: block;}
+  .event-block3
+  {
+        width: 40px;
+    display: inline-block;
+    float: left;
+    margin: 0;
+  }
+  .event-block2 span img{display:inline-block;margin-right:5px;}
+  .customcalendar,#calendar .reminder-content-right{margin-top:35px;}
+  .first_list_sort
+  {
+        width: auto;
+    display: inline-block;
+    float: right;
+    color: #7f7f7f;
+    font-family: "Montserrat-Regular";
+    font-size: 10px;
+    font-weight: 600;
+    position: relative;
+    cursor: pointer;
+   
+  }
+  .filter_check_box .no-padding{padding:0;}
+  .filter_check_box{
+        z-index: 9;
+    position: absolute;
+    width: 170px;
+    height: 318px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f3f3f3;
+    background-color: #ffffff;
+    right: 0;
+    overflow: auto; padding:15px;
+    display:none;
+  }
+  .checkbox-block{margin-bottom:15px;}
+  .filter_check_box h2{
+        color: #3d3d3d;
+    font-family: "Montserrat-SemiBold";
+    font-size: 10px;
+    font-weight: 600;
+    margin:0;
+    padding-bottom:10px;
+    text-transform: uppercase;
+  }
+  .filter_check_box .checkbox-with-text
+  {
+    margin-bottom:6px!important;
+  }
+  .calender-event .table-in-icon {
+    display: contents;
+  }
+  #AddNewReminderModal .close{
+    text-align: center;
+  }
+  li.new, li.old{
+  opacity:0;
+    cursor:default !important;
+  }
+   .event-main-block.over:before{
+     content: "";
+     position: absolute;
+     width: 100%;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     background-color: rgba(255,255,255,0);
+     z-index: 9;
+   }
+  .event-main-block.over {
+    opacity: 0.5;
+    position: relative;
+  }
+</style>

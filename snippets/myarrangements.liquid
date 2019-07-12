@@ -1,0 +1,159 @@
+
+<div class="myarrange-wrap">
+  <h2 class="text-left flora-page-title">All Arrangements  
+<!--     <span class="first_list_sort arrange-filter">Filter by <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dropdown-caret.png?5556302878285808851"></span>
+
+    <div class=" arrange-filter-drop" style="display: none;">
+      <ul>
+        <li>
+          <label class="flora-remeber-label">
+            <input type="radio" class="recipient_filter" name="recipient_filter" value="published">
+            <span class="rem_txt label-text ">Published</span>
+          </label>
+        </li>
+        <li>
+          <label class="flora-remeber-label">
+            <input type="radio" class="recipient_filter" name="recipient_filter" value="published">
+            <span class="rem_txt label-text ">Unpublished</span>
+          </label>
+        </li>
+      </ul>
+
+    </div> -->
+  </h2>
+  <!-- Arrangement Product Dispaly -->
+  <div class="myarrange-wrap-inner">
+
+  </div>
+  <!-- Arrangement Product Display -->
+</div>
+
+<!-- Popup - Unpublish success -->
+<div class="background-overlay-popup popup-all myarrangement-publish-confirm-popup" id="publish_sccuess_popup" role="dialog" style="top: 40px; display: none;">
+
+  <div class="modal-popup-custom flora-pages ">
+
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <button type="button" class="close" id="popup-close"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close.png?6208553209749985840"></button>
+          <h4 class="modal-title">ARRANGEMENT UNPUBLISHED</h4>
+        </div>
+        <div class="modal-body ">
+
+          <p>Your arrangement has been unpublished and no longer appears in the marketplace.</p>
+
+          <div class="arrange-publish-button col-md-12 col-sm-12 col-xs-12 no-padding  ">
+            <button type="button" class="btn approve-btn close_success">Okay</button>
+          </div>
+
+      </div>
+
+      <div class="modal-footer product-popin-login">
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+  {{customer.id}}
+  var products_collection = {
+    "async": true,
+    "crossDomain": true,
+    "url": "/admin/products.json?collection_id=41062662196 ",
+    "method": "GET",
+    "headers": {
+      "content-type": "application/json",
+      "cache-control": "no-cache",
+      "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+      "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+    }
+  }
+
+  $.ajax(products_collection).done(function (response) {
+    products = response;
+    $.each( products , function( key, values ) { //First each loop
+      $.each( values , function( key, value ) { //First each loop
+        $.ajax({
+          "async": true,
+          "crossDomain": true,        
+          "url": "/admin/products/"+value.id+"/metafields.json",
+          "method": "GET",
+          "headers": {"content-type": "application/json",
+                      "cache-control": "no-cache",
+                      "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+                      "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+                     },
+          success: function(response){
+            $.each( response.metafields , function( key, meta ) {
+              if(meta.value == {{customer.id}}){
+                 $('.myarrange-wrap-inner').append('<div class="arrangement-product-block '+((value.published_at == null )?'publish':'' )+'"><div class="arrg-prod-img"><img src="'+value.image.src+'"><div class="visualizer-image-thumb"><img class="orderdet-thumb-img" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/order-detail-thumbnail.png?7726133144573348220"><span>Visualizer</span></div><div class="arrange-product-hover"><a href="/products/'+value.handle+'" class="btn flora-primary-btn bg-white">View Details</a><a href="#" class="btn flora-primary-btn bg-white">CUSTOMIZE</a></div></div><div class="arrg-product-details"><button data_id="'+value.id+'" data_status="'+((value.published_at == null )?'publish':'unpublish' )+'" class="publish-arrangement-btn">'+((value.published_at != null )?'Unpublish':'Publish' )+'</button><label class="arrg-label">Style</label><div class="arrg-text-display">'+value.product_type+'</div><label class="arrg-label">Shape</label><div class="arrg-text-display">Classic, Large</div><label class="arrg-label">RADIATION</label><div class="arrg-text-display">Trendy with Boho Influence</div><label class="arrg-label">COLOR PALETTE</label><div class="arrg-text-display">Trendy Pinks, Corals & Burgundies</div><label class="arrg-label">Flowers</label><div class="arrg-text-display">Fuschia, Dahlia, Tulip, Grapes,  Lilac,Fern, Bow, Radishes</div></div><div class="product-detail-text"><div class="product-detail-heading"><p>'+value.title+'</p><span>SMALL $120</span><span>LARGE $150</span></div><div class="social-links"><a href=""><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Instagram_2x_2725fb75-c8f1-4d6b-9828-5e2e23f584f1.png?7726133144573348220"></a><a href=""><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Facebook_2x_1c4df882-c02a-4591-bcec-6a44e2463f0c.png?7726133144573348220"></a><a href=""><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Twitter_2x_772635d0-feb9-49e8-81aa-754629f50d8d.png?7726133144573348220"></a><a href=""><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Pinterest_2x_a6ae0243-813a-4ff9-8bc9-6cc5cd0bc469.png?7726133144573348220"></a></div></div></div>  <div class="background-overlay-popup popup-all" id="status_'+value.id+'" role="dialog" style="top: 40px; display: none;"><div class="modal-popup-custom flora-pages myarrangement-publish-popup "><div class="arrange-display-publish"><div class="arrangement-product-block"><div class="arrg-prod-img"><img src="'+value.image.src+'"><div class="visualizer-image-thumb"><img class="orderdet-thumb-img" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/order-detail-thumbnail.png?7726133144573348220"><span>Visualizer</span></div></div><div class="arrg-product-details"><label class="arrg-label">Style</label><div class="arrg-text-display">'+value.product_type+'</div><label class="arrg-label">Shape</label><div class="arrg-text-display">Classic, Large</div><label class="arrg-label">RADIATION</label><div class="arrg-text-display">Trendy with Boho Influence</div><label class="arrg-label">COLOR PALETTE</label><div class="arrg-text-display">Trendy Pinks, Corals & Burgundies</div><label class="arrg-label">Flowers</label><div class="arrg-text-display">Fuschia, Dahlia, Tulip, Grapes, Lilac,Fern, Bow, Radishes</div></div><div class="product-detail-text"><div class="product-detail-heading"><p>'+value.title+'</p><span>SMALL $120</span><span>LARGE $150</span></div></div></div></div></div></div>');
+            }
+                   });
+          }
+        }); 
+      });
+    });
+  }); 
+
+
+
+
+  $(document).ready(function(){
+    $('.arrange-filter').click(function(e){
+      e.stopPropagation();
+      $( " .arrange-filter-drop" ).stop().slideToggle( "slow" );
+    });
+
+    $(document).on('click','.publish-arrangement-btn',function(){
+      var id = $(this).attr('data_id');
+      var status = $(this).attr('data_status');
+      var class_name = '#status_'+id;
+      var append_class_name = class_name+' .myarrangement-publish-popup';
+      var button_html = ((status == 'publish')?'YES, PUBLISH':'YES, UNPUBLISH' );
+      $(append_class_name).append('<div class="modal-dialog"><div class="modal-content"><div class="modal-header"> <button type="button" class="close" id="popup-close"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/close.png?6208553209749985840"></button><h4 class="modal-title">ARE YOU SURE?</h4></div><div class="modal-body "><p>Are you sure you want to unpublish this arrangement? It will be removed from Floracracy’s marketplace.</p><div class="arrange-publish-button col-md-12 col-sm-12 col-xs-12 no-padding  "><button type="button" class="btn cancel-btn">NO, DON’T UNPUBLISH</button><button type="button" data_id="'+id+'" data_status="'+status+'" class="btn approve-btn confirm-btn">'+button_html+'</button></div></div><div class="modal-footer product-popin-login"></div></div></div>');
+      $(class_name).css('display', 'block');
+
+    });
+
+    $(document).on('click','#popup-close, .cancel-btn',function(){
+      $(".popup-all").fadeOut();
+    });
+    $(document).on('click',' .close_success',function(){
+      $(".popup-all").fadeOut();
+      window.location.href ="https://floracracy.myshopify.com/account#arrangements";
+    });
+
+
+    $(document).on('click','.confirm-btn',function(){
+      id = $(this).attr('data_id');
+      status = $(this).attr('data_status');
+      status_to = ((status == 'publish')?true:false );
+      var products_collection = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/admin/products/"+id+".json?",
+        "method": "PUT",
+        "data":"{\r\n  \"product\": {\r\n    \"id\": "+id+",\r\n    \"published\": "+status_to+"\r\n  }\r\n}",
+        "headers": {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+          "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+          "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+        }
+      }
+
+      $.ajax(products_collection).done(function (response) {
+        $('#publish_sccuess_popup').css('display','block');
+      });
+    });
+
+  });
+
+
+</script>
+

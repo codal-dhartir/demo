@@ -1,0 +1,37 @@
+ <div class="numberlistBg_section">
+   <div class="browse_sec brosecsec_one">
+      {% if section.settings.complete_panel-step1-heading != ""  %}
+          <h3>{{ section.settings.complete_panel-step1-heading}}</h3>
+      {% endif %}
+
+      {% if section.settings.complete_panel-step1-description != "" %}
+          <p>{{ section.settings.complete_panel-step1-description }}</p>
+      {% endif %}
+     </div>
+</div>
+{% schema %}
+  {
+    "name": "Personal Panel Step 1",
+    "settings": [
+      {
+        "id": "complete_panel-step1-heading",
+        "type": "textarea",
+        "label": "Personal step-1 heading",
+        "default": "Add heading here"
+      },
+	  {
+        "id": "complete_panel-step1-description",
+        "type": "textarea",
+        "label": "Personal step-1 description",
+        "default": "Add description here"
+      }
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

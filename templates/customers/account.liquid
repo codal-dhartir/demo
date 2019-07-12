@@ -1,0 +1,571 @@
+  <div class="user_info_dashboard">
+  <div class="container">
+      <div class="profile_text">
+          <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bitmap-flower.png?7393963935981757416.png">
+        <span>{{ customer.first_name | slice: 0 }}{{ customer.last_name | slice: 0 }}</span>
+      </div> 
+
+  <div class="wel_txt_tlt">
+     <h6>Hello,</h6>
+    <h3>{{ customer.first_name}} {{ customer.last_name}}
+     {% comment %} 
+      <span class="apprentiac">Apprentice</span>
+    <div class="app_con"><strong>APPRENTICE</strong> <b>550 points</b><br/>
+      <b>Click</b> here to learn more about Floracracy’s design house rewards program.</div>
+      {% endcomment %}
+    </h3>
+
+  </div>
+    </div>
+    </div>
+
+  <div class="page-width flora-login-page flora-account-page">
+  <!--   <div class="section-header text-center">
+      <h1>{{ 'customer.account.title' | t }}</h1>
+      <span> {{ 'layout.customer.log_out' | t | customer_logout_link }} </span>
+    </div> -->
+
+
+
+    <div id="customer_nav_tab_main" class="account_tab_section">
+      <ul class="nav nav-pills header-nav">
+      <li class="active"><a data-toggle="pill" href="#AccountInfo">Account Info</a></li>
+      <li><a data-toggle="pill" href="#Myorders">My Orders</a></li>
+<!--       <li><a data-toggle="pill" href="#Paymentmethod">Payment Methods</a></li> -->
+<!--       <li><a data-toggle="pill" href="#Reminders">Reminders & Notifications</a></li> -->
+<!--       <li><a data-toggle="pill" href="#savedprofile">Saved Profiles</a></li> -->
+      <li><a data-toggle="pill" href="#arrangements">My Arrangements</a></li>
+  <!--       <li>{{ 'layout.customer.log_out' | t | customer_logout_link }}</li> -->
+    </ul>
+
+      <div class="tab-content header-tab-content">
+        <div id="AccountInfo" class="tab-pane fade in active">
+          {% include 'account-info' %}
+        </div>
+        <div id="Myorders" class="tab-pane fade my-order-cont">
+          {% include 'my-orders' %}      
+        </div>
+<!--         <div id="Paymentmethod" class="tab-pane fade">
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+        </div> -->
+        <div id="Reminders" class="tab-pane fade">
+          {% include 'reminders-notifications' %}
+        </div>
+        <div id="savedprofile" class="tab-pane fade">
+          {% include 'saved-profiles' %}        
+        </div>
+        <div id="arrangements" class="tab-pane fade">
+          {% include 'myarrangements' %}
+        </div>
+    </div>
+
+    </div>
+
+  <!--  Old - existing code  -->
+    {% comment %}
+    <div class="section-header text-center">
+      <h1>{{ 'customer.account.title' | t }}</h1>
+      {{ 'layout.customer.log_out' | t | customer_logout_link }}
+    </div>
+    <div class="grid">
+      <div class="grid__item medium-up--two-thirds">
+        <h2>{{ 'customer.orders.title' | t }}</h2>
+
+        {% paginate customer.orders by 20 %}
+          {% if customer.orders.size != 0 %}
+
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <th>{{ 'customer.orders.payment_status' | t }}</th>
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th>{{ 'customer.orders.total' | t }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr>
+                    <td data-label="{{ 'customer.orders.order_number' | t }}">
+                      <a href="{{ order.customer_url }}" class="btn btn--secondary btn--small">{{ order.name }}</a>
+                    </td>
+                    <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                    <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                    <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          {% else %}
+
+            <p>{{ 'customer.orders.none' | t }}</p>
+
+          {% endif %}
+          {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+          {% endif %}
+        {% endpaginate %}
+      </div>
+      <div class="grid__item medium-up--one-third">
+        <h2>{{ 'customer.account.details' | t }}</h2>
+
+        {{ customer.default_address | format_address }}
+
+        <p><a href="/account/addresses" class="btn btn--small">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
+      </div>
+    </div>
+    {% endcomment %}
+    <!--  Old - existing code  -->
+
+
+  <!--  Custom code start -->  
+  <script>  
+    
+    $( window ).load(function() {
+      
+      $.ajax({ 
+       "crossDomain": true,
+        "url": "https://customize.floracracy.com/api/order/getOrder/?email={{customer.email}}",
+       "method": "GET",
+        success: function(data){
+           var customerName = '{{ customer.name }}';
+           var customerEmail = '{{ customer.email }}';
+        if(data.length == 0){
+          $(".myarrange-wrap-inner").append('<p class="no_arrangement">Oops!! You do not have any arrangement.</p>');
+      	}
+        else{
+          for(var i =0;i <= data.length-1;i++)
+          {
+            var item = data[i];
+        	var handle = item.handle;
+            var productUrl = "/products/'+handle+'";
+            var variantImage = item.variant_image;
+            var variantactualImage = item.actual_order_image;
+            var variantStyle = item.design_look_id['description'];
+            var variantStyletag = item.design_look_id['tag'];
+            var variantShape = item.template_id['size'];
+            var variantRadition = (item.radiation_id) ? item.radiation_id['name'] : null;
+            var colorPalette = (item.color_pallet) ? item.color_pallet['name'] : null;
+            var timeStamp = item.created_timestring;
+        	if(colorPalette != null){
+        		colorPalette = colorPalette.replace(/\-/g, ',');
+      		}
+           var displayFlower = new Array();
+            for(var j =0; j <= item.orderdetailv2.length-1;j++){
+            var flowerName = item.orderdetailv2[j].flower_name;
+              displayFlower.push(flowerName);
+              var uniqueNames = [];
+              $.each(displayFlower, function(i, el){
+              if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+               });
+        	}
+//              console.log('flower->',uniqueNames);
+            var VariantName = item.template_id['name'];
+            var VariantId = item.variant_id;
+            var VariantOrderid = item.order_id;
+            var Variantprice = item.price;
+           
+            
+            var content = '<div class="arrangement-product-block">';
+            content += '<div class="arrg-prod-img">';
+            content += '<img src="'+variantImage+'">';
+            if(variantactualImage){
+            content += ' <div class="visualizer-image-thumb">';
+            content += '<img class="orderdet-thumb-img" src="'+variantactualImage+'">';
+            content += '<span>Visualizer</span>';
+            content += '</div>';
+          }
+            content += '<div class="arrange-product-hover">';
+            content += ' <a href="/products/'+handle+'" class="btn flora-primary-btn bg-white">View Details</a>';
+            content += '<a href="https://customize.floracracy.com/?id='+VariantId+'&amp;name='+customerName+'&amp;email='+customerEmail+'&amp;dl='+variantStyletag+'&amp;delivery_date=null&amp;type=customize&amp;order_id='+VariantOrderid+'" class="btn flora-primary-btn bg-white">CUSTOMIZE</a>';
+            content += '</div>';
+            content += '</div>';
+            content += '<div class="arrg-product-details">';
+//             content += '<button class="publish-arrangement-btn">Unpublish</button>';
+            content += '<label class="arrg-label">Style</label>';
+            content += '<div class="arrg-text-display">'+variantStyle+'</div>';
+            content += ' <label class="arrg-label">Shape</label>';
+            content += '<div class="arrg-text-display">'+variantShape+'</div>';
+            content += '<label class="arrg-label">RADIATION</label>';
+            content += '<div class="arrg-text-display">'+variantRadition+'</div>';
+            content += '<label class="arrg-label">COLOR PALETTE</label>';
+            content += '<div class="arrg-text-display">'+colorPalette+'</div>'
+            content += '<label class="arrg-label">Flowers</label>';
+            content += '<div class="arrg-text-display">'+uniqueNames+'</div>';
+      		content += '<label class="arrg-label">Created Time</label>';
+            content += '<div class="arrg-text-display">'+timeStamp+'</div>';
+            content += '</div>';
+            content += '<div class="product-detail-text">';
+            content += '<div class="product-detail-heading">';
+            content +=  '<a href="/products/'+handle+'" class="title_link"><p>'+VariantName+'</p></a>';
+            content += '<span>'+variantShape+' '+Variantprice+'</span>';
+            content += '</div>';
+            content += '<div class="social-links">';
+//             content +=  '<a href="#" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Instagram_2x_2725fb75-c8f1-4d6b-9828-5e2e23f584f1.png?7726133144573348220"></a>';
+            content += '<a href="//www.facebook.com/sharer/sharer.php?u=https://floracracy.myshopify.com/products/'+handle+'" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Facebook_2x_1c4df882-c02a-4591-bcec-6a44e2463f0c.png?7726133144573348220"></a>';
+            content += '<a href="//twitter.com/intent/tweet?url=https://floracracy.myshopify.com/products/'+handle+'&text='+VariantName+'" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Twitter_2x_772635d0-feb9-49e8-81aa-754629f50d8d.png?7726133144573348220"></a>';
+            content += '<a href="//pinterest.com/pin/create/button/?url=https://floracracy.myshopify.com/products/'+handle+'&amp;media='+variantImage+'&amp;description='+VariantName+'" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Pinterest_2x_a6ae0243-813a-4ff9-8bc9-6cc5cd0bc469.png?7726133144573348220"></a>';
+            content += '</div>';
+            content += '</div>';
+            content += '</div>';
+      
+            $(".myarrange-wrap-inner").append(content);
+            
+          }
+   		 }                   
+       }});
+    });
+    
+      $(function() {
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "/admin/customers/{{customer.id}}.json",
+          "method": "GET",
+          "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache",
+            "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+            "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+          }
+        }
+
+        $.ajax(settings).done(function (response) {
+          //console.log(response);
+          var data = response;
+          var customer_info = data.customer;
+          //console.log(customer_info);
+          var str = '';
+          str = customer_info.note;
+          if(str != ''){
+            var note_arr = str.split("\n");
+            //console.log(note_arr);  
+            var Phoneno = '';
+            var Companyname = '';
+            var DOB = '';
+            for (var i = 0; i < note_arr.length; i++) {            	
+              var single_note_arr = note_arr[i].split(": ");  
+              if(single_note_arr[0] == 'Companyname'){
+                Companyname = single_note_arr[1];
+              }
+              if(single_note_arr[0] == 'Phoneno'){
+                Phoneno = single_note_arr[1];
+              }
+              if(single_note_arr[0] == 'DOB'){
+                DOB = single_note_arr[1];
+                var dob = new Date(DOB);
+                var day = dob.getDate();
+                var month_index = dob.getMonth();
+                var year = dob.getFullYear();
+                  month_index = month_index+1; 
+                console.log(month_index)
+                $("#day").val(day);
+                $("#month").val(month_index);
+                $("#year").val(year);
+
+              }
+              //console.log(single_note_arr[1]);
+            }
+            $('#CustomerCompanyname').val(Companyname);
+            $('#CustomerPhoneno').val(Phoneno);
+            $('#dob').val(DOB);
+
+            //alert(customer_info.note);
+          }  
+
+        });
+
+      //For phone number mask
+      document.getElementById('CustomerPhoneno').addEventListener('blur', function (e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+        e.target.value = x[1] + '-' + x[2] + '-' + x[3];
+      });
+
+
+      });
+
+  //     var url = "https://f92369e4fa9dcacc676eedaf44cb55f3:90788c188ca2144c8cfd8daa1b3aba77@floracracy.myshopify.com/admin/customers/{{customer.id}}.json";  
+  //     $.ajax({
+  //       async: true,
+  //       crossDomain: true,
+  //       type: "GET",
+  //       url: url,
+  //       dataType: 'json',
+  //       data: {
+  //         // This is filler data. Since even the $("#editNameForm").serialize() is not working
+  //         "customer": {
+  //           "id": "{{ customer.id }}"             
+  //         }
+  //       },
+  //       success: function(data){
+  //         var customer_info = data.customer;
+  //         //console.log(customer_info);
+  //         var str = '';
+  //         str = customer_info.note;
+  //         if(str != ''){
+  //           var note_arr = str.split("\n");
+  //           //console.log(note_arr);  
+  //           var Phoneno = '';
+  //           var Companyname = '';
+  //           var DOB = '';
+  //           for (var i = 0; i < note_arr.length; i++) {            	
+  //             var single_note_arr = note_arr[i].split(": ");  
+  //             if(single_note_arr[0] == 'Companyname'){
+  //               Companyname = single_note_arr[1];
+  //             }
+  //             if(single_note_arr[0] == 'Phoneno'){
+  //               Phoneno = single_note_arr[1];
+  //             }
+  //             if(single_note_arr[0] == 'DOB'){
+  //               DOB = single_note_arr[1];
+  //               var dob = new Date(DOB);
+  //               var day = dob.getDate();
+  //               var month_index = dob.getMonth();
+  //               var year = dob.getFullYear();
+
+  //               $("#day").val(day);
+  //               $("#month").val(month_index);
+  //               $("#year").val(year);
+
+  //             }
+  //             //console.log(single_note_arr[1]);
+  //           }
+  //           $('#CustomerCompanyname').val(Companyname);
+  //           $('#CustomerPhoneno').val(Phoneno);
+  //           $('#dob').val(DOB);
+
+  //           alert(customer_info.note);
+  //         }          
+  //       },
+  //       error: function(res){
+  //         console.log(res); 
+  //       }
+  //     });
+
+  //     });
+
+      function CustomerProfileUpdate(){
+
+        var customerUrl = "https://f92369e4fa9dcacc676eedaf44cb55f3:90788c188ca2144c8cfd8daa1b3aba77@floracracy.myshopify.com/admin/customers/{{customer.id}}.json";
+        var Companyname = $('#CustomerCompanyname').val();
+        var Phoneno = $('#CustomerPhoneno').val();
+
+        var FirstName = $('#FirstName').val();
+        var LastName = $('#LastName').val();
+        var CustomerEmail = $('#CustomerEmail').val();  
+
+        var dob_date = $('#dob').val(); 
+        var dob = new Date(dob_date);
+        var currentfull = new Date();
+        var day = dob.getDate();
+        var day = dob.getDate();
+        var month_index = dob.getMonth();
+        var year = dob.getFullYear();
+        if(day < 10){
+          var day = ("0" + day).slice(-2);
+        }
+        if(month_index < 10){
+          var month_index = ("0" + month_index).slice(-2);
+        }
+         
+        dob = month_index + "/" + day + "/" + year;
+
+        if(currentfull.getDate() < 10){
+          var day = ("0" + currentfull.getDate()).slice(-2);
+        }
+        if(currentfull.getMonth() < 10){
+          var month_index = ("0" + currentfull.getMonth()).slice(-2);
+        }
+        var Current= month_index + "/" + day + "/" +currentfull.getFullYear();
+        //alert(month_index+'-'+day+'-'+year);
+        //alert(dob);
+        var date_regex = /^(0[0-9]|1[0-2])\/(0[0-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ; //This is working for me for MM/dd/yyyy.
+        if(!(date_regex.test(dob)) && dob_date != '')
+        {
+          alert('date format is wrong');
+          document.getElementById("dob").focus();
+          return false;
+        } 
+
+
+      var date1 = Date.parse(dob);
+      var date2 = Date.parse(Current);
+       if (date1 > date2) {
+           alert('date format is wrong');
+          document.getElementById("dob").focus();
+          return false;
+        }
+  
+       
+        /*
+        if(dob != '' && (!dob.match(/^(0[1-9]|[12][0-9]|3[01])[\- \/.](?:(0[1-9]|1[012])[\- \/.](19|20)[0-9]{2})$/) ))
+        {
+          alert('date format is wrong');
+          document.getElementById("dob").focus();
+          exit;
+        }
+        */
+
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "/admin/customers/{{ customer.id }}.json",
+          "method": "PUT",
+          "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache",
+            "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+            "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="
+          },
+          "processData": false,
+          "data": "{\r\n\"customer\": {\r\n    \"id\": {{ customer.id }},\r\n  \"email\": \" "+CustomerEmail+"\",\r\n   \"note\": \"Companyname: "+ Companyname +" \\nPhoneno: "+ Phoneno +"\\nDOB: "+ dob_date +"\",\r\n \"first_name\": \" "+FirstName+"\",\r\n \"last_name\": \" "+LastName+"\" \r\n }\r\n}"
+          }
+
+      $.ajax(settings).done(function (response) {
+        //console.log(response);
+        alert('Updated successfully');
+        location.reload();
+      });
+
+      /*
+
+        var Customer_data = JSON.stringify({
+          "customer": {
+            "id": {{ customer.id }},
+            "first_name": FirstName,          
+            "last_name": LastName,
+            "email": CustomerEmail,          
+            "note": "Companyname: "+ Companyname +" \\nPhoneno: "+ Phoneno +" \\nDOB: "+dob_date
+          }
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function () {
+          if (this.readyState === 4) {
+            console.log(this.responseText);
+            alert('saved')
+            location.reload();
+          }
+        });
+
+        xhr.open("PUT", customerUrl);
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.setRequestHeader("cache-control", "no-cache");
+        xhr.send(Customer_data);  
+
+  */
+      //return false;
+      }
+
+
+      function checkValidPassword(){
+        var passwd = $("#newpasword").val();        
+
+        var re = /(?=.*\d).{6,}/;      
+        var out = re.test(passwd);       
+
+        if(!out){      
+          alert('Must have 6 characters with a number');
+          document.getElementById("newpasword").focus();
+          return false;
+        }else{
+          //$('.password_warn_msg').hide();
+          return true;
+        }          
+      }
+
+      function trimInputValue(input_id){    
+        var inputValue = document.getElementById(input_id).value;
+        //console.log(inputValue);
+        document.getElementById(input_id).value = inputValue.trim();    
+      }
+      function ChangeCustomerPassword(){
+        var newpasword = $("#newpasword").val();
+        var confirm_newpasword = $("#confirm_newpasword").val();	      
+        if(newpasword != confirm_newpasword) {
+          alert('Password is mismatch');
+          document.getElementById("newpasword").focus();        
+        }
+
+        if(newpasword == confirm_newpasword) {
+          //var isallow = checkValidPassword();
+          var re = /(?=.*\d).{6,}/;      
+          var out = re.test(confirm_newpasword);       
+
+          if(!out){      
+            alert('Must have 6 characters with a number');
+            document.getElementById("newpasword").focus();          
+          }else{
+              //alert('Lets changes the password');
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "/admin/customers/{{customer.id}}.json",
+              "method": "PUT",
+              "headers": {
+              "content-type": "application/json",
+              "cache-control": "no-cache",
+              "X-Shopify-Storefront-Access-Token": "02fa737f27f20271a1d9f3f42e29f941",
+              "Authorization" : "Basic ZjkyMzY5ZTRmYTlkY2FjYzY3NmVlZGFmNDRjYjU1ZjM6OTA3ODhjMTg4Y2EyMTQ0YzhjZmQ4ZGFhMWIzYWJhNzc="    
+            },
+                "processData": false,
+                  "data": "{\r\n\"customer\": {\r\n    \"id\": {{customer.id}},\r\n    \"email\": \" {{customer.email}}\",\r\n    \"password\": \""+ newpasword +"\",\r\n    \"password_confirmation\": \""+ confirm_newpasword +"\",\r\n    \"send_email_welcome\": false\r\n}\r\n}"
+          }
+
+          $.ajax(settings).done(function (response) {
+            //console.log(response);
+            alert('Password changed successfully');
+            location.reload();
+          });
+
+
+
+          }
+        }
+
+      }
+
+      //For My Orders tab
+      $('.view_order_btn').on('click', function() {    
+        var orderId = $(this).data('order-id');
+        $('.my-orders-list').hide();
+        $('#ViewOrder_'+orderId).show();
+      });
+
+      $('.back_to_all_orders').on('click', function() {
+        $('.single_order_details').hide();    
+        $('.my-orders-list').show();
+      });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        //console.log($('.nav-pills').length);
+        if ($('.header-nav').length > 0) { // if .nav-tabs exists      
+          var hashtag = window.location.hash;
+//           console.log(hashtag);
+          //hashtag && $('ul.nav a[href="' + hashtag + '"]').tab('show');
+
+                  if (hashtag!='') {
+                      $('.header-nav > li').removeClass('active');
+                      $('.header-nav > li > a[href="'+hashtag+'"]').parent('li').addClass('active');
+                      $('.header-tab-content > div').removeClass('active in');
+                      $(hashtag).addClass('active in');
+                      var scrollmem = $('body').scrollTop();
+                      $('html,body').scrollTop(scrollmem);
+                  }
+        }
+
+  });
+
+    </script>
+  </div>

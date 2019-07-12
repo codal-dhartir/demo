@@ -1,0 +1,110 @@
+<div class="container">
+<div class="static-pro-row">	
+  <h2 class="title_creative"> {{ section.settings.title | escape }} </h2>
+
+  {% if section.blocks.size > 0 %}
+  {% for block in section.blocks %}
+  <div class="v-center creativity {% if forloop.index == 2 %}person_msg{% endif %}">
+    <div class="col-md-5 col-sm-6 col-xs-12 {% if forloop.index == 2 %}  community-text {% else %} power-style  {% endif %} index_block {% if forloop.index == 2 %} right_side {% else %} right_side {% endif %} pr-75">
+      <h2>{{ block.settings.title }}</h2>
+      {% if block.settings.quote != blank %}
+      {{ block.settings.quote }}
+      {% endif %}
+      <h4>{{ block.settings.title1 }}</h4>
+    </div>
+
+    {% if block.settings.image != blank %}
+    <div class="col-md-7 col-sm-6 col-xs-12 index_view style_view {% if forloop.index == 2 %} right_side {% else %} right_side {% endif %}">
+      <span>
+        <img src="{{ block.settings.image | img_url: 'master' }}">
+      </span>
+    </div>
+    {% endif %}
+  </div>
+
+  {% if block.type == 'section2' %}
+  <div class="v-center creativity anatomy_block">
+    <div class="col-md-5 col-sm-6 col-xs-12 power-style index_block left_side pr-75">
+      <h2>{{ block.settings.title2 }}</h2>
+      {{ block.settings.quote2 }}
+    </div>
+
+    <div class="col-md-7 col-sm-6 col-xs-12 index_view style_view right_side ">
+      <span>
+        <img src="{{ block.settings.image2 | img_url: 'master' }}">
+      </span>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Anatomy Personalization",
+    "settings": [
+      {
+         "type": "text",
+        "id": "title",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "section1",
+        "name": "Section1",
+        "settings": [
+ 		 {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+           {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "quote",
+            "label": "Text"
+          },
+         {
+            "type": "text",
+            "id": "title1",
+            "label": "Extra Text"
+          }
+        ]
+      },
+	{
+        "type": "section2",
+        "name": "Section2",
+        "settings": [
+ 		 {
+            "type": "image_picker",
+            "id": "image2",
+            "label": "Image"
+          },
+           {
+            "type": "text",
+            "id": "title2",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "quote2",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

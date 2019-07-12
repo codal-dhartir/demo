@@ -1,0 +1,39 @@
+<div class="image_videoback" {%if section.settings.img != blank %} style="background-image: url('{{ section.settings.img | img_url: "master" }}'); {% endif %}">
+  {%if section.settings.video != blank %}
+    <video width="800" poster="https://floracracy.com/wp-content/uploads/2018/11/Worlds-Biggest-Floral-Experience-Site-Edit.png" controls >
+      <source src="{{ section.settings.video }}" type="video/mp4">
+    </video>
+  {% endif %}
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Video with Image",
+    "settings": [
+	  {
+        "type": "image_picker",
+        "id": "img",
+        "label": "Background Image"
+      },
+	 {
+        "type": "text",
+        "id": "video",
+        "label": "Video Link"
+      }
+	],
+    "presets": [
+      {
+        "name": "Video with Image",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

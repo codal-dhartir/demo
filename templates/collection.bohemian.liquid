@@ -1,0 +1,119 @@
+<div class="old_world product-pages ">
+    <div class="gallery_image_section prdct-slider" style="background-image: url('//cdn.shopify.com/s/files/1/0011/5104/1588/collections/Bohemian_BG_1250x1024.jpg?v=1532091892');">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="sub_gallery_img">
+          <div class="traditional_style">
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bohimaian_icon_white.png?12904337978464080522" width="45">
+            <h1> <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Path_3.png?6031">
+              Bohemian
+              <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Path_3_1.png?6031">
+            </h1>
+            <h4><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Modern_2x_122d7392-82f9-46f3-b255-a68f464e7f85.png?7212626809996955647"><br>
+              <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bohemian_Line_Flourish.svg?5492183152008772804"></h4>
+            <a href='#' class="coll_btn">Create My Bohemian Design</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="shopify-section-compass_fixed_svg" class="shopify-section">
+        <div class="bottom_logo_banner_fixed"> {% section 'compass_oldworld_svg' %} </div>
+      </div>
+
+    </div>
+  <div class="col-info-row"> 
+    <div class="container">
+      <div class="col_info"> 
+        <div class="coll_products bohem-wrap-row">
+          {% paginate collection.products by 3 %}
+          <div id="AjaxinatePagination" class="col-flex-title">
+            <h4>Existing Bohemian Arrangements</h4>
+            {% if paginate.next %}
+            <a href="{{ paginate.next.url }}">View More</a>
+            {% endif %}
+          </div>
+          <div id="AjaxinateLoop" class="bohem-wrap">
+            {% for product in collection.products limit: 3 %}
+            <div class="bohem-item">
+              <a href="{{ product.url | within: collection }}">
+                <div class="product-image-cont-innerr">
+                  <img id="{{ img_id }}"
+                       class="product-img-display"
+                       src="{{ product.featured_image | img_url: '118x118' }}"
+                       data-src="{{ img_url }}"
+                       data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                       data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+                       data-sizes="auto"
+                       alt="{{ product.featured_image.alt | escape }}">
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+
+          {% if paginate.pages > 1 %}
+
+          {% comment %}
+          {% include 'pagination' %}
+          {% endcomment %}
+
+          {% endif %}
+
+          {% endpaginate %}
+
+        </div>
+
+        <div class="popular_flowers bohem-wrap-row">
+          <h4>TOP FLOWERS IN THIS STYLE</h4>
+          <div class="bohem-wrap">
+            <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pieris-japonica-3346481-640.png?15196262994584834595"><span>Pieris Japonica</span></a></div>
+            <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/cone-flower-2876541-640.png?15196262994584834595"><span>Echinacea</span></a></div>
+            <div class="bohem-item"><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/yarrow-350381-640.png?15196262994584834595"><span>Yarrow</span></a></div>
+          </div>
+
+        </div>
+
+        <div class="Color_palettes bohem-wrap-row">
+          <h4>Color palettes</h4>
+          <div class="bohem-wrap">
+            <div class="bohem-item">
+              <ul>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #9f81a7 0%, #9f81a7 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #bf95ba 0%, #bf95ba 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #80284b 0%, #80284b 100%);"></a></li>
+              </ul>
+            </div>
+            <div class="bohem-item">
+              <ul>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f8d4cc 0%, #f8d4cc 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ff936f 0%, #ff936f 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #da005e 0%, #da005e 100%);"></a></li>
+              </ul>
+            </div>
+            <div class="bohem-item">
+
+              <ul>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #8224a7 0%, #8224a7 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #de0067 0%, #de0067 100%);"></a></li>
+                <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #fce8e3 0%, #f7ccc2 100%);"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container">
+    {% include 'static-pro-data' %}
+  </div>
+
+
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var endlessClick = new Ajaxinate({
+      method: 'click'
+    });
+  });
+
+</script>

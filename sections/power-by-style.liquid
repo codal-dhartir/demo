@@ -1,0 +1,59 @@
+<div class="power-by-style">
+  <div class="page-width container">
+    <div class="col-md-5 col-sm-6 col-xs-12 power-style index_block left_side pr-75">
+      <h2>{{ section.settings.title }}</h2>
+      {{ section.settings.subtitle }}
+      <a class="nav_btn" href="{{ section.settings.btn_url }}"> {{ section.settings.btn_title }} <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Solid_arrow.png?2144" alt=""> </a>
+  	</div>
+    <div class="col-md-7 col-sm-6 col-xs-12 index_view style_view right_side ">
+      <img src="{{ section.settings.image | img_url:'master' }}" />
+    </div>
+    
+
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Power by Style",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+	  {
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Subheading"
+      },
+	  {
+        "type": "text",
+        "id": "btn_title",
+        "label": "Button Heading"
+      },
+	  {
+        "type": "url",
+        "id": "btn_url",
+        "label": "Button Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Power by Style",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

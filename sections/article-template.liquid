@@ -1,0 +1,154 @@
+
+
+<div class="section-header page-width">
+  <h1 class="article__title blogpost-single">{{ article.title }}</h1>
+  {% if section.settings.blog_show_author %}
+  <div class="commenter-pic" >
+  	<span style="font-size: 20px;"> {{ article.author |  slice: 0 | upcase}}{{ article.author |  slice: 1 | upcase }} </span>
+  </div>
+    <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+  {% endif %}
+	{% if section.settings.show_share_buttons %}
+  {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+{% endif %}
+  {% if section.settings.blog_show_date %}
+  <p class="top_stories_article_custom_time">{{ article.published_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+    <span class="article__date">
+     
+      {{ article.published_at | time_tag: format: 'month_day_year' }}
+    </span>
+  
+  <script type="text/javascript">
+    document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script> 
+    $(document).ready(function() {
+      var date1, date2;
+      var custom_class =$('.article__date'); 
+      var custom_get_value = $('.top_stories_article_custom_time time')
+      var publish_unprocessed = custom_get_value.html();
+
+      publish = new Date(publish_unprocessed );
+      current_full = new Date();
+      $.format = DateFormat.format;
+      var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+      current = new Date(current_unprocessed);
+
+      var res = Math.abs(current - publish) / 1000;
+      var days = Math.floor(res / 86400);                         
+      var hours = Math.floor(res / 3600) % 24;
+
+
+      if(days > 1){
+        custom_class.html(days+' days ago.');
+      } else {
+        custom_class.html(hours+' hours ago.');
+      }
+
+    });
+  </script>
+  {% endif %}
+</div>
+<style>
+  .rte img{
+  /*display:none*/
+  }
+</style>
+
+<div class="blog-image-container-full">
+   <img class="blog-img-fulwidth" src="{% if article.image %}{{ article | img_url: '1500x' }}{% endif %}">
+   <div class="view-gallery-btn">
+     <div class="view-gallery-btn-inner">
+       <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/image-gallery-icon.png?8103599727496711546">
+       <div class="viewgal-inner-text">
+         <span>VIEW GALLERY</span>
+         <span class="gallery-count">12 Photo’s</span>
+       </div>
+     </div>
+   </div>
+   <div class="blog-post-share-bottom">
+     {% assign share_permalink = article.url %}
+     <a style="margin-right:10px;" target="_blank" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ article.url | img_url }}&amp;description={{ article.title | url_param_escape }}" class="" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}">
+     <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/insta-icon.png?8103599727496711546"></a>
+     <a target="_blank" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}&amp;media={{ article.url | img_url }}&amp;description={{ article.title | url_param_escape }}" class="" title="{{ 'general.social.alt_text.share_on_pinterest' | t }}"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pinit-icon.png?8103599727496711546"></a>
+   </div>
+</div>
+<div class="page-width">
+  <div class="blogpost-content">
+    {{ article.content }}
+  </div>
+</div>
+
+<div class="powr-comments" id="1ef30dfd_1535538450"></div>
+
+
+<div class="background-overlay-popup popup-all" id="galleryImageModal"  role="dialog">
+  <div class="modal-popup-custom flora-pages">
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        
+        <div class="modal-body product-popin-login">
+          <div class="col-md-12 col-sm-12 col-xs-12 gallery_header-close">
+            <button type="button" class="close close_all_mymodal"><span>×</span></button>
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12 no-padding image_append_area">
+            
+          </div>
+           
+
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Posts",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+ $(document).ready(function(){
+   var list = document.getElementsByClassName("blogpost-content")[0];
+   	var img_src = list.getElementsByTagName("img")
+    var imgSrcs = [];
+
+    for (var i = 0; i < img_src.length; i++) {
+      $('.image_append_area').append('<div class="col-md-6 col-sm-6 col-xs-6 gallery-left"><img src="'+img_src[i].src+'" alt="Subscribe Image"></div>');
+//         imgSrcs.push(img_src[i].src);
+    }
+   
+    $(".view-gallery-btn").click(function(){
+        $(".popup-all").fadeOut();
+        $("#galleryImageModal").fadeIn(100);
+      });
+  
+ });
+</script>

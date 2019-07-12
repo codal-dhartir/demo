@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row create_unique_section">
+    <div class="col-xs-12 col-md-6 col-xs-offset-4 browse_sec browsesec_three">
+       {% if section.settings.complete_panel-step3-heading != ""  %}
+          <h3>{{ section.settings.complete_panel-step3-heading}}</h3>
+      {% endif %}
+      
+       {% if section.settings.complete_panel-step3-description != "" %}
+          <p>{{ section.settings.complete_panel-step3-description }}</p>
+      {% endif %}
+	</div>
+  </div>
+</div> 
+
+{% schema %}
+  {
+    "name": "Personal Panel Step 3",
+    "settings": [
+      {
+        "id": "complete_panel-step3-heading",
+        "type": "textarea",
+        "label": "Personal step-3 heading",
+        "default": "Add heading here"
+      },
+	  {
+        "id": "complete_panel-step3-description",
+        "type": "textarea",
+        "label": "Personal step-3 description",
+        "default": "Add description here"
+      }
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

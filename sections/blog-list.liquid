@@ -1,0 +1,803 @@
+  {% assign featuredBlogs = 'film-tv,art,news,fashion,history,weddings' | split:',' %}
+  {% assign blog_all = false %}
+  {% assign top_stories = 1 %}
+  {% assign top_stories_count = 1 %}
+  {% assign top_stories_count_date = 1 %}
+  {% assign all_stories = 1 %}
+  {% assign all_stories_count = 1 %}
+
+  {% for featuredBlog in featuredBlogs %}
+    {% if blogs[featuredBlog].articles %}
+    
+    {% assign test_val = blogs[featuredBlog].title %}
+    
+      {% if blog_all %}
+        {% assign blog_all = blog_all | concat:blogs[featuredBlog].articles %}
+        
+      {% else %}
+        {% assign blog_all = blogs[featuredBlog].articles %}
+      
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+
+  {% if blog_all %}
+    {% assign blog = blog_all | sort:"published_at" | reverse %}
+
+  <div class="{% if section.settings.layout == 'list' %}blog--list-view{% endif %}">
+
+    {% if section.settings.layout == 'grid' %}
+    <div class="stories top_stories-collection-wr grid-list-block" style="width: 100%;float: left;">
+      <div class="page-width container">
+         <div class="blog-display-element-wrap"> 
+
+
+
+        <div class="grid grid--uniform grid--blog">
+          {% for article in blog  %}                      
+            {% for tag in article.tags %}
+          	 {% if top_stories <= 3 %}  
+              {% if tag == 'Top Stories' %}
+                  <div class="blog-display-heading">
+                    <p>Top Stories</p>
+                  </div>
+              {% endif %}
+          	{% endif %}
+          	{% endfor %}
+          {% assign top_stories = top_stories | plus: 1 %} 
+         {% endfor %}
+          
+   <div class="blog-display-element-wrap">  
+            {% for article in blog  %}
+            {% if top_stories_count <= 3 %}
+            
+            {% for tag in article.tags %}
+            {% if tag == 'Top Stories' %}
+        
+            <div class="grid__item medium-up--one-third blog-elements col-md-4 col-sm-4 col-xs-4">
+              {% if article.image %}
+                {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+                <div class="blog-element-img" id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+                  <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" class="article__grid-image-container">
+                    <img id="{{ img_id }}"
+                         class="article__grid-image lazyload"
+                         src="{{ article.image | img_url: '300x300' }}"
+                         data-src="{{ img_url }}"
+                         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                         data-aspectratio="{{ article.image.aspect_ratio }}"
+                         data-sizes="auto"
+                         alt="{{ article.image.alt | escape }}">
+                  </a>
+                </div>
+
+                <noscript>
+                  <a href="{{ article.url }}" class="article__grid-image-wrapper">
+                    {{ article | img_url: '345x', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                  </a>
+                </noscript>
+              {% else %}
+              	<div class="article__grid-image-wrapper js blog-element-img collection-grid-item__overlay" style="background-image: url('//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x1024.gif')">
+                  <a href="{{ article.url }}" class="article__grid-image-container">
+                   
+                  </a>
+                </div>
+              {% endif %}
+
+              <div class="article__grid-meta{% if article.image %} article__grid-meta--has-image{% endif %} blog-short-desc">
+     
+                <h3 class="article__title h3 top_stories_article">
+                   <p class="top_stories_article_custom_time {{top_stories_count_date}}">{{ article.published_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+                  <a class="extra-char_removal" href="{{ article.url }}">{{ article.title | strip_html | truncate: 25}}</a>
+                  <span class="top_stories_article_blog-time-stamp {{top_stories_count_date}}">9 hours ago</span>
+                  
+                  	  <script type="text/javascript">
+  						document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+					  </script>
+                      <script> 
+                         $(document).ready(function() {
+         				var date1, date2; 
+                        var count= {{top_stories_count_date}}
+                        var custom_class =$('.top_stories_article_blog-time-stamp.'+count); 
+						var custom_get_value = $('.top_stories_article_custom_time.'+count+' time')
+                        var publish_unprocessed = custom_get_value.html();
+                        
+         				publish = new Date(publish_unprocessed );
+                        current_full = new Date();
+                        $.format = DateFormat.format;
+                        var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+                         current = new Date(current_unprocessed);
+                        
+                         var res = Math.abs(current - publish) / 1000;
+                         var days = Math.floor(res / 86400);                         
+                         var hours = Math.floor(res / 3600) % 24;
+                       
+                        
+                        if(days > 1){
+                          custom_class.html(days+' days ago.');
+                        } else {
+                          custom_class.html(hours+' hours ago.');
+                        }
+                       
+                         });
+                      </script>
+                </h3>
+
+                {% if section.settings.blog_show_author %}
+                  <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+                {% endif %}
+
+                {% if section.settings.blog_show_date %}
+                  <span class="article__date">
+                    {{ article.published_at | time_tag: format: 'month_day_year' }}
+                  </span>
+                {% endif %}
+
+                <div class="rte article__grid-excerpt">
+                  {% if article.excerpt.size > 0 %}
+                    <p> {{ article.excerpt | strip_html | truncate: 100}} </p>
+                  {% else %}
+                    <p> {{ article.content | strip_html | truncate: 100 }} </p>
+                  {% endif %}
+                </div>
+				
+                 {% if section.settings.tag_enable %}
+                {% if article.tags.size > 0 %}
+                  <div class="article__tags rte">
+                    {% for tag in article.tags %}
+                      <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article__grid-tag">{{ tag }}</a>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% endif %}
+				
+                {% if section.settings.read_more_enable %}
+                <ul class="list--inline">
+                  <li>
+                    <a href="{{ article.url }}" class="btn btn--secondary btn--small">
+                      {{ 'blogs.article.read_more' | t }}
+                    </a>
+                  </li>
+
+                  {% if blog.comments_enabled? and article.comments_count > 0 %}
+                    <li>
+                      <a href="{{ article.url }}#comments" class="btn btn--small btn--link">
+                        {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+                {% endif %}
+              </div>
+              {% assign top_stories_count_date = top_stories_count_date | plus: 1 %}
+            </div>
+               {% assign top_stories_count = top_stories_count | plus: 1 %} 
+             {% endif %}
+            {% endfor %}
+            {% endif %}
+     
+          {% endfor %}
+        </div>
+
+
+
+        </div>
+
+
+
+
+        </div>
+      </div>
+      </div>
+    {% else %}
+    <div class="stories top_stories-collection-wr" style="width: 100%;float: left;">
+       <div class="blog-display-element-wrap">
+      {% for article in blog limit:3 %}
+            {% for tag in article.tags %}
+            {% if tag == 'Top Stories' %}
+              {% if top_stories == 1 %}
+                 <div class="blog-display-heading">
+                  <p>Top Stories</p>
+                </div>
+                 {% assign top_stories = top_stories | plus: 1 %}
+              {% endif %}
+        <div class="border-top">
+          <div class="page-width container">
+            <div class="grid">
+             
+              <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth blog-elements col-md-4 col-sm-4 col-xs-4">
+                <div class="article--listing">
+                  <h3 class="article__title h3"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+                  {% if section.settings.blog_show_author %}
+                    <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+                  {% endif %}
+
+                  {% if section.settings.blog_show_date %}
+                    <span class="article__date">
+                      {{ article.published_at | time_tag: format: 'month_day_year' }}
+                    </span>
+                  {% endif %}
+
+                  {% if article.image %}
+                    {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                    {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                    {% include 'image-style' with image: article.image, small_style: false, width: 905, height: 600, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+                    <div id="{{ img_wrapper_id }}" class="article__list-image-wrapper js blog-element-img">
+                      <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" class="article__list-image-container">
+                        <img id="{{ img_id }}"
+                             class="article__list-image lazyload"
+                             src="{{ article.image | img_url: '300x300' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 905, 1090, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ article.image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ article.image.alt | escape }}">
+                      </a>
+                    </div>
+
+                    <noscript>
+                      <p>
+                        <a href="{{ article.url }}">
+                          {{ article | img_url: '455x300', scale: 2 | img_tag: article.title }}
+                        </a>
+                      </p>
+                    </noscript>
+                  {% endif %}
+
+                  <div class="rte">
+                    {% if article.excerpt.size > 0 %}
+                    <p> {{ article.excerpt }} </p>
+                    {% else %}
+                    <p> {{ article.content | strip_html | truncate: 150 }} </p>
+                    {% endif %}
+                  </div>
+
+                  {% if article.tags.size > 0 %}
+                    <div class="article__tags article__tags--list rte">
+                      {{ 'blogs.article.posted_in' | t }}
+                      {% for tag in article.tags %}
+                        <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+
+                  <ul class="list--inline article__meta-buttons">
+                    {% if article.excerpt.size > 0 %}
+                      <li>
+                        <a href="{{ article.url }}" class="btn btn--secondary btn--small">
+                          {{ 'blogs.article.read_more' | t }}
+                        </a>
+                      </li>
+                    {% endif %}
+
+                    {% if blog.comments_enabled? and article.comments_count == 0 %}
+                      <li>
+                        <a href="{{ article.url }}#comment_form" class="btn btn--secondary btn--small">
+                          {{ 'blogs.comments.title' | t }}
+                        </a>
+                      </li>
+                    {% endif %}
+
+                    {% if blog.comments_enabled? and article.comments_count > 0 %}
+                      <li>
+                        <a href="{{ article.url }}#comments" class="btn btn--secondary btn--small">
+                          {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+           
+            </div>
+          </div>
+        </div>
+            {% endif %}
+          {% endfor %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+
+
+  <div class="{% if section.settings.layout == 'list' %}blog--list-view{% endif %}">
+
+    {% if section.settings.layout == 'grid' %}
+    <div class="stories all_stories-collection-wr grid-list-block" style="width: 100%;float: left;">
+      <div class="page-width container">       
+
+           {% for article in blog %}
+           
+              {% if all_stories == 1 %}
+          		<div class="blog-display-heading">
+                 	<p>All Stories</p>
+          		</div>
+                
+                 {% assign all_stories = all_stories | plus: 1 %}
+              {% endif %}
+           {% endfor %}
+         {% assign blog_count = section.settings.blog_count | plus: 0 %}
+            <div class="blog-display-element-wrap">    
+           {% for article in blog %}
+           
+            <div class="grid__item medium-up--one-third blog-elements col-md-4 col-sm-4 col-xs-4 moreBox " {% if all_stories_count > blog_count  %}style="display: none;"{% endif %}>
+             
+              {% if article.image %}
+                {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+                <div id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js blog-element-img">
+                  <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" class="article__grid-image-container">
+                    <img id="{{ img_id }}"
+                         class="article__grid-image lazyload"
+                         src="{{ article.image | img_url: '300x300' }}"
+                         data-src="{{ img_url }}"
+                         data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                         data-aspectratio="{{ article.image.aspect_ratio }}"
+                         data-sizes="auto"
+                         alt="{{ article.image.alt | escape }}">
+                  </a>
+                </div>
+
+                <noscript>
+                  <a href="{{ article.url }}" class="article__grid-image-wrapper">
+                    {{ article | img_url: '345x', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                  </a>
+                </noscript>
+              
+              {% else %}
+              	<div class="article__grid-image-wrapper js blog-element-img collection-grid-item__overlay" style="background-image: url('//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x1024.gif')">
+                  <a href="{{ article.url }}" class="article__grid-image-container">
+                   
+                  </a>
+                </div>
+              {% endif %} 
+
+              <div class="article__grid-meta{% if article.image %} article__grid-meta--has-image{% endif %} blog-short-desc">
+                <h3 class="article__title h3">
+                  <p class="custom_time {{all_stories_count}}">{{ article.published_at | time_tag: '%b %d, %Y %H:%M:%S' }}</p>
+                  <a class="extra-char_removal" href="{{ article.url }}">{{ article.title | strip_html | truncate: 25}}</a>
+                  <span class="blog-time-stamp {{all_stories_count}}">9 hours ago</span>
+                  <script type="text/javascript">
+  						document.write(unescape("%3Cscript src='{{'dateFormat.js' | asset_url }}' type='text/javascript'%3E%3C/script%3E"));
+					  </script>
+                      <script> 
+                         $(document).ready(function() {
+         				var date1, date2; 
+                        var count= {{all_stories_count}}
+                        var custom_class =$('.blog-time-stamp.'+count); 
+						var custom_get_value = $('.custom_time.'+count+' time')
+                        var publish_unprocessed = custom_get_value.html();
+                        
+         				publish = new Date(publish_unprocessed );
+                        current_full = new Date();
+                        $.format = DateFormat.format;
+                        var current_unprocessed = $.format.date(current_full, "E, dd MMM yyyy HH:mm:ss ");
+                         current = new Date(current_unprocessed);
+                        
+                         var res = Math.abs(current - publish) / 1000;
+                         var days = Math.floor(res / 86400);                         
+                         var hours = Math.floor(res / 3600) % 24;
+                       
+                        
+                        if(days > 1){
+                          custom_class.html(days+' days ago.');
+                        } else {
+                          custom_class.html(hours+' hours ago.');
+                        }
+                       
+                         });
+                      </script>
+                </h3>
+
+                {% if section.settings.blog_show_author %}
+                  <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+                {% endif %}
+
+                {% if section.settings.blog_show_date %}
+                  <span class="article__date">
+                    {{ article.published_at | time_tag: format: 'month_day_year' }}
+                  </span>
+                {% endif %}
+
+                <div class="rte article__grid-excerpt">
+                  {% if article.excerpt.size > 0 %}
+                  <p>{{ article.excerpt | strip_html | truncate: 100 }}</p>
+                  {% else %}
+                  <p> {{ article.content | strip_html | truncate: 100 }} </p>
+                  {% endif %}                 
+                </div>
+				
+                {% if section.settings.tag_enable %}
+                {% if article.tags.size > 0 %}
+                  <div class="article__tags rte">
+                    {% for tag in article.tags %}
+                      <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="article__grid-tag">{{ tag }}</a>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% endif %}
+                
+				{% if section.settings.read_more_enable %}
+                <ul class="list--inline">
+                  <li>
+                    <a href="{{ article.url }}" class="btn btn--secondary btn--small">
+                      {{ 'blogs.article.read_more' | t }}
+                    </a>
+                  </li>
+
+                  {% if blog.comments_enabled? and article.comments_count > 0 %}
+                    <li>
+                      <a href="{{ article.url }}#comments" class="btn btn--small btn--link">
+                        {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+                      </a>
+                    </li>
+                  {% endif %}
+                </ul>
+                {% endif %}
+              </div>
+               {% assign all_stories_count = all_stories_count | plus: 1 %}
+            </div>
+        
+            
+          {% endfor %}
+        </div>
+			<div id="loadMore" style="">
+             <a href="#">Load More</a>
+          </div>
+        
+        
+      </div>
+      </div>
+    
+      </div>
+    {% else %}
+    <div class="stories all_stories-collection-wr" style="width: 100%;float: left;">
+       {% for article in blog %}
+        {% if all_stories == 1 %}
+           <h1>All Stories</h1>
+           {% assign all_stories = all_stories | plus: 1 %}
+        {% endif %}
+        <div class="border-top">
+          <div class="page-width container">
+            <div class="grid">
+              <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
+                <div class="article--listing">
+                  <h2 class="article__title h3"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                  {% if section.settings.blog_show_author %}
+                    <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+                  {% endif %}
+
+                  {% if section.settings.blog_show_date %}
+                    <span class="article__date">
+                      {{ article.published_at | time_tag: format: 'month_day_year' }}
+                    </span>
+                  {% endif %}
+
+                  {% if article.image %}
+                    {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+                    {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+                    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+                    {% include 'image-style' with image: article.image, small_style: false, width: 905, height: 600, wrapper_id: img_wrapper_id, img_id: img_id %}
+
+                    <div id="{{ img_wrapper_id }}" class="article__list-image-wrapper js">
+                      <a href="{{ article.url }}" style="padding-top:{{ 1 | divided_by: article.image.aspect_ratio | times: 100}}%;" class="article__list-image-container">
+                        <img id="{{ img_id }}"
+                             class="article__list-image lazyload"
+                             src="{{ article.image | img_url: '300x300' }}"
+                             data-src="{{ img_url }}"
+                             data-widths="[180, 360, 540, 720, 905, 1090, 1296, 1512, 1728, 2048]"
+                             data-aspectratio="{{ article.image.aspect_ratio }}"
+                             data-sizes="auto"
+                             alt="{{ article.image.alt | escape }}">
+                      </a>
+                    </div>
+
+                    <noscript>
+                      <p>
+                        <a href="{{ article.url }}">
+                          {{ article | img_url: '455x300', scale: 2 | img_tag: article.title }}
+                        </a>
+                      </p>
+                    </noscript>
+                  {% endif %}
+
+                  <div class="rte">
+                    {% if article.excerpt.size > 0 %}
+                      {{ article.excerpt }}
+                    {% else %}
+                      {{ article.content | strip_html | truncate: 150 }}
+                    {% endif %}
+                  </div>
+
+                  {% if section.settings.tag_enable %}
+                    {% if article.tags.size > 0 %}
+                      <div class="article__tags article__tags--list rte">
+                        {{ 'blogs.article.posted_in' | t }}
+                        {% for tag in article.tags %}
+                          <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                  
+				{% if section.settings.read_more_enable %}
+                  <ul class="list--inline article__meta-buttons">
+                    {% if article.excerpt.size > 0 %}
+                      <li>
+                        <a href="{{ article.url }}" class="btn btn--secondary btn--small">
+                          {{ 'blogs.article.read_more' | t }}
+                        </a>
+                      </li>
+                    {% endif %}
+                {% endif %}
+
+                    {% if blog.comments_enabled? and article.comments_count == 0 %}
+                      <li>
+                        <a href="{{ article.url }}#comment_form" class="btn btn--secondary btn--small">
+                          {{ 'blogs.comments.title' | t }}
+                        </a>
+                      </li>
+                    {% endif %}
+
+                    {% if blog.comments_enabled? and article.comments_count > 0 %}
+                      <li>
+                        <a href="{{ article.url }}#comments" class="btn btn--secondary btn--small">
+                          {{ 'blogs.comments.comments_with_count' | t: count: article.comments_count }}
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>         
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+
+
+  {% endif %}
+
+<!-- Modal Popup-->
+<!-- Modal -->
+<div class="top_stories-model_parent">
+<div class="background-overlay-popup popup-all" id="signupUpdatesModal"  role="dialog">
+  <div class="modal-popup-custom flora-pages">
+    <div class="modal-dialog ">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        
+        <div class="modal-body product-popin-login">
+         
+          <form id="PopupForm_Signup_updates">
+             <button type="button" class="close close_all_mymodal"><span>×</span></button>
+            <div class="col-md-6 col-sm-6 col-xs-6 no-padding signup-blog-left">
+              <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bitmap_4.png?1564958451121937519" alt="Subscribe Image">
+            </div>
+           <div class="col-md-6 col-sm-6 col-xs-6 no-padding signup-blog-right">
+             <div class="modal-header">
+
+         
+          <h4 class="modal-title">DO SOMETHING BIG</h4>
+            <p class="label-sub-text">Be the first to know about big things happening with flowers and people (celebrities, culture, art, and more)</p>
+          
+        </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+               <div class="col-md-12 no-padding">
+                <label class="flora-label" for="user_name">NAME</label>
+                <input required="" name="user_name"  id="user_name" type="text" placeholder="Enter your name">
+                <div class="form_error_message" id="update_zipcode_err_msg" style="display:none;"></div>
+              </div>
+              
+              <div class="col-md-12 no-padding">
+                <label class="flora-label" for="user_email">EMAIL ADDRESS</label>
+                <input required="" name="user_email" id="user_email" value="" type="text" placeholder="Enter your email address">
+                <div class="form_error_message" id="update_email_err_msg" style="display:none;"></div>
+              </div>
+             
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 no-padding  ">
+
+              <p>
+                <button type="button" id="submit_getupdate" class="btn flora-primary-btn submit-btn">Join this Experience</button>
+              </p>
+              <a href="javascript:void(0);" class="no_thanks-close"> NO, THANK YOU!</a>
+
+            </div>
+            </div>
+
+          </form>
+
+
+        </div>
+
+        <div class="modal-footer product-popin-login">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+<button type="button" class="btn address-new-toggle flora-primary-btn pull-right" id="signupUpdatesModal-btn">Blog Sign Up</button>
+
+  {% schema %}
+    {
+      "name": "Blog pages",
+      "settings": [
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "default": "grid",
+          "options": [
+            {
+              "value": "grid",
+              "label": "Grid"
+            }
+
+          ]
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "label": "Show author",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "label": "Show date",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "tag_enable",
+          "label": "Show Tags",
+          "default": true
+        },
+ 		{
+          "type": "checkbox",
+          "id": "read_more_enable",
+          "label": "Show Read More",
+          "default": true
+        },
+        {
+        "id": "blog_count",
+        "type": "text",
+        "label": "All Stories Per Page",
+        "default": "3"
+        }
+		
+      ]
+    }
+  {% endschema %}
+<script>
+$( document ).ready(function () {
+  var count ={{section.settings.blog_count}}
+		$(".moreBox").slice(0, count).show();
+		if ($(".moreBox:hidden").length != 0) {
+			$("#loadMore").show();
+        } else {
+          $("#loadMore").hide('slow');
+        }	
+		$("#loadMore").on('click', function (e) {
+			e.preventDefault();
+			$(".moreBox:hidden").slice(0, count).slideDown();
+			if ($(".moreBox:hidden").length == 0) {
+				$("#loadMore").fadeOut('slow');
+            
+			}
+		});
+      $("#signupUpdatesModal-btn").click(function(){
+        $(".popup-all").fadeOut();
+        $("#signupUpdatesModal").fadeIn(100);
+      });
+  	  
+       $(".no_thanks-close").click(function(){
+        $(".popup-all").fadeOut();
+//         $("#signupUpdatesModal").fadeIn(100);
+      });
+  
+	});
+  
+  function isEmail(email) {
+    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return regex.test(email);
+  }
+  
+  $('#submit_getupdate').on('click', function(){
+  	$(".form_error_message").hide();
+    var user_email = $('#user_email').val();
+    var user_name = $('#user_name').val();
+    if(user_email == ""){
+    	$("#update_email_err_msg").show();
+      	$("#update_email_err_msg").html('Please enter your email address');
+        return false;
+    }
+    
+    if(!isEmail(user_email)){
+      	$("#update_email_err_msg").show();
+      	$("#update_email_err_msg").html('Please enter valid email address');
+        return false;
+    }  
+    
+    
+    
+    if(user_name == ""){
+    	$("#update_zipcode_err_msg").show();
+      	$("#update_zipcode_err_msg").html('Please enter your zip code');
+        return false;
+    }   
+  	
+    $.ajax({
+         "async": true,
+         "crossDomain": true,        
+         "url": "https://app.floracracy.com/index.php/webservice/api/mobile/signmeblogupdates.json",
+         "method": "POST",
+         "dataType": "json",
+         "data": { "user_email": user_email, "user_name" : user_name },
+         success: function(data){
+           console.log(data);
+           if(data.result == "success"){
+             //alert('Thanks'); 
+             $('#PopupForm_Signup_updates').trigger("reset");
+             $(".popup-all").fadeOut(100);
+             $("#getupdateSignupconformation").fadeIn(100);
+           }
+           
+         }
+    });
+    
+  });
+</script>
+<style>
+  .blogBox {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+.blogBox .item {
+    background: #f4f4f4;
+    -webkit-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+    max-height: 425px;
+}
+#loadMore {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+#loadMore a {
+    background: #042a63;
+    border-radius: 3px;
+    color: white;
+    display: inline-block;
+    padding: 10px 30px;
+    transition: all 0.25s ease-out;
+    -webkit-font-smoothing: antialiased;
+}
+#loadMore a:hover {
+    background-color: #021737;
+}	
+</style>
+

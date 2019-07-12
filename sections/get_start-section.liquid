@@ -1,0 +1,38 @@
+<div class="col-md-6 collection_styles">
+   {% if section.settings.get_start-heading != "" %}
+          <h2>{{ section.settings.get_start-heading }}</h2>
+   {% endif %}
+  {% if section.settings.get_start-description != "" %}
+      {{ section.settings.get_start-description }}
+      <div class="beta_content"> 
+        <a href="#">Take our quiz &nbsp; <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/solid-arrow.png?15546413528467051881"></a> 
+      </div>
+   {% endif %}
+
+</div>
+{% schema %}
+  {
+    "name": "Get Start Section",
+    "settings": [
+      {
+        "id": "get_start-heading",
+        "type": "textarea",
+        "label": "Personal step-3 heading",
+        "default": "<h2><span>Get started and</span> choose a design style</h2>"
+      },
+	  {
+        "id": "get_start-description",
+        "type": "textarea",
+        "label": "Get Start description",
+		"default": "<p>Add description here</p>"
+      }
+
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

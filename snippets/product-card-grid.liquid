@@ -1,0 +1,68 @@
+<div class="product-link-cont">
+  
+  {% comment %}
+    {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+    {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+    {%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    {% unless product.featured_image == blank %}
+      {% include 'image-style' with image: product.featured_image, width: max_height, height: max_height, small_style: true, wrapper_id: wrapper_id, img_id: img_id %}
+    {% endunless %}
+  {% endcomment %}
+<a href="{{ product.url | within: collection }}">
+    <div id="{{ wrapper_id }}" class="product-image-cont-inner">
+      <!--       <div style="padding-top:{% unless product.featured_image == blank %}{{ 1 | divided_by: product.featured_image.aspect_ratio | times: 100}}%{% else %}100%{% endunless %};"> -->
+      <img id="{{ img_id }}"
+           class="product-img-display"
+           src="{{ product.featured_image | img_url: '300x300' }}"
+           data-src="{{ img_url }}"
+           data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+           data-aspectratio="{{ product.featured_image.aspect_ratio }}"
+           data-sizes="auto"
+           alt="{{ product.featured_image.alt | escape }}">
+
+      <div class="visualizer-image-thumb">
+        <img class="orderdet-thumb-img" src="{{ product.featured_image | img_url }}">
+        <span >Visualizer</span>
+      </div>
+      <div class="product-hover">
+<!--         <form action="/cart/add" method="post" id="product-form-{{ product.id }}" style="width:100%;text-align:center;">   
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <div>
+            <button type="submit" name="add" class="btn flora-primary-btn ">Add to cart</button>
+          </div>  
+        </form>        -->
+        <form id="add-item-{{ product.variants.first.id }}" method="post" action="/cart/add" style="width:100%;text-align:center;">
+<!--           <label for="quantity">Qty: </label>  -->
+          <input min="1" type="hidden" id="quantity" name="quantity" value="1" />
+          <input id="product-select"  type="hidden" name="id" value="{{ product.variants.first.id }}" />
+
+          <input type="submit" value="Add to cart" class="btn addtocart btn flora-primary-btn" id="{{ product.variants.first.id }}" />
+          <div id="cart-animation" style="display:none">1</div>
+        </form> 
+        
+        <a href="#" class="btn flora-primary-btn bg-white"> CUSTOMIZE THIS ARRANGEMENT </a>
+      </div>
+
+      <!--       </div> -->
+    </div>
+  </a>
+  <div class="product-detail-text">
+    <noscript>
+      {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+      <img class="grid-view-item__image" src="{{ product.featured_image.src | img_url: image_size, scale: 2 }}" alt="{{ product.featured_image.alt }}" style="max-width: {{ max_height | times: product.featured_image.aspect_ratio }}px;">
+    </noscript>
+    <div class="product-detail-heading">
+      <p><a href="{{ product.url | within: collection }}">{{ product.title }} </a></p>
+      <div class="grid-view-item__meta">
+        {% include 'product-price' %}
+      </div>
+
+    </div>
+    {% if section.settings.show_vendor %}
+    <div class="grid-view-item__vendor">{{ product.vendor }}</div>
+    {% endif %}
+    
+  </div>
+  
+  </div>

@@ -1,0 +1,54 @@
+<div class="power-by-ease mt-100">
+  <h2 class="heading">{{ section.settings.title }}</h2>
+  <div class="page-width container">
+    {% for block in section.blocks %}
+    <div class="col-md-3 col-sm-3 col-xs-12 ease-item">
+      <span class="ease_img"><img src="{{ block.settings.image | img_url:'medium' }}" /></span>
+      <p class="detail_text">{{ block.settings.subtitle }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Power by Ease",	
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {	
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+		  {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Description"
+          }
+       ]
+      }
+     ],
+    "presets": [
+      {
+        "name": "Power by Ease",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

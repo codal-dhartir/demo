@@ -1,0 +1,974 @@
+{% case section.settings.grid %}
+{% when '2' %}
+{%- assign max_height = 530 -%}
+{% when '3' %}
+{%- assign max_height = 345 -%}
+{% when '4' %}
+{%- assign max_height = 250 -%}
+{% when '5' %}
+{%- assign max_height = 195 -%}
+{% endcase %}
+
+{% if section.settings.layout == 'grid' %}
+{%- assign limit = section.settings.grid | times: section.settings.rows -%}
+{% else %}
+{%- assign limit = 16 -%}
+{% endif %}
+
+{% paginate collection.products by limit %}
+
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" class="collection-template">
+  <header class="collection-header">
+    {% if section.settings.show_collection_image and collection.image %}
+    <div class="collection-hero">
+      <div class="old_world product-pages">
+        <ul class="breadcrumb ">
+          <li class="breadcrumb__item breadcrumb__item--completed">
+            <a class="breadcrumb__link" data-trekkie-id="breadcrumb_cart_link" href="/">Home</a>        
+          </li>
+          <li class="breadcrumb__item breadcrumb__item--current">
+            <span class="breadcrumb__text" aria-current="step"> {{ collection.title }}</span>
+          </li>
+        </ul>
+        <div class="col-lg-1 col-md-1 no-padding side-remv-mob">
+          <div class="side_cnt">
+            {% if collection.handle == 'rustic' %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Rustic_Text_Mask_2x_ea1ee3cf-e703-4b78-b8d1-5a2adeae44e6.png?10265087302121557893" style="display:block">		
+            {% elsif collection.handle == 'whimsical' %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Whimsical_Text_Mask_2x_d4731088-16ce-42bf-8fde-9e20f89134d5.png?16621917102792002128" style="display:block">		
+            {% elsif collection.handle == 'bohemian' %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bohemian_Text_Mask_2x_fd4aa7e5-4833-442a-870a-50b2c095637b.png?18418626643815298155" style="display:block">		
+            {% elsif collection.handle == 'exotic' %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_Text_Mask_2x_389b737d-cd92-4a99-b97e-7ed70d78f20d.png?8269913133413701648" style="display:block">
+            {% elsif collection.handle == 'garden' %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Garden_Text_Mask_2x_fec99282-f91f-4171-9b17-cf9c2bdcb374.png?1119999389374086260" style="display:block">		
+            {% else %}
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-title-1x.png?954669405795366805" style="display:block">		
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 no-padding ">
+          <div class="gallery_block">
+            <div class="gallery_image_section" style="background-image: url('{{ collection.image | img_url: '1250x1024' }}');">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+
+                <div class="sub_gallery_img">
+                  <div class="traditional_style ">
+                    {% if collection.handle == 'rustic' %}
+                    <div class="rustic">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Rustic_White.svg?15279935865730901628" width="45">
+                      <h2>Rustic</h2>
+                      <h6>Natural style</h6>
+                      <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Rustic_Line.svg?5492183152008772804">
+
+                    </div>
+                    {% elsif collection.handle == 'whimsical' %}
+                    <div class="whimsical">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Whimsical_White.svg?14070028804716725977" width="45">
+                      <h2>Whimsical</h2>
+                      <h6>Playful style</h6><br>
+
+                      <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Whimsical_Line_Flourish.svg?5492183152008772804">
+                    </div>
+                    {% elsif collection.handle == 'bohemian' %}
+                    <div class="bohemian">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/bohimaian_icon_white.png?12904337978464080522" width="45"/>
+                      <h2>Bohemian</h2>
+                      <h6>Modern style</h6><br>
+                      <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Bohemian_Line_Flourish.svg?5492183152008772804">
+                    </div>
+                    {% elsif collection.handle == 'exotic' %}
+                    <div class="exotic">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Exotic_White.svg?2920158896774126125" width="45"/>
+                      <h2>Exotic</h2>
+                      <h6>Structured style</h6><br>
+                      <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Exotic_Line_and_Flourish.svg?5492183152008772804">
+                    </div>
+                    {% elsif collection.handle == 'garden' %}
+                    <div class="garden">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Icon_Garden_White_5a147338-404f-4106-ab10-fac5187e93a5.svg?8236386941483921239" width="45"/>
+                      <h2>garden</h2>
+                      <h4>
+                        romantic style<br>
+                        <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Garden_Line_Flourishes.svg?5492183152008772804"></h4>
+
+                    </div>
+                    {% else %}
+                    <div class="oldworld">
+                      <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-icon-product.png?6668833603522001695">
+                      <h2>Old World</h2>
+                      <h6>Traditional style</h6>
+                      <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Old_World_Line_Flourish.svg?5492183152008772804">
+
+                    </div>
+                    {% endif %}   
+
+                  </div>
+                </div>
+                <div class="gallery_sub_content">
+                  <p>{{ collection.description }}</p>
+                  <div class="beta_content">                   
+
+                    {% assign style_code = 'null' %}
+                    {% if collection.handle == 'rustic' %}
+                    {% assign style_code = 'RS' %}
+                    {% elsif collection.handle == 'whimsical' %}
+                    {% assign style_code = 'WH' %}
+                    {% elsif collection.handle == 'garden' %}
+                    {% assign style_code = 'GD' %}
+                    {% elsif collection.handle == 'bohemian' %}
+                    {% assign style_code = 'BH' %}
+                    {% elsif collection.handle == 'old-world' %}
+                    {% assign style_code = 'OW' %}
+                    {% elsif collection.handle == 'exotic' %}
+                    {% assign style_code = 'EX' %}
+                    {% endif %}
+                    {% assign delivery_date = 'null' %}
+
+                    {% if customer %}
+                    <a href="https://customize.floracracy.com/?id={{ customer.id }}&name={{ customer.first_name }}&email={{ customer.email }}&dl={{ style_code }}&delivery_date={{ delivery_date }}&type=create" class="arrange_beta">design your own style (in minutes)!</a>
+                    {% else %} 
+                    {% assign user_id = 'null' %}
+                    {% assign user_name = 'null' %}
+                    {% assign user_email = 'null' %}
+                    <a href="https://customize.floracracy.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl={{ style_code }}&delivery_date={{ delivery_date }}&type=create" class="arrange_beta">design your own style (in minutes)!</a>
+                    {% comment %}
+                    <a href="https://www.testwebsite7.com.s3-website.us-east-2.amazonaws.com/?id={{ user_id }}&name={{ user_name }}&email={{ user_email }}&dl={{ style_code }}&delivery_date={{ delivery_date }}" class="arrange_beta">design your own style (in minutes)!</a>
+                    {% endcomment %}
+                    {% endif %}
+
+                  </div>
+                </div>                
+
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="top-flower-cont col-md-10 col-sm-12 col-xs-12 ">
+                  <div class="popular_flowers">
+                    <h4>TOP FLOWERS IN THIS STYLE</h4>
+                    {% if collection.handle == 'whimsical' %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/cindy-bonfini-hotlosz-354736-unsplash.png?532098405765488240"><span>Sunflower</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/feverfew-8173-640.png?532098405765488240"><span>Feverfew</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/white-snapdragons-yellow-rose-1170704-640.png?532098405765488240"><span>Snap Dragon</span></a></li>
+                    </ul>    
+                    {% elsif collection.handle == 'rustic' %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/lavender-2426376-640.png?6915539326863170728"><span>Lavender</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/sea-holly-flower-14129-640.png?6915539326863170728"><span>Sea Holly</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/christian-roses-2197754-640.png?6915539326863170728"><span>Hellabore</span></a></li>
+                    </ul>
+                    {% elsif collection.handle == 'garden' %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flowers-3298888-640.png?14876893374270080587"><span>Rose</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/tulip-3372258-640.png?14876893374270080587"><span>Tulip</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/sweet-william-2693986-640.png?14876893374270080587"><span>Sweet William</span></a></li>
+                    </ul>
+                    {% elsif collection.handle == 'bohemian' %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/pieris-japonica-3346481-640.png?15196262994584834595"><span>Pieris Japonica</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/cone-flower-2876541-640.png?15196262994584834595"><span>Echinacea</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/yarrow-350381-640.png?15196262994584834595"><span>Yarrow</span></a></li>
+                    </ul>
+                    {% elsif collection.handle == 'exotic' %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/orchid-2869758-640.png?13948426289172064932"><span>Orchid</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/flower-1532040-640.png?13948426289172064932"><span>Bird of Paradise</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/dandelion-1142584-640.png?13948426289172064932"><span>Alstroemeria</span></a></li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_1.png?15606854177374528987"><span>Dahlia</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_2.png?15606854177374528987"><span>Peony</span></a></li>
+                      <li><a href="#"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/popular_flower_3.png?15606854177374528987"><span>Ranunculus</span></a></li>
+                    </ul>
+                    {% endif %}
+                  </div>
+                  <div class="Color_palettes">
+                    <h6>Color palettes</h6>
+                    {% if collection.handle == 'whimsical' %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #7491cb 0%, #7491cb 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>												
+                        <li>Classic yellows, blues & pinks</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>						
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>												
+                          <li></li>
+                          <li>Trendy yellows & pinks</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efcc26 0%, #efcc26 100%);"></a></li>						
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d66567 0%, #d66567 100%);"></a></li>												
+                          <li></li>
+                          <li>Trendy purples & pinks</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    {% elsif collection.handle == 'exotic' %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f5e94d 0%, #f5e94d 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #9f14a6 0%, #9f14a6 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d13382 0%, #d13382 100%);"></a></li>
+                        <li>Classic yellows, purples & pinks</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #6366b8 0%, #684790 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #674690 0%, #674690 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #faabcf 0%, #faabcf 100%);"></a></li>
+                          <li>Trendy blues, purples & pinks</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #a42767 0%, #a42767 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ca2b76 0%, #ca2b76 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f9a7cd 0%, #f9a7cd 100%);"></a></li>
+                          <li>Trendy pink or white monotones</li>
+                        </ul>
+                      </li>
+                    </ul>                    
+                    {% elsif collection.handle == 'rustic' %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #c01717 0%, #c01717 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #efca24 0%, #efca24 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #88a4d6 0%, #88a4d6 100%);"></a></li>						
+                        <li>Classic reds, yellows & blues</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #da6e70 0%, #da6e70 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #829ed2 0%, #829ed2 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #beafe6 0%, #beafe6 100%);"></a></li>						
+                          <li>Trendy pinks, blues & purples</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #870c3b 0%, #870c3b 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #d8696b 0%, #d8696b 100%);"></a></li>
+                          <li></li>
+                          <li>Trendy burgundies & pinks</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    {% elsif collection.handle == 'garden' %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="white-clr"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #e2b9cc 0%, #e2b9cc 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #b62323 0%, #b62323 100%);"></a></li>
+                        <li>Classic pinks, reds & whites</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="white-clr"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #c49cbe 0%, #c49cbe 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #852b4f 0%, #852b4f 100%);"></a></li>
+                          <li>Trendy pinks, burgundies & whites</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f9d7ce 0%, #f9d7ce 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ff9571 0%, #ff9571 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #fab0d3 0%, #fab0d3 100%);"></a></li>
+                          <li>Trendy pinks, oranges & peaches</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    {% elsif collection.handle == 'bohemian' %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #9f81a7 0%, #9f81a7 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #bf95ba 0%, #bf95ba 100%);"></a></li>
+                        <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #80284b 0%, #80284b 100%);"></a></li>
+                        <li style="width: 240px;">Classic lavendars, rose pinks & burgundies</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #f8d4cc 0%, #f8d4cc 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #ff936f 0%, #ff936f 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #da005e 0%, #da005e 100%);"></a></li>
+                          <li>Trendy peachs, oranges & pinks</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #8224a7 0%, #8224a7 100%);"></a></li>
+                          <li><a href="#" class="circleClr" style="background-image: linear-gradient(180deg, #de0067 0%, #de0067 100%);"></a></li>
+                          <li></li>
+                          <li>Trendy purples & pinks</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    {% else %}
+                    <ul>
+                      <li><ul>
+                        <li><a href="#" class="white-clr"></a></li>
+                        <li><a href="#" class="green-clr"></a></li>
+                        <li></li>
+                        <li>Classic white</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="pink-clr"></a></li>
+                          <li><a href="#" class="brown-clr"></a></li>
+                          <li><a href="#" class="drak-clr"></a></li>
+                          <li>Trendy pinks, corals &amp; burgundies</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <ul>
+                          <li><a href="#" class="drk_pink-clr"></a></li>
+                          <li><a href="#" class="red-clr"></a></li>
+                          <li><a href="#" class="drak-red-clr"></a></li>
+                          <li>Trendy pinks, oranges &amp; reds</li>
+                        </ul>
+                      </li>
+                    </ul>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              <div class="downArrow bounce">
+                <a href="javascript:void(0);" data-target="#arrangements">
+                  <img width="40" height="40" alt="" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMyIDMyIiBoZWlnaHQ9IjMycHgiIGlkPSLQodC70L7QuV8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0yNC4yODUsMTEuMjg0TDE2LDE5LjU3MWwtOC4yODUtOC4yODhjLTAuMzk1LTAuMzk1LTEuMDM0LTAuMzk1LTEuNDI5LDAgIGMtMC4zOTQsMC4zOTUtMC4zOTQsMS4wMzUsMCwxLjQzbDguOTk5LDkuMDAybDAsMGwwLDBjMC4zOTQsMC4zOTUsMS4wMzQsMC4zOTUsMS40MjgsMGw4Ljk5OS05LjAwMiAgYzAuMzk0LTAuMzk1LDAuMzk0LTEuMDM2LDAtMS40MzFDMjUuMzE5LDEwLjg4OSwyNC42NzksMTAuODg5LDI0LjI4NSwxMS4yODR6IiBmaWxsPSIjMTIxMzEzIiBpZD0iRXhwYW5kX01vcmUiLz48Zy8+PGcvPjxnLz48Zy8+PGcvPjxnLz48L3N2Zz4=" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+		
+      
+        {% if collection.products_count > 0%}
+        <!-- Product-page - Filter   -->       
+        <div class="filters-toolbar-wrapper" id="arrangements">
+          <div class="page-width">
+            <div class="filters-toolbar">
+
+<!--               <div class="filters-toolbar__item text-left filter-1 ">
+                <div class="text-left sortby-filter">
+                  <label class="flora-label" for="delivering_to">Sort</label>
+                  <select name="SortByAjax" id="SortByAjax" class="form-control flora-form-control select-normal-ctrl filters-toolbar__input filters-toolbar__input--sort ">
+                    <option value="" disabled>Sort</option>
+                    <option value="price-ascending" selected="selected">Price lowest-highest</option>
+                    <option value="price-descending">Price highest-lowest</option>
+
+                  </select>
+                </div>
+
+                <div class=" arrange-filter-block">
+                  <div class="arrange-filter">
+                    <button id="color-palet-subblockfilter" class="form-control flora-form-control filter-subblock-button">Colors</button>
+
+                  </div>
+                  <button class="btn flora-primary-btn filter-arrgn-btn" value="" id="filter-arrang-btn">Filter Arrangements</button>
+
+                </div>
+
+              </div> -->
+
+              <div class="filters-toolbar__item  text-right  deliveron-text">
+                <label class="flora-label" for="">Deliver on:<span id="deliver_on_info">No date or location selected</span></label>
+                <a href="#" class="add-date-location-link"  id="add_change_deliver_info">ADD DATE & OCCASION</a>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Filter Sub-Block -->
+          <div id="color-palet-filter-subblock" class="page-width filter-subblock">
+            <div class="filter-subblock-header">
+              <span>FILTERS</span>
+              <span class="filt-subblock-close">
+                <button id="filt-subblock-close" class="close">x</button>
+              </span>
+            </div>
+
+            <div class="filter-tabs-mobile-view">
+              <div class="filter-btn-container">
+                <button id="color-filter-mob" class="filter-btn-mobile ">Colors</button>                
+              </div>    
+            </div>
+
+            <ul class="filter-list color-palettes-list" id="color-palettes-list">
+              <li>
+                <input type="checkbox" name="color-palet-select" value="Classic White" id="CP1" class="CP-checkbox"  />
+                <label class="filter-items color-palet-items " for="CP1">
+                  <ul>
+                    <li><span class="white-clr"></span></li>
+                    <li><span class="green-clr"></span></li>
+                    <li class="palet-text">Classic White</li>
+                  </ul>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" name="color-palet-select" value="Trendy pinks, corals & burgundies" id="CP2" class="CP-checkbox"  />
+                <label class="filter-items color-palet-items " for="CP2">
+                  <ul>
+                    <li><span class="pink-clr"></span></li>
+                    <li><span class="brown-clr"></span></li>
+                    <li><span class="drak-clr"></span></li>
+                    <li class="palet-text">Trendy pinks, corals & burgundies</li>
+                  </ul>
+                </label>
+              </li>
+              <li>
+                <input type="checkbox" name="color-palet-select" value="Trendy pinks, oranges & reds" id="CP3" class="CP-checkbox"  />
+                <label class="filter-items color-palet-items " for="CP3">
+                  <ul>
+                    <li><span class="drk_pink-clr"></span></li>
+                    <li><span class="red-clr"></span></li>
+                    <li><span class="drak-red-clr"></span></li>
+                    <li class="palet-text">Trendy pinks, oranges & reds</li>
+                  </ul>
+                </label>
+              </li>
+            </ul>
+
+            <div class="filt-bottom-block">
+              <input type="hidden" id="style-filt-reset-count" class="style-filt-reset-count" value="0" readonly >
+              <ul>
+                <li><button id="filter-subblock-button-clear-mob" class="form-control flora-form-control filter-subblock-button-clear">Reset Filters(<input type="text" id="filt-reset-count" class="filt-reset-count" value="0" readonly >)</button></li>
+                <li><button id="filter-selected-arrangments" class="form-control flora-form-control filter-selected-arrangments">See <span id="arrangement-count" class="arrangement-count"></span>Arrangements</button></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <!-- Filter Sub-Block -->
+          <!-- Filter Sub-Block - Filter selected Display -->
+          <div id="filter-subblock-selected-block" class="page-width filter-subblock-selected-display">
+            <ul>
+              <li><span class="common-filter-selected-text" id="common-filter-selected-text"></span></li>
+              <li><span class="filter-selected-text" id="filter-selected-text"></span></li>
+              <li><button id="filter-selected-clear" class="form-control flora-form-control filter-subblock-button-clear">RESET FILTERS</button></li>
+            </ul>
+          </div>
+
+          <label class="flora-label fullwidth" for="delivering_to">SELECT AN ARRANGEMENT TO BUY OR CUSTOMIZE</label>
+
+        </div>
+        {% endif %}
+        
+      </div>
+    </div>
+
+    {% else %}
+    <div class="gallery_image_section">
+      <div class="page-width">
+        <div class="section-header text-center">
+          <h1>{{ collection.title }}</h1>
+          {% if collection.description != blank %}
+          <div class="rte">
+            {{ collection.description }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </header>
+
+
+  <div class="page-width product-display-flora" id="Collection">
+    <div class="loader"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/loader.gif" alt="loader"/> 
+     <p> Please wait for a moment, we are dispalying product based on avaibility. </p></div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 no-padding ">
+      {% if collection.products_count > 0%}<!-- col-md-12 -->
+      <div style="display:none;" id="flora_product_search_results"></div>
+
+      <div style="" id="flora_product_default_results">
+       
+      </div>
+      {% else %}
+      {%- assign is_empty_collection = true -%}
+      {% if is_empty_collection %}
+      <div class="grid__item small--text-center">
+        <p class="text-center no_product">{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+      {% endif %}
+      {% endif %}
+
+    </div>
+  </div>
+
+  {% endpaginate %}
+
+
+  {% schema %}
+  {
+  "name": "Collection pages",
+  "settings": [
+  {
+  "type": "select",
+  "id": "layout",
+  "label": "Layout",
+  "default": "grid",
+  "options": [
+  {
+  "value": "grid",
+  "label": "Grid"
+  },
+  {
+  "value": "list",
+  "label": "List"
+  }
+  ]
+  },
+  {
+  "type": "select",
+  "id": "grid",
+  "label": "Products per row (grid only)",
+  "default": "4",
+  "options": [
+  {
+  "value": "2",
+  "label": "2"
+  },
+  {
+  "value": "3",
+  "label": "3"
+  },
+  {
+  "value": "4",
+  "label": "4"
+  },
+  {
+  "value": "5",
+  "label": "5"
+  }
+  ]
+  },
+  {
+  "type": "select",
+  "id": "rows",
+  "label": "Rows per page (grid only)",
+  "default": "2",
+  "options": [
+  {
+  "value": "2",
+  "label": "2"
+  },
+  {
+  "value": "3",
+  "label": "3"
+  },
+  {
+  "value": "4",
+  "label": "4"
+  },
+  {
+  "value": "5",
+  "label": "5"
+  },
+  {
+  "value": "6",
+  "label": "6"
+  },
+  {
+  "value": "7",
+  "label": "7"
+  },
+  {
+  "value": "8",
+  "label": "8"
+  }
+  ]
+  },
+  {
+  "type": "checkbox",
+  "id": "show_collection_image",
+  "label": "Show collection image",
+  "default": true
+  },
+  {
+  "type": "checkbox",
+  "id": "show_vendor",
+  "label": "Show product vendors",
+  "default": false
+  },
+  {
+  "type": "checkbox",
+  "id": "sort_enable",
+  "label": "Enable sorting",
+  "default": true
+  },
+  {
+  "type": "checkbox",
+  "id": "tags_enable",
+  "label": "Enable tag filtering",
+  "default": true
+  }
+  ]
+  }
+  {% endschema %}
+
+  <script>
+    function addItem(form_id) {
+      $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        dataType: 'json',
+        data: $('#'+form_id).serialize(),
+        success: function(cart) {
+          $('#AddToCart-product-template').prop("disabled", false);
+          jQuery.getJSON('/cart.js', function(cart) {
+            jQuery.ajax({
+              type: 'GET',
+              url: '/cart.json',
+              dataType: 'jsonp',
+              success: function(data) { 
+                var item_count = data['item_count'];
+                var total_price = data['total_price']/100;
+
+                //If there are items in cart
+                if (item_count > 0) {
+                  // cart count
+                  $('#CartCount').text('('+item_count+')');
+                  $('.checkout-btn').text('CHECK OUT ('+item_count+')');
+
+                  // mini cart data
+                  $('.mini-cart-subtotal .price').text('Subtotal $' + total_price.toFixed(2));
+
+                  var cart_list = [];
+
+                  for( var i = 0; i < data['items'].length ; i++ ){
+                    if ( data['items'][i]['id'] != null ) {
+                      var item_id = data['items'][i]['id'];
+                      var product_title = data['items'][i]['product_title'];
+                      // var product_title = data['items'][i]['title'];
+                      var product_handle = data['items'][i]['handle'];
+                      var quantity = data['items'][i]['quantity'];
+                      var line_price = data['items'][i]['price']/100;
+                      var url = data['items'][i]['url'];
+                      if(data['items'][i]['image'] != null){
+                        var image_url = data['items'][i]['image'];
+                      }
+                      else{
+                        var image_url = 'https://cdn.shopify.com/s/assets/no-image-100-c91dd4bdb56513f2cbf4fc15436ca35e9d4ecd014546c8d421b1aece861dfecf_small.gif';
+                      }
+				
+                      var variants = data['items'][i]['variant_options'];
+
+                      if ( product_title == 'Gift Wrap' ) {
+                        var product_url = product_title;
+                      } else {
+                        var product_url = '<a href="' + url + '">' + product_title + '</a>';
+                      }
+
+                      var options = [];
+                      for ( var o = 0; o < variants.length; o++ ) {
+                        var selected = data['items'][i]['variant_options'][o];
+                        if ( selected !== 'Default Title' ) {
+                          options.push( selected + '<br>' );
+                        }
+                      }
+                      var selected_options = options.join('');
+
+                      cart_list.push('<li><img src="' + image_url + '"  alt="' + product_title + '" /><div class="tablesession-description"><h3>' + product_url + '</h3><span>' + selected_options + '</span><b>$'+ line_price.toFixed(2) +'</b><div class="multi_mypanel celpad"><span class="cart_quantity_update" data-id="'+item_id+'" >-</span><input class="product-qty-update product-cart-qty-'+item_id+'" data-id="'+item_id+'" value="' + quantity + '" pattern="[0-9]*" name="select_quantity" type="number"><span class="cart_quantity_update" data-id="'+item_id+'">+</span><a href="javascript:void(0);" data-id="'+item_id+'" id="update-qty" class="btn update-qty">Update</a></div></div><input type="hidden" id="updates_' + item_id + '" value="' + quantity + '" /></li>');
+                    } //endif
+                  } // endfor
+                  $('.multi_footercart').css('display','block');
+                  $("#cart-qantity .dropdown-toggle").trigger( "click" );
+                  $('.mini-cart-items ul').html( cart_list.join('') );
+                  $("html, body").animate({ scrollTop: 0 }, "slow");
+                  //display error
+                  $('.mycart-tablesession-header h2 img').css('display','inline-block');
+                  $('.mycart-tablesession-header h2 span').data('add', true);
+                  $('.mycart-tablesession-header h2 span').text('Added to bag');
+                  setTimeout(function() {
+                    $('.mycart-tablesession-header h2 span').text('My bag').data('add', false);
+                    $('.mycart-tablesession-header h2 img').css('display','none');
+                  }, 3000);
+                }
+              }
+            });//end inner ajax
+          });
+        },
+        error: function(err) {
+          $('.addtocart').prop("disabled", false);
+          alert(err.responseJSON.description);
+        }//Shopify.onError
+      });
+    }
+
+    $("body").on("click", ".addtocart", function(e){
+
+      var elem = $(this)
+      $(elem).prop("disabled", true)
+
+      e.preventDefault();
+      var itemcode = 'add-item-'+ jQuery(this).attr('id');
+      addItem(itemcode);
+
+    });
+
+    $("body").on("change", "#SortByAjax", function(e){
+      var sort_by_val = $(this).val();
+      var available_date = $('#available_date').val();  
+      var output = '';
+      var collection_title = '{{ collection.handle}}';
+
+      //console.log(AppProductsArr);
+      //console.log(ProductsSearchResultsArr);
+
+      if(available_date != '' && sort_by_val == 'popular'){
+        $.getJSON('/collections/popular/products.json', function(response) { 
+          var popularProdArray = [];
+          popularProdArray = response.products;
+          //console.log('HELLO');
+//           console.log(popularProdArray);
+
+          var validSearchPopularProducts = [];
+
+          for (var index = 0; index < popularProdArray.length; ++index) {
+
+            var prod = popularProdArray[index];
+
+            var all_prod_count = AppProductsArr.length;
+
+            for (var j = 0; j < all_prod_count; j++) {
+              //console.log(AppProductsArr[j])
+              if(AppProductsArr[j].id == prod.id){                      	 
+                validSearchPopularProducts.push(AppProductsArr[j]);
+                //break;
+              }                  
+            }
+          }
+          //console.log(validSearchPopularProducts);
+          showSearchOutput(validSearchPopularProducts);
+
+        });
+      }
+
+
+      if(available_date != '' && sort_by_val != '' && sort_by_val != 'popular'){
+        $.getJSON('/collections/'+collection_title+'/products.json', function(response) { 
+          var myArray = [];
+          myArray = response.products;			
+// console.log('myArray',myArray);
+          function compareTitleDesc(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const titleA = a.title.toUpperCase();
+            const titleB = b.title.toUpperCase();
+
+            let comparison = 0;
+            if (titleA > titleB) {
+              comparison = 1;
+            } else if (titleA < titleB) {
+              comparison = -1;
+            }
+            return comparison * -1;
+          }
+
+          function compareTitleAsc(a, b) {
+            // Use toUpperCase() to ignore character casing
+            const titleA = a.title.toUpperCase();
+            const titleB = b.title.toUpperCase();
+
+            let comparison = 0;
+            if (titleA > titleB) {
+              comparison = 1;
+            } else if (titleA < titleB) {
+              comparison = -1;
+            }
+            return comparison;
+          }          
+
+          if(available_date != '' && sort_by_val == 'title-descending'){
+            myArray.sort(compareTitleDesc);
+          }else if(available_date != '' && sort_by_val == 'title-ascending'){
+            myArray.sort(compareTitleAsc);
+          }else if(available_date != '' && sort_by_val == 'created-descending'){
+            myArray.sort(function (a, b) {
+              var key1 = new Date(a.created_at);
+              var key2 = new Date(b.created_at);
+
+              let comparison = 0;
+
+              if (key1 < key2) {
+                comparison = -1;
+              } else if (key1 == key2) {
+                comparison = 0;
+              } 
+              return comparison * -1;
+            });
+          }
+          else if(available_date != '' && sort_by_val == 'created-ascending'){
+            myArray.sort(function (a, b) {
+              var key1 = new Date(a.created_at);
+              var key2 = new Date(b.created_at);
+
+              if (key1 < key2) {
+                return -1;
+              } else if (key1 == key2) {
+                return 0;
+              } else {
+                return 1;
+              }
+            });
+          }else if(available_date != '' && sort_by_val == 'price-ascending'){
+            myArray.sort(function (a, b) {
+
+              var key1 = Math.round(a.variants[0].price);
+              var key2 = Math.round(b.variants[0].price);  
+
+              if (key1 < key2) {
+                return -1;
+              } else if (key1 == key2) {
+                return 0;
+              } else {
+                return 1;
+              }
+            });
+          }else if(available_date != '' && sort_by_val == 'price-descending'){
+            myArray.sort(function (a, b) {
+
+              var key1 = Math.round(a.variants[0].price);
+              var key2 = Math.round(b.variants[0].price);
+
+              console.log('key-->',key1+'--'+key2);
+              return key2 - key1;
+              /*	
+                  if (key1 < key2) {
+                      return -1;
+                  } else if (key1 == key2) {
+                      return 0;
+                  } else {
+                      return -1;
+                  }
+                  */
+            });
+          }
+
+          //console.log(myArray );
+          showSearchOutput(myArray);
+
+          //that.products = response;
+        }); 
+      } 
+
+      if(available_date != ''){        
+        var myArray = [];
+        myArray = ProductsSearchResultsArr;
+
+        if(sort_by_val == 'price-ascending'){
+          myArray.sort(function (a, b) {
+
+            var key1 = Math.round(a.variants[0].price);
+            var key2 = Math.round(b.variants[0].price);  
+
+            if (key1 < key2) {
+              return -1;
+            } else if (key1 == key2) {
+              return 0;
+            } else {
+              return 1;
+            }
+          });
+        }else if(sort_by_val == 'price-descending'){
+          myArray.sort(function (a, b) {
+
+            var key1 = Math.round(a.variants[0].price);
+            var key2 = Math.round(b.variants[0].price);
+
+            console.log(key1+'--'+key2);
+            return key2 - key1; 
+          });
+        }
+
+        //console.log(myArray );
+        showSearchOutput(myArray);
+
+      }  
+
+      function showSearchOutput(validSearchProducts){
+
+        for (var i = 0; i < validSearchProducts.length; i++) {
+          var addClass_load = " moreBox";
+          if(i == 0){ var addClass_load = ""; }
+          var hideClass_load = "";
+          if(i > pagination_limit){ var hideClass_load = "display:none"; }
+
+          var cur_product = validSearchProducts[i];
+//           console.log('des',cur_product);
+          output += '<div class="col-md-6 col-sm-6 col-xs-12 product-display-block-each blogBox '+addClass_load+'" style="'+hideClass_load+'"><div class="product-image-cont"><a href="/collections/'+coll_url+'/products/'+cur_product.handle+'"><div class="product-link-cont">';
+          //           console.log('fgf', cur_product.images[0].src);
+          var imgLenght = cur_product.images[0];
+          
+           if(imgLenght){
+            var variant_id_1 = cur_product.variants[0].id;
+            output += '<div id="" class="product-image-cont-inner"> <img src="'+imgLenght.src+'" class="image-responsive product-img-display"><div class="visualizer-image-thumb"> <img class="orderdet-thumb-img" src="'+imgLenght.src+'"><span>Visualizer</span></div> <div class="product-hover"><form id="add-item-'+variant_id_1+'" method="post" action="/cart/add" style="width:100%;text-align:center;"><input min="1" type="hidden" id="quantity" name="quantity" value="1" /><input id="product-select"  type="hidden" name="id" value="'+cur_product.variants[0].id+'" /><input type="submit" value="Add to cart" class="btn addtocart btn flora-primary-btn" id="'+variant_id_1+'" /><div id="cart-animation" style="display:none">1</div></form><a href="#" class="btn flora-primary-btn bg-white"> CUSTOMIZE THIS ARRANGEMENT </a></div>   </div>';
+          } 
+          else{
+          	var variant_id_1 = cur_product.variants[0].id;
+            output += '<div id="" class="product-image-cont-inner"> <img src="https://cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_300x300.gif" class="image-responsive product-img-display"><div class="visualizer-image-thumb"> <img class="orderdet-thumb-img" src="https://cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_300x300.gif"><span>Visualizer</span></div> <div class="product-hover"><form id="add-item-'+variant_id_1+'" method="post" action="/cart/add" style="width:100%;text-align:center;"><input min="1" type="hidden" id="quantity" name="quantity" value="1" /><input id="product-select"  type="hidden" name="id" value="'+cur_product.variants[0].id+'" /><input type="submit" value="Add to cart" class="btn addtocart btn flora-primary-btn" id="'+variant_id_1+'" /><div id="cart-animation" style="display:none">1</div></form><a href="#" class="btn flora-primary-btn bg-white"> CUSTOMIZE THIS ARRANGEMENT </a></div>   </div>';
+          }   
+
+          var coll_url = "{{ collection.handle }}";
+          output += '</a><div class="product-detail-text"><div class="product-detail-heading">';
+          output += '<p><a href="/collections/'+coll_url+'/products/'+cur_product.handle+'">'+cur_product.title+'</a></p>';
+          //output += '<div>'+cur_product.product_type+'</div>';
+          //console.log(ProductsList[i].product_id); 
+          //console.log(cur_product.variants);
+          var prod_variants = cur_product.variants;
+          var variantindex;
+          for(variantindex = 0; variantindex< prod_variants.length; variantindex++){
+            if(prod_variants[variantindex].title != 'Default Title'){
+                output += '<span>'+prod_variants[variantindex].title+' $'+ prod_variants[variantindex].price +'</span>';
+            }
+            else{
+                 output += '<span> $'+ prod_variants[variantindex].price +'</span>';
+            }
+          }
+          output += '</div></div>';
+
+          output += '<div class="product-detail-heading-desb">'+cur_product.body_html+'</div>';
+          //flora_product_search_results
+          output += '</div></div></div>';
+        }
+        // output += '</div></div>';
+        if(validSearchProducts.length >= pagination_limit){              
+          output += '<div id="loadMore" style=""><a href="#" class="btn flora-primary-btn">Load More</a></div>';
+        }
+
+        $("#flora_product_search_results").show()
+        $('#flora_product_default_results').html('');
+        $("#flora_product_search_results").html(output);        
+
+      }      
+
+    });    
+
+//     $(document).ready(function(){
+//       $('.downArrow  a').on('click', function (e) {
+//         e.preventDefault();
+//         var nav = $( '#shopify-section-header' ).height(); 
+//         var target = $(this).attr('data-target')
+//         $('html, body').stop().animate({
+//           'scrollTop': $(target).offset().top - nav
+//         }, 1000, 'swing', function () {
+//         });
+//       });
+//     });
+  </script>

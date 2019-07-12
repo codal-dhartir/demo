@@ -1,0 +1,27 @@
+
+  <div class="blog-menu-wrap">
+     {% if linklists[section.settings.footer_linklist].links.size > 0 %}
+          <ul class="site-footer__linklist1{% unless section.settings.footer_newsletter_enable %} site-footer__linklist--center{% endunless %} blog-menu-items">
+            {% for link in linklists[section.settings.footer_linklist].links %}
+              <li class="site-footer__linklist-item {% if link.active or page contains link.title %} active {% endif %}">
+                <a href="{{ link.url }}"{% if link.active or page contains link.title %} aria-current="page"{% endif %}>{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+  </div>
+{% schema %}
+  {
+    "name": "Blog Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Primary menu",
+        "default": "footer",
+        "info": "This menu won't show dropdown items"
+      }
+      
+    ]
+  }
+{% endschema %}

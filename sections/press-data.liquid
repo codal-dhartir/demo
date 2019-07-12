@@ -1,0 +1,107 @@
+ <div class="press-list">
+    {% for block in section.blocks %}
+        <div class="press-item">
+          <div class="press-thumb">
+           {{ block.settings.image | img_url: 'master', scale: 2 | img_tag: block.settings.image.alt }}
+          </div>
+          <div class="press-content">
+            <h4><a href="{{ block.settings.link }}" target="_blank">{{ block.settings.title | escape }}</a></h4>
+            <span class="date-press">{{ block.settings.date | escape }}</span>
+            <p>{{ block.settings.subtitle | escape }}</p>
+            <a class="link-press" href="{{ block.settings.link }}" target="_blank">Read More</a>
+          </div>
+        </div>
+   {% endfor %}
+<!--         <div class="press-item">
+          <div class="press-thumb">
+            <img src="https://floracracy.com/wp-content/uploads/2018/09/Sarah-Eva-150x150.jpg">
+          </div>
+          <div class="press-content">
+            <h4><a href="https://creativewomens.co/episode-18-entrepreneurship-is-combining-all-of-your-life-experiences-with-sarah-eva-marchese/" target="_blank">Entrepreneurship is Combining All of Your Life Experiences</a></h4>
+            <span class="date-press">09/07/2018</span>
+            <p>Floracracy CEO, Sarah-Eva Marchese, answers questions about applying one's life experiences to become a successful entrepreneur .</p>
+            <a class="link-press" href="https://creativewomens.co/episode-18-entrepreneurship-is-combining-all-of-your-life-experiences-with-sarah-eva-marchese/" target="_blank">Read More</a>
+          </div>
+        </div>
+        <div class="press-item">
+          <div class="press-thumb">
+            <img src="https://floracracy.com/wp-content/uploads/2018/10/Mohamed-150x150.jpg">
+          </div>
+          <div class="press-content">
+            <h4><a href="https://www.theguardian.com/global-development/2018/sep/03/poignant-words-of-murdered-mogadishu-florist-mohamed-mahamoud-sheik" target="_blank">‘I get scared, but I’m staying’: poignant words of murdered Mogadishu florist</a></h4>
+            <span class="date-press">09/03/2018</span>
+            <p>Mohamed Mahamoud Sheik, who opened Somalia’s first flower shop, was killed on 2 August. In this previously unpublished interview, he talks about life in war-torn Mogadishu.</p>
+            <a class="link-press" href="https://www.theguardian.com/global-development/2018/sep/03/poignant-words-of-murdered-mogadishu-florist-mohamed-mahamoud-sheik" target="_blank">Read More</a>
+          </div>
+        </div>
+        <div class="press-item">
+          <div class="press-thumb">
+            <img src="https://floracracy.com/wp-content/uploads/2018/10/Sarah-Eva-150x150.png">
+          </div>
+          <div class="press-content">
+            <h4><a href="https://www.evolveher.community/en/blog/read/674590917/special-guest-ladyboss-of-the-week-saraheva-marchese" target="_blank">Floracracy CEO, Sarah-Eva Marchese, featured as EvolveHer #LadyBoss of the Week</a></h4>
+            <span class="date-press">08/06/2018</span>
+            <p>Floracracy CEO, Sarah-Eva Marchese, featured as EvolveHer #LadyBoss of the Week.  In this interview, Sarah-Eva shares entrepreneurial insights and lessons from her experience.</p>
+            <a class="link-press" href="https://www.evolveher.community/en/blog/read/674590917/special-guest-ladyboss-of-the-week-saraheva-marchese" target="_blank">Read More</a>
+          </div>
+        </div>
+        <div class="press-item">
+          <div class="press-thumb">
+            <img src="https://floracracy.com/wp-content/uploads/2018/10/received_2353403321553756-150x150.jpeg">
+          </div>
+          <div class="press-content">
+            <h4><a href="https://lionessmagazine.com/he-dismissed-her-mommy-business-floracracy-but-now-its-making-history-in-the-male-dominated-floral-industry/" target="_blank">He Dismissed Her “Mommy Business” Floracracy, But Now It’s Making History In The Male-Dominated Floral Industry</a></h4>
+            <span class="date-press">07/19/2018</span>
+            <p>In 2014, Sarah-Eva Marchese had a vision for a whole new kind of floral company. But to attract the capital investment she needed, she sought the advice of a tech guru. Female entrepreneurs face an uphill road getting investment. In 2017 only about 2 percent of venture capital had gone to female founders</p>
+            <a class="link-press" href="https://lionessmagazine.com/he-dismissed-her-mommy-business-floracracy-but-now-its-making-history-in-the-male-dominated-floral-industry/" target="_blank">Read More</a>
+          </div>
+        </div> -->
+      </div>
+
+{% schema %}
+  {
+    "name": "Press Data",
+    "settings": [],
+     "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+              "type": "text",
+              "id": "title",
+              "label": "Heading",
+              "default": "Logo list"
+           },
+		  {
+              "type": "text",
+              "id": "date",
+              "label": "Date"
+           },
+           {
+              "type": "text",
+              "id": "subtitle",
+              "label": "Heading"
+           },
+           {
+            "type": "url",
+            "id": "link",
+            "label": "Link",
+            "info": "Optional"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,76 @@
+
+  <div class="container-fluid old_world_intro">
+
+  <div class="left_logo_category_compass">
+
+    <!--         <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-oldwd-selected_5ad4784b-cf14-47e7-88ba-8de1c8283ee8.png?4236402106574276914" usemap="#MapOldWorld" border="0"/> -->
+    <!--         <img style="display: none" id="base_image_o" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-oldwd-selected_5ad4784b-cf14-47e7-88ba-8de1c8283ee8.png?4236402106574276914" usemap="#MapPlain" border="0">
+<img style="display: none" id="arrow_image_o" src="small3.svg">
+<canvas id="compass_o" width="272" height="272" style="cursor: pointer;display:none;"></canvas>
+<img id="base_image_static_o"  src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/compass-oldwd-selected_5ad4784b-cf14-47e7-88ba-8de1c8283ee8.png?4236402106574276914" usemap="#MapOldWorld" border="0">
+-->
+  </div>
+  <!-- Style section 1       -->
+  <div class="old_world">
+
+
+    <div class="col-md-1 no-padding">
+      <div class="side_cnt">
+        <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old-world-title-1x.png?954669405795366805"/>		
+      </div>
+    </div>
+    <div class="col-md-11 no-padding ">
+      <div class="gallery_image_section">
+        <div class="sub_gallery_img">
+          <div class="traditional_style">
+            <img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/icon-old-world.png?2451581714063533265"/>
+            <h1><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/old_world_2x_605afa39-66bd-448c-af49-9a9d7191b39d.png?1373881059272293112"></h1>
+            <h4><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/traditional_style_2x_5b44c34d-486d-42d4-b4b6-d2738346fcc1.png?11938801540720435867"><br>
+              <img class="collection_style_line" src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/Old_World_Line_Flourish.svg?5492183152008772804">
+            </h4>
+          </div>
+        </div>
+        <div class="gallery_sub_content"> 
+          <p>{{ section.settings.oldworld_short_des }}</p>
+          <div class="beta_content"> 
+            <a href="http://admin.floracracy.com/?id=null&name=null&email=null&dl=OW" class="arrange_beta">CREATE AN OLD WORLD ARRANGEMENT (BETA)</a> 
+          </div>
+          <div class="link_made">
+            <a href="/collections/old-world">shop already made arrangements</a>
+          </div>
+
+        </div>
+        <div class="link_top_scroll">
+
+          <p>Learn more about the old world style</p>
+          <a href="/collections/old-world"><img src="https://cdn.shopify.com/s/files/1/0011/5104/1588/files/scroll-down-arrow.png?17979509584517141833"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+
+ {
+    "name": "Old World style content",
+    "settings": [      
+      {
+        "id": "oldworld_short_des",
+        "type": "richtext",
+        "label": "Old World Short description",
+"default": "<p>Add your text here</p>"
+      }  
+
+    ]
+
+  }
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
